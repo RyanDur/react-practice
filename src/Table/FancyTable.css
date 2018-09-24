@@ -30,14 +30,7 @@
     z-index: 3;
 }
 
-.table-body .table-row .table-data:first-child {
-    background-color: rgb(238, 238, 238);
-    position: -webkit-sticky;
-    position: sticky;
-    left: -.1rem;
-    text-align: left;
-}
-
+.table-body .table-row .table-data:first-child,
 .table-footer .table-row .table-data:first-child {
     background-color: rgb(238, 238, 238);
     position: -webkit-sticky;
