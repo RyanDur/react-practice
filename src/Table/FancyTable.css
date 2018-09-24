@@ -1,5 +1,6 @@
 .table-wrapper {
     max-width: 70rem;
+    max-height: 50rem;
     overflow: scroll;
 }
 
