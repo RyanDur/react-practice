@@ -36,3 +36,11 @@
     left: -.1rem;
     text-align: left;
 }
+
+.table-footer .table-row .table-data:first-child{
+    background-color: rgb(238, 238, 238);
+    position: -webkit-sticky;
+    position: sticky;
+    left: -.1rem;
+    text-align: left;
+}

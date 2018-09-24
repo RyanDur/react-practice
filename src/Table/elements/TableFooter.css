@@ -1,0 +1,5 @@
+.table-footer {
+    display: table-footer-group;
+    vertical-align: middle;
+    border-color: inherit;
+}

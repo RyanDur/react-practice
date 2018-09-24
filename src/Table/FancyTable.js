@@ -5,6 +5,7 @@ import {TableRow} from "./elements/TableRow";
 import {ColumnHeader} from "./elements/ColumnHeader";
 import {TableBody} from "./elements/TableBody";
 import {TableData} from "./elements/TableData";
+import {TableFooter} from "./elements/TableFooter";
 import {Table} from "./elements/Table";
 import './FancyTable.css';
 
@@ -424,6 +425,37 @@ class FancyTable extends Component {
               <TableData>13</TableData>
             </TableRow>
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableData>Total:</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+              <TableData>—</TableData>
+            </TableRow>
+          </TableFooter>
         </Table>
       </div>
     )
