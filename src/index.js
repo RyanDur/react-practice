@@ -1,6 +1,16 @@
-import FancyTable from "./Table/FancyTable";
 import React from 'react';
 import ReactDom from 'react-dom';
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import rootReducer from './reducers'
+import App from './components/App'
 import './index.css';
 
-ReactDom.render(<FancyTable/>, document.getElementById('root'));
+const store = createStore(rootReducer);
+
+ReactDom.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
+);
