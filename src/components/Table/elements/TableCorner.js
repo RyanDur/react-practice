@@ -1,12 +1,12 @@
 import React from 'react';
-import './TableRow.css';
 import PropTypes from 'prop-types';
+import './TableCorner.css';
 
-export function TableRow(props) {
-  return <div className={'table-row'}>{props.children}</div>;
+export function TableCorner(props) {
+  return (<div className={'table-corner'}>{props.children}</div>);
 }
 
-TableRow.propTypes = {
+TableCorner.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
