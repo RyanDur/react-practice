@@ -3,7 +3,7 @@ import './Table.css';
 import PropTypes from 'prop-types';
 
 export function Table(props) {
-  return <div className={'table'}>{props.children}</div>;
+  return <div className={'reducer'}>{props.children}</div>;
 }
 
 Table.propTypes = {

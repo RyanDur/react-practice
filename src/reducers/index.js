@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import todos from './todos';
 import visibilityFilter from './visibilityFilter';
-import TableReducer from '../components/Table/TableReducer';
+import table from '../components/ExcelTable/reducer';
 
 
 export default combineReducers({
   todos,
   visibilityFilter,
-  TableReducer
+  table
 });

@@ -62,7 +62,7 @@ describe('helpers', () => {
     });
   });
 
-  describe('summing up the table data', () => {
+  describe('summing up the reducer data', () => {
     const expected = {
       foo: 10,
       bar: 20,

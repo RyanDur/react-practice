@@ -1,8 +1,8 @@
 import {createStore} from 'redux';
-import tableReducer from '../TableReducer';
+import tableReducer from '../reducer';
 import {initialState} from './initialState';
 
-describe('Table state', () => {
+describe('ExcelTable state', () => {
   const store = createStore(tableReducer);
 
   it('should have the data', () => {
@@ -13,7 +13,7 @@ describe('Table state', () => {
   });
 
   it('should total the columns', () => {
-    store.dispatch({type: 'TOTALS_DATA'});
+    store.dispatch({type: 'TABLE_TOTALS'});
     const state = store.getState();
 
     const column = {

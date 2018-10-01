@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from './Footer';
 import AddTodo from '../containers/AddTodo';
 import VisibleTodoList from '../containers/VisibleTodoList';
-import Table from './Table/Table';
+import Table from './ExcelTable/connector';
 
 const App = () => (
   <div>

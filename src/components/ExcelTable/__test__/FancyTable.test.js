@@ -2,8 +2,8 @@ import FancyTable from '../FancyTable';
 import {mount} from 'enzyme';
 import React from 'react';
 
-describe('Fancy Table', () => {
-  let wrapper = {};
+describe('Fancy ExcelTable', () => {
+  let wrapper;
 
   beforeEach(() => {
     wrapper = mount(

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {TableHead} from './elements/TableHead';
 import {TableRow} from './elements/TableRow';
 import {ColumnHeader} from './elements/ColumnHeader';
@@ -8,7 +9,6 @@ import {Table} from './elements/Table';
 import {TableCorner} from './elements/TableCorner';
 import {TableData} from './elements/TableData';
 import {getKeyValues, isEmpty} from './helpers';
-import PropTypes from 'prop-types';
 import './FancyTable.css';
 
 class FancyTable extends Component {
@@ -17,7 +17,7 @@ class FancyTable extends Component {
     return <ColumnHeader key={key}>{name}</ColumnHeader>;
   }
 
-  static columnHeaders({data = [{}]}) {
+  static columnHeaders(data = [{}]) {
     const value = getKeyValues(data[0]).value;
     return !isEmpty(value) && Object.keys(value).map(FancyTable.createColumn);
   }
@@ -34,11 +34,11 @@ class FancyTable extends Component {
     </TableRow>;
   }
 
-  static rows({data = []}) {
+  static rows(data = []) {
     return data.map(FancyTable.createRow);
   }
 
-  static totals({totals = {}}) {
+  static totals(totals = {}) {
     return Object.entries(totals)
       .map(FancyTable.createData);
   }
@@ -53,17 +53,17 @@ class FancyTable extends Component {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCorner/>
-            {FancyTable.columnHeaders(this.props)}
+            <TableCorner className={'column-header'}/>
+            {FancyTable.columnHeaders(this.props.data)}
           </TableRow>
         </TableHead>
         <TableBody>
-          {FancyTable.rows(this.props)}
+          {FancyTable.rows(this.props.data)}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TableData>Totals:</TableData>
-            {FancyTable.totals(this.props)}
+            {FancyTable.totals(this.props.totals)}
           </TableRow>
         </TableFooter>
       </Table>
@@ -73,7 +73,9 @@ class FancyTable extends Component {
 
 FancyTable.propTypes = {
   getData: PropTypes.func,
-  getTotals: PropTypes.func
+  getTotals: PropTypes.func,
+  data: PropTypes.array,
+  totals: PropTypes.object
 };
 
 export default FancyTable;
