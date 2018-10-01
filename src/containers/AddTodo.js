@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {addTodo} from '../actions';
+import PropTypes from 'prop-types';
 
 const AddTodo = ({dispatch}) => {
   let input;
@@ -24,6 +25,10 @@ const AddTodo = ({dispatch}) => {
       </form>
     </div>
   );
+};
+
+AddTodo.propTypes = {
+  dispatch: PropTypes.func
 };
 
 export default connect()(AddTodo);

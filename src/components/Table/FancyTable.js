@@ -7,17 +7,9 @@ import {TableFooter} from './elements/TableFooter';
 import {Table} from './elements/Table';
 import {TableCorner} from './elements/TableCorner';
 import {TableData} from './elements/TableData';
+import {getKeyValues, isEmpty} from './helpers';
+import PropTypes from 'prop-types';
 import './FancyTable.css';
-
-const sum = (acc, val) => acc + val;
-const transpose = (rows) =>
-  (name) => [name, rows.map((row) => row[name])];
-const undoEntry = fn =>
-  (obj, [key, val]) => ({...obj, [key]: val.reduce(fn, 0)});
-
-const sumRows = (rows) => Object.keys(rows[0])
-  .map(transpose(rows))
-  .reduce(undoEntry(sum), {});
 
 class FancyTable extends Component {
 
@@ -25,17 +17,20 @@ class FancyTable extends Component {
     return <ColumnHeader key={key}>{name}</ColumnHeader>;
   }
 
-  static columnHeaders({data = []}) {
-    return data.map(row => Object.keys(row).map(FancyTable.createColumn));
+  static columnHeaders({data = [{}]}) {
+    const value = getKeyValues(data[0]).value;
+    return !isEmpty(value) && Object.keys(value).map(FancyTable.createColumn);
   }
 
   static createData([key, value], i) {
     return <TableData column={key} key={i}>{value}</TableData>;
   }
 
-  static createRow(row = {}, key) {
-    return <TableRow key={key}>
-      {Object.entries(row).map(FancyTable.createData)}
+  static createRow(row = {}, idx) {
+    const {key, value} = getKeyValues(row);
+    return <TableRow key={idx}>
+      <TableData>{key}</TableData>
+      {Object.entries(value).map(FancyTable.createData)}
     </TableRow>;
   }
 
@@ -43,9 +38,14 @@ class FancyTable extends Component {
     return data.map(FancyTable.createRow);
   }
 
-  static totals({data = [{}]}) {
-    return Object.entries(sumRows(data))
+  static totals({totals = {}}) {
+    return Object.entries(totals)
       .map(FancyTable.createData);
+  }
+
+  componentDidMount() {
+    this.props.getData();
+    this.props.getTotals();
   }
 
   render() {
@@ -70,5 +70,10 @@ class FancyTable extends Component {
     </div>;
   }
 }
+
+FancyTable.propTypes = {
+  getData: PropTypes.func,
+  getTotals: PropTypes.func
+};
 
 export default FancyTable;

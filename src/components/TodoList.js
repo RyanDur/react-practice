@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import Todo from './Todo';
 
-const TodoList = ({ todos, toggleTodo }) => (
+const TodoList = ({todos, toggleTodo}) => (
   <ul>
     {todos.map(todo =>
       <Todo
@@ -25,4 +25,4 @@ TodoList.propTypes = {
   toggleTodo: PropTypes.func.isRequired
 };
 
-export default TodoList
+export default TodoList;

@@ -6,7 +6,9 @@ describe('Fancy Table', () => {
   let wrapper = {};
 
   beforeEach(() => {
-    wrapper = mount(<FancyTable/>);
+    wrapper = mount(
+      <FancyTable getData={jest.fn()} getTotals={jest.fn()}/>
+    );
   });
 
   describe('rows', () => {
@@ -19,10 +21,22 @@ describe('Fancy Table', () => {
     });
 
     it('should have the same number of rows as there are in data', () => {
-      const row = {foo: 1, bar: 2, baz: 3};
-      wrapper.setProps({data: [row, row, row, row, row]});
+      wrapper.setProps({
+        data: [
+          {'Mendel': {foo: 1, bar: 2, baz: 3}},
+          {'Rodolfo': {foo: 1, bar: 2, baz: 3}},
+          {'Ryan': {foo: 1, bar: 2, baz: 3}},
+          {'Jon': {foo: 1, bar: 2, baz: 3}},
+          {'Alex': {foo: 1, bar: 2, baz: 3}}
+        ]
+      });
 
       expect(rows()).toHaveLength(5);
+    });
+
+    it('should set the name of the row', () => {
+      wrapper.setProps({data: [{'Mendel': {foo: 1, bar: 2, baz: 3}}]});
+      expect(rows().find('.table-data').first().text()).toBe('Mendel');
     });
   });
 
@@ -36,14 +50,14 @@ describe('Fancy Table', () => {
     });
 
     it('should have the same columns as there are keys in a row', () => {
-      const row = {foo: 0, bar: 0, baz: 0};
+      const row = {'Shakey': {foo: 0, bar: 0, baz: 0}};
       wrapper.setProps({data: [row]});
 
       expect(columns()).toHaveLength(3);
     });
 
     it('should name the columns after the keys in the row', () => {
-      wrapper.setProps({data: [{foo: 0, bar: 0, baz: 0, bob: 0}]});
+      wrapper.setProps({data: [{'Anna': {foo: 0, bar: 0, baz: 0, bob: 0}}]});
 
       expect(columns().eq(0).text()).toBe('foo');
       expect(columns().eq(1).text()).toBe('bar');
@@ -58,12 +72,15 @@ describe('Fancy Table', () => {
       .find(`.table-data[data-column="${column}"]`);
 
     it('should sum up columns', () => {
-      const row1 = {foo: 1, bar: 2, baz: 3, bob: 4};
-      const row2 = {foo: 1, bar: 2, baz: 3, bob: 4};
-      const row3 = {foo: 1, bar: 2, baz: 3, bob: 4};
-      const row4 = {foo: 1, bar: 2, baz: 3, bob: 4};
-
-      wrapper.setProps({data: [row1, row2, row3, row4]});
+      wrapper.setProps({
+        data: [
+          {'Harrison': {foo: 1, bar: 2, baz: 3, bob: 4}},
+          {'Alex': {foo: 1, bar: 2, baz: 3, bob: 4}},
+          {'Krishna': {foo: 1, bar: 2, baz: 3, bob: 4}},
+          {'Mohammad': {foo: 1, bar: 2, baz: 3, bob: 4}}
+        ],
+        totals: {foo: 4, bar: 8, baz: 12, bob: 16}
+      });
 
       expect(footer('foo').text()).toEqual('4');
       expect(footer('bar').text()).toEqual('8');
