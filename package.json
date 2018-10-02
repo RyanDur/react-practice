@@ -53,7 +53,7 @@
     "xml-loader": "^1.2.1"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --colors",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
@@ -66,22 +66,6 @@
     ],
     "moduleNameMapper": {
       "\\.css$": "<rootDir>/__mocks__/styleMock.js"
-    },
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/vendor/**",
-      "!.**",
-      "!webpack**",
-      "!coverage/**"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": -10
-      }
     }
   },
   "keywords": [],

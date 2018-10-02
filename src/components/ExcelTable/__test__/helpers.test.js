@@ -1,6 +1,6 @@
 import {
   collectEntries,
-  flattenObjects, getKeyValues,
+  flattenObjects, getKeyValues, getRows, isEmpty,
   sum,
   sumColumns,
   transposeRows
@@ -79,5 +79,20 @@ describe('helpers', () => {
     expect(sumColumns(initialState.data
       .map(getKeyValues)
       .map(foo => foo.value))).toEqual(expected);
+  });
+
+  describe('isEmpty', () => {
+    it('should know if an object is empty', () => {
+      expect(isEmpty({})).toBe(true);
+    });
+
+    it('should know if an object is not empty', () => {
+      expect(isEmpty({foo: 1})).toBe(false);
+    });
+  });
+
+  describe('getRows', () => {
+    const state = {data: [{a: {foo: 1}}, {b: {bar: 2}}, {c: {baz: 3}}]};
+    expect(getRows(state)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
   });
 });
