@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import tableReducer from '../reducer';
+import {reducer as tableReducer} from '../reducer';
 import {initialState} from './initialState';
 
 describe('ExcelTable state', () => {

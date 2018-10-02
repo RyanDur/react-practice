@@ -1,7 +1,7 @@
 import {initialState} from './__test__/initialState';
 import {getRows, sumColumns} from './helpers';
 
-const reducer = (state = {}, action) => {
+export const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'TABLE_TOTALS':
       return {...state, totals: sumColumns(getRows(state))};
@@ -11,5 +11,3 @@ const reducer = (state = {}, action) => {
       return state;
   }
 };
-
-export default reducer;
