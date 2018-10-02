@@ -28,3 +28,9 @@ export const sumColumns = (rows) =>
   transposeRows(rows)
     .map(collectEntries(sum))
     .reduce(flattenObjects, {});
+
+export const getRows = ({data}) => {
+  return data
+    .map(getKeyValues)
+    .map(row => row.value);
+};
