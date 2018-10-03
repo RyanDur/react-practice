@@ -10,6 +10,7 @@ module.exports = {
       "jsx": true
     }
   },
+  "parser": "babel-eslint",
   "env": {
     "es6": true,
     "browser": true,
@@ -50,7 +51,7 @@ module.exports = {
     "no-extra-semi": 1,
     "no-unreachable": 1,
     "no-unused-expressions": 1,
-    "max-len": [1, 80, 4],
+    "max-len": [1, 160, 4],
     "react/prefer-es6-class": 1,
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",

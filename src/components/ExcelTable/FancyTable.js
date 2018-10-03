@@ -8,74 +8,76 @@ import {TableFooter} from './elements/TableFooter';
 import {Table} from './elements/Table';
 import {TableCorner} from './elements/TableCorner';
 import {TableData} from './elements/TableData';
-import {getKeyValues, isEmpty} from './helpers';
+import {Checkbox} from './elements/Checkbox';
 import './FancyTable.css';
 
 class FancyTable extends Component {
+  static propTypes = {
+    updateData: PropTypes.func.isRequired,
+    updateTotals: PropTypes.func.isRequired,
+    toggleChecked: PropTypes.func.isRequired,
+    data: PropTypes.array.isRequired,
+    totals: PropTypes.object.isRequired,
+    columns: PropTypes.array.isRequired
+  };
 
-  static createColumn(name, key) {
-    return <ColumnHeader key={key}>{name}</ColumnHeader>;
-  }
+  createData = ([key, value], i) =>
+    <TableData column={key} key={i}>{value}</TableData>;
 
-  static columnHeaders(data = [{}]) {
-    const value = getKeyValues(data[0]).value;
-    return !isEmpty(value) && Object.keys(value).map(FancyTable.createColumn);
-  }
+  handleChecked = (name, checked) => () =>
+    this.props.toggleChecked({name, checked});
 
-  static createData([key, value], i) {
-    return <TableData column={key} key={i}>{value}</TableData>;
-  }
+  columns = (columns = []) =>
+    columns.map((name, key) =>
+      <ColumnHeader key={key}>{name}</ColumnHeader>);
 
-  static createRow(row = {}, idx) {
-    const {key, value} = getKeyValues(row);
-    return <TableRow key={idx}>
-      <TableData>{key}</TableData>
-      {Object.entries(value).map(FancyTable.createData)}
-    </TableRow>;
-  }
+  rows = (rows = []) =>
+    rows.map(({name, row, checked} = {}, idx) => {
+      return <TableRow key={idx}>
+        <TableData className='row-header'>
+          <Checkbox index={idx} label={name} checked={checked}
+                    change={this.handleChecked(name)}/>
+        </TableData>
+        {Object.entries(row).map(this.createData)}
+      </TableRow>;
+    });
 
-  static rows(data = []) {
-    return data.map(FancyTable.createRow);
-  }
-
-  static totals(totals = {}) {
-    return Object.entries(totals)
-      .map(FancyTable.createData);
-  }
+  totals = (totals = {}) =>
+    Object.entries(totals)
+      .map(this.createData);
 
   componentDidMount() {
-    this.props.getData();
-    this.props.getTotals();
+    this.props.updateData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.data !== prevProps.data) {
+      this.props.updateTotals(this.props.data);
+    }
   }
 
   render() {
+    const {data, totals, columns} = this.props;
     return <div className={'table-wrapper'}>
       <Table>
         <TableHead>
           <TableRow>
             <TableCorner className={'column-header'}/>
-            {FancyTable.columnHeaders(this.props.data)}
+            {this.columns(columns)}
           </TableRow>
         </TableHead>
         <TableBody>
-          {FancyTable.rows(this.props.data)}
+          {this.rows(data)}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TableData>Totals:</TableData>
-            {FancyTable.totals(this.props.totals)}
+            {this.totals(totals)}
           </TableRow>
         </TableFooter>
       </Table>
     </div>;
   }
 }
-
-FancyTable.propTypes = {
-  getData: PropTypes.func,
-  getTotals: PropTypes.func,
-  data: PropTypes.array,
-  totals: PropTypes.object
-};
 
 export default FancyTable;

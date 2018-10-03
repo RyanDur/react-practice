@@ -1,18 +1,30 @@
 import {
   collectEntries,
-  flattenObjects, getKeyValues, getRows, isEmpty,
+  flattenObjects,
+  getKeyValues,
+  getRows,
+  isEmpty,
   sum,
   sumColumns,
-  transposeRows
+  transposeRows,
+  updateChecked,
+  getCheckedRows
 } from '../helpers';
 import {initialState} from './initialState';
 
 describe('helpers', () => {
   const rows = [
-    {foo: 1, bar: 2, baz: 3},
-    {foo: 1, bar: 2, baz: 3},
-    {foo: 1, bar: 2, baz: 3}
+    {name: 'Mendel', row: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Ryan', row: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Alex', row: {foo: 1, bar: 2, baz: 3}, checked: true}
   ];
+
+  describe('getCheckedRows', () => {
+    const updatedRows = updateChecked({name: 'Ryan'}, rows);
+    const expected = [{foo: 1, bar: 2, baz: 3}, {foo: 1, bar: 2, baz: 3}];
+
+    expect(getCheckedRows(updatedRows)).toEqual(expected);
+  });
 
   describe('transpose', () => {
     it('should turn columns into rows', () => {
@@ -22,13 +34,13 @@ describe('helpers', () => {
         [['baz', 3], ['baz', 3], ['baz', 3]]
       ];
 
-      expect(transposeRows(rows)).toEqual(expected);
+      expect(transposeRows(getCheckedRows(rows))).toEqual(expected);
     });
   });
 
   describe('collectEntries', () => {
     it('should collect each entry into key value pairs', () => {
-      const totals = transposeRows(rows)
+      const totals = transposeRows(getRows(rows))
         .map(collectEntries(sum));
 
       expect(totals).toEqual([{foo: 3}, {bar: 6}, {baz: 9}]);
@@ -37,7 +49,7 @@ describe('helpers', () => {
 
   describe('flattenObjects', () => {
     it('should flatten a list of objects', () => {
-      const totals = transposeRows(rows)
+      const totals = transposeRows(getRows(rows))
         .map(collectEntries(sum))
         .reduce(flattenObjects, {});
 
@@ -76,9 +88,8 @@ describe('helpers', () => {
       cop: 100
     };
 
-    expect(sumColumns(initialState.data
-      .map(getKeyValues)
-      .map(foo => foo.value))).toEqual(expected);
+    const actual = sumColumns(initialState.data);
+    expect(actual).toEqual(expected);
   });
 
   describe('isEmpty', () => {
@@ -92,7 +103,9 @@ describe('helpers', () => {
   });
 
   describe('getRows', () => {
-    const state = {data: [{a: {foo: 1}}, {b: {bar: 2}}, {c: {baz: 3}}]};
-    expect(getRows(state)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
+    it('should get the rows', () => {
+      const state = {data: [{row: {foo: 1}}, {row: {bar: 2}}, {row: {baz: 3}}]};
+      expect(getRows(state.data)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
+    });
   });
 });

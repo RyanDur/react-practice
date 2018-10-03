@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export function TableData(props) {
   return <div
     data-column={props.column}
-    className={'table-data'}>
+    className={`table-data ${props.className}`}>
     {props.children}
   </div>;
 }
@@ -15,5 +15,6 @@ TableData.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  column: PropTypes.string
+  column: PropTypes.string,
+  className: PropTypes.string
 };

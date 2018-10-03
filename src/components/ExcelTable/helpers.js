@@ -3,8 +3,7 @@ const toEntries = row => Object.entries(row);
 
 export const transposeRows = rows => {
   const rowEntries = rows.map(toEntries);
-  return rowEntries[0]
-    .map((_, index) => rowEntries.map(row => row[index]));
+  return rowEntries[0]?.map((_, index) => rowEntries.map(row => row[index])) || [];
 };
 
 export const collectEntries = fn => row =>
@@ -24,13 +23,19 @@ export const isEmpty = (obj) => {
   return true;
 };
 
-export const sumColumns = (rows) =>
-  transposeRows(rows)
+export const sumColumns = (rows) => {
+  return transposeRows(getCheckedRows(rows))
     .map(collectEntries(sum))
     .reduce(flattenObjects, {});
-
-export const getRows = ({data}) => {
-  return data
-    .map(getKeyValues)
-    .map(row => row.value);
 };
+
+export const getRows = (data = []) =>
+  data.map(obj => obj.row);
+
+export const updateChecked = (namedRow = {}, rows = []) =>
+  rows.map((row) => namedRow.name === row.name ?
+    {name: row.name, row: row.row, checked: !row.checked} : row);
+
+export const getCheckedRows = (rows = []) =>
+  rows.filter(row => row.checked)
+    .map(row => row.row);
