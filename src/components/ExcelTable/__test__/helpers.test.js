@@ -1,7 +1,6 @@
 import {
   collectEntries,
   flattenObjects,
-  getKeyValues,
   getRows,
   isEmpty,
   sum,
@@ -61,16 +60,6 @@ describe('helpers', () => {
     it('should sum the columns', () => {
       const totals = sumColumns(rows);
       expect(totals).toEqual({foo: 3, bar: 6, baz: 9});
-    });
-  });
-
-  describe('getKeyValues', () => {
-    it('should get the key value pairs', () => {
-      const row = {'Rodolfo': [{foo: 3, bar: 6, baz: 9}]};
-      const kv = getKeyValues(row);
-
-      expect(kv.key).toBe('Rodolfo');
-      expect(kv.value).toEqual([{foo: 3, bar: 6, baz: 9}]);
     });
   });
 

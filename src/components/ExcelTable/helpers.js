@@ -13,11 +13,6 @@ export const collectEntries = fn => row =>
 export const flattenObjects =
   (acc, obj) => Object.assign({}, acc, obj);
 
-export const getKeyValues = (obj = {}) => {
-  const key = Object.keys(obj)[0];
-  return {key: key, value: obj[key]};
-};
-
 export const isEmpty = (obj) => {
   for (let x in obj) if (obj.hasOwnProperty(x)) return false;
   return true;
