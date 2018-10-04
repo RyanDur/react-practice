@@ -2,7 +2,6 @@ import {
   collectEntries,
   flattenObjects,
   getRows,
-  isEmpty,
   sum,
   sumColumns,
   transposeRows,
