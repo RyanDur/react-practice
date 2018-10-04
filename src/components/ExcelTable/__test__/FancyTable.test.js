@@ -17,7 +17,7 @@ describe('Fancy ExcelTable', () => {
       .children('.table-row');
 
     it('should have no rows if no data', () => {
-      wrapper.setProps({data: []});
+      wrapper.setProps({rows: []});
       expect(rows()).toHaveLength(0);
     });
 
@@ -75,16 +75,16 @@ describe('Fancy ExcelTable', () => {
 });
 
 const mockProps = ({
-  updateData = jest.fn(),
+  updateRows = jest.fn(),
   updateTotals = jest.fn(),
   toggleChecked = jest.fn(),
-  data = [
-    {name: 'Mendel', row: {foo: 1, bar: 2, baz: 3}, checked: true},
-    {name: 'Rodolfo', row: {foo: 1, bar: 2, baz: 3}, checked: true},
-    {name: 'Ryan', row: {foo: 1, bar: 2, baz: 3}, checked: true},
-    {name: 'Jon', row: {foo: 1, bar: 2, baz: 3}, checked: true},
-    {name: 'Alex', row: {foo: 1, bar: 2, baz: 3}, checked: true}
+  rows = [
+    {name: 'Mendel', data: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Rodolfo', data: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Ryan', data: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Jon', data: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Alex', data: {foo: 1, bar: 2, baz: 3}, checked: true}
   ],
   totals = {foo: 5, bar: 10, baz: 15},
   columns = ['foo', 'bar', 'baz']
-}) => ({updateData, updateTotals, toggleChecked, data, totals, columns});
+}) => ({updateRows, updateTotals, toggleChecked, rows, totals, columns});

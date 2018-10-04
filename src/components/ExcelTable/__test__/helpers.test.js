@@ -13,16 +13,17 @@ import {initialState} from './initialState';
 
 describe('helpers', () => {
   const rows = [
-    {name: 'Mendel', row: {foo: 1, bar: 2, baz: 3}, checked: true},
-    {name: 'Ryan', row: {foo: 1, bar: 2, baz: 3}, checked: true},
-    {name: 'Alex', row: {foo: 1, bar: 2, baz: 3}, checked: true}
+    {name: 'Mendel', data: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Ryan', data: {foo: 1, bar: 2, baz: 3}, checked: true},
+    {name: 'Alex', data: {foo: 1, bar: 2, baz: 3}, checked: true}
   ];
 
   describe('getCheckedRows', () => {
     const updatedRows = updateChecked({name: 'Ryan'}, rows);
     const expected = [{foo: 1, bar: 2, baz: 3}, {foo: 1, bar: 2, baz: 3}];
 
-    expect(getCheckedRows(updatedRows)).toEqual(expected);
+    const checkedRows = getCheckedRows(updatedRows);
+    expect(checkedRows).toEqual(expected);
   });
 
   describe('transpose', () => {
@@ -77,24 +78,13 @@ describe('helpers', () => {
       cop: 100
     };
 
-    const actual = sumColumns(initialState.data);
-    expect(actual).toEqual(expected);
-  });
-
-  describe('isEmpty', () => {
-    it('should know if an object is empty', () => {
-      expect(isEmpty({})).toBe(true);
-    });
-
-    it('should know if an object is not empty', () => {
-      expect(isEmpty({foo: 1})).toBe(false);
-    });
+    expect(sumColumns(initialState.rows)).toEqual(expected);
   });
 
   describe('getRows', () => {
     it('should get the rows', () => {
-      const state = {data: [{row: {foo: 1}}, {row: {bar: 2}}, {row: {baz: 3}}]};
-      expect(getRows(state.data)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
+      const state = {rows: [{data: {foo: 1}}, {data: {bar: 2}}, {data: {baz: 3}}]};
+      expect(getRows(state.rows)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
     });
   });
 });

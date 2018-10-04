@@ -19,7 +19,7 @@ describe('Table state', () => {
 
   describe('table columns', () => {
     it('should total the columns', () => {
-      store.dispatch({type: TABLE_TOTALS, rows: initialState.data});
+      store.dispatch({type: TABLE_TOTALS, rows: initialState.rows});
 
       const column = {
         totals: {
@@ -44,7 +44,7 @@ describe('Table state', () => {
     it('should toggle checked of a row', () => {
       store.dispatch({type: TOGGLE_CHECKED, row: {name: 'Harrison', checked: true}});
 
-      expect(state().data.filter(row => !row.checked)[0]?.name).toBe('Harrison');
+      expect(state().rows.filter(row => !row.checked)[0]?.name).toBe('Harrison');
     });
   });
 });

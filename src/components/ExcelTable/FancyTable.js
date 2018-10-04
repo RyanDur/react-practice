@@ -13,10 +13,10 @@ import './FancyTable.css';
 
 class FancyTable extends Component {
   static propTypes = {
-    updateData: PropTypes.func.isRequired,
+    updateRows: PropTypes.func.isRequired,
     updateTotals: PropTypes.func.isRequired,
     toggleChecked: PropTypes.func.isRequired,
-    data: PropTypes.array.isRequired,
+    rows: PropTypes.array.isRequired,
     totals: PropTypes.object.isRequired,
     columns: PropTypes.array.isRequired
   };
@@ -32,13 +32,13 @@ class FancyTable extends Component {
       <ColumnHeader key={key}>{name}</ColumnHeader>);
 
   rows = (rows = []) =>
-    rows.map(({name, row, checked} = {}, idx) => {
+    rows.map(({name, data, checked} = {}, idx) => {
       return <TableRow key={idx}>
         <TableData className='row-header'>
           <Checkbox index={idx} label={name} checked={checked}
                     change={this.handleChecked(name)}/>
         </TableData>
-        {Object.entries(row).map(this.createData)}
+        {Object.entries(data).map(this.createData)}
       </TableRow>;
     });
 
@@ -47,17 +47,17 @@ class FancyTable extends Component {
       .map(this.createData);
 
   componentDidMount() {
-    this.props.updateData();
+    this.props.updateRows();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.data !== prevProps.data) {
-      this.props.updateTotals(this.props.data);
+    if (this.props.rows !== prevProps.rows) {
+      this.props.updateTotals(this.props.rows);
     }
   }
 
   render() {
-    const {data, totals, columns} = this.props;
+    const {rows, totals, columns} = this.props;
     return <div className={'table-wrapper'}>
       <Table>
         <TableHead>
@@ -67,7 +67,7 @@ class FancyTable extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.rows(data)}
+          {this.rows(rows)}
         </TableBody>
         <TableFooter>
           <TableRow>

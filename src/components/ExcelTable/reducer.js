@@ -9,7 +9,7 @@ export const reducer = (state = {}, action) => {
     case TABLE_DATA:
       return {...state, ...initialState};
     case TOGGLE_CHECKED:
-      return {...state, data: updateChecked(action.row, state.data)};
+      return {...state, rows: updateChecked(action.row, state.rows)};
     default:
       return state;
   }

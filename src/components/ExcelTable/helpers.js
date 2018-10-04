@@ -13,24 +13,19 @@ export const collectEntries = fn => row =>
 export const flattenObjects =
   (acc, obj) => Object.assign({}, acc, obj);
 
-export const isEmpty = (obj) => {
-  for (let x in obj) if (obj.hasOwnProperty(x)) return false;
-  return true;
-};
-
 export const sumColumns = (rows) => {
   return transposeRows(getCheckedRows(rows))
     .map(collectEntries(sum))
     .reduce(flattenObjects, {});
 };
 
-export const getRows = (data = []) =>
-  data.map(obj => obj.row);
+export const getRows = (rows = []) =>
+  rows.map(row => row.data);
 
 export const updateChecked = (namedRow = {}, rows = []) =>
   rows.map((row) => namedRow.name === row.name ?
-    {name: row.name, row: row.row, checked: !row.checked} : row);
+    {name: row.name, data: row.data, checked: !row.checked} : row);
 
 export const getCheckedRows = (rows = []) =>
   rows.filter(row => row.checked)
-    .map(row => row.row);
+    .map(row => row.data);
