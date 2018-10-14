@@ -30,7 +30,7 @@ export type TableAction = {
 
 const defaultState: TableState = {rows: [], totals: {}, columns: []};
 
-export const reducer = (state: TableState = defaultState, action: TableAction) => {
+export const reducer = (state: TableState = defaultState, action: TableAction): TableState => {
   switch (action.type) {
     case tableAction.TABLE_TOTALS:
       return {...state, totals: sumColumns(action.rows)};

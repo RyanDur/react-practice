@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component, ReactNode} from 'react';
+import {Component} from 'react';
 import {TableHead} from './elements/TableHead';
 import {TableRow} from './elements/TableRow';
 import {ColumnHeader} from './elements/ColumnHeader';
@@ -13,29 +13,28 @@ import './FancyTable.css';
 import {TableProps} from "./connector";
 import {Data, Row, TableState} from "./reducer";
 
-class FancyTable extends Component<TableProps ,TableState> {
-  createData = ([key, value]: [string, number], i: number): ReactNode =>
+class FancyTable extends Component<TableProps, TableState> {
+  createData = ([key, value]: [string, number], i: number): JSX.Element =>
     <TableData column={key} key={i}>{value}</TableData>;
 
-  handleChecked = (row: Row) => () =>
+  handleChecked = (row: Row) => (): void =>
     this.props.toggleChecked(row);
 
-  columns = (columns: string[] = []) =>
+  columns = (columns: string[] = []): JSX.Element[] =>
     columns.map((name, key) =>
       <ColumnHeader key={key}>{name}</ColumnHeader>);
 
-  rows = (rows: Row[] = []) =>
-    rows.map(({name, data, checked}: Row, idx) => {
-      return <TableRow key={idx}>
+  rows = (rows: Row[] = []): JSX.Element[] =>
+    rows.map((row: Row, idx) =>
+      <TableRow key={idx}>
         <TableData className='row-header'>
-          <Checkbox index={idx} label={name} checked={checked}
-                    change={this.handleChecked({name, data, checked})}/>
+          <Checkbox index={idx} label={row.name} checked={row.checked}
+                    change={this.handleChecked(row)}/>
         </TableData>
-        {Object.entries(data).map(this.createData)}
-      </TableRow>;
-    });
+        {Object.entries(row.data).map(this.createData)}
+      </TableRow>);
 
-  totals = (totals: Data = {}) =>
+  totals = (totals: Data = {}): JSX.Element[] =>
     Object.entries(totals)
       .map(this.createData);
 

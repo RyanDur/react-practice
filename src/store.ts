@@ -1,7 +1,10 @@
 import {combineReducers, createStore} from 'redux';
-import {reducer as table} from './components/ExcelTable/reducer';
+import {reducer as table, TableState} from './components/ExcelTable/reducer';
 
-const reducers = combineReducers({
+export interface AppState {
+  table: TableState;
+}
+
+export const store = createStore(combineReducers<AppState>({
   table
-});
-export const store = createStore(reducers);
+}));

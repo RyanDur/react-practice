@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
 import FancyTable from './FancyTable';
 import {tableAction} from "./actions";
-import {Data, Row, TableAction, TableState} from "./reducer";
+import {Data, Row, TableAction} from "./reducer";
 import {Dispatch} from "redux";
+import {AppState} from "../../store";
 
 interface TableStateProps {
   rows: Row[]
@@ -16,12 +17,13 @@ interface TableDispatchProps {
   toggleChecked: (row: Row) => void
 }
 
-export interface TableProps extends TableStateProps, TableDispatchProps {}
+export type TableProps = TableStateProps & TableDispatchProps;
 
-export default connect<TableStateProps, TableDispatchProps>((table: TableState): TableStateProps => ({
-    rows: table.rows || [],
-    totals: table.totals || {},
-    columns: table.columns || []
+export default connect<TableStateProps, TableDispatchProps>(
+  ({table}: AppState): TableStateProps => ({
+    rows: table.rows,
+    totals: table.totals,
+    columns: table.columns
   }),
   (dispatch: Dispatch<TableAction>): TableDispatchProps => ({
     updateRows: () => dispatch({type: tableAction.TABLE_DATA}),

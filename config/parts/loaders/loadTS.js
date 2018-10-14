@@ -1,4 +1,4 @@
-const { CheckerPlugin } = require('awesome-typescript-loader')
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 exports.loadTS = () => ({
   module: {

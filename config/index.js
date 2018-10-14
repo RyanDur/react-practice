@@ -1,4 +1,4 @@
-import {loadTS} from './parts/loaders/loadTS';
+const {loadTS} = require('./parts/loaders/loadTS');
 const {manifest} = require('./parts/optimizers/manifest');
 const {errorOverlay} = require('./parts/devHelpers/errorOverlay');
 const {monitor} = require('./parts/devHelpers/monitor');
