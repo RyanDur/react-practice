@@ -1,4 +1,6 @@
-export const initialState = {
+import {TableState} from "../reducer";
+
+export const initialState: TableState = {
   rows: [
     {
       name: 'Anna',

@@ -1,10 +1,12 @@
 import FancyTable from '../FancyTable';
-import {mount} from 'enzyme';
-import React from 'react';
+import {mount, ReactWrapper} from 'enzyme';
+import * as React from 'react';
+import {TableProps} from "../connector";
+import {TableState} from "../reducer";
 
 describe('Fancy ExcelTable', () => {
-  let wrapper;
-  let props = {};
+  let props: TableProps;
+  let wrapper: ReactWrapper<React.Component<TableProps, TableState>>;
 
   beforeEach(() => {
     props = mockProps({});
@@ -17,7 +19,7 @@ describe('Fancy ExcelTable', () => {
       .children('.table-row');
 
     it('should have no rows if no data', () => {
-      wrapper.setProps({rows: []});
+      wrapper = mount(<FancyTable {...mockProps({rows: []})}/>);
       expect(rows()).toHaveLength(0);
     });
 
@@ -33,9 +35,9 @@ describe('Fancy ExcelTable', () => {
       it('should update the checked row', () => {
         wrapper.find('#row-check-2').simulate('change');
 
-        expect(props.toggleChecked.mock.calls).toHaveLength(1);
-        expect(props.toggleChecked.mock.calls[0][0])
-          .toEqual({name: 'Ryan'});
+        expect((props.toggleChecked as any).mock.calls).toHaveLength(1);
+        expect((props.toggleChecked as any).mock.calls[0][0])
+          .toEqual({name: 'Ryan', data: {foo: 1, bar: 2, baz: 3}, checked: true});
       });
     });
   });
@@ -46,7 +48,7 @@ describe('Fancy ExcelTable', () => {
       .children('.column-header');
 
     it('should have no columns if there is no data', () => {
-      wrapper.setProps({columns: []});
+      wrapper = mount(<FancyTable {...mockProps({columns: []})}/>);
       expect(columns()).toHaveLength(0);
     });
 
@@ -62,7 +64,7 @@ describe('Fancy ExcelTable', () => {
   });
 
   describe('Totals', () => {
-    const footer = (column) => wrapper.render()
+    const footer = (column: string) => wrapper.render()
       .find('.table-footer .table-row')
       .find(`.table-data[data-column="${column}"]`);
 
@@ -87,4 +89,4 @@ const mockProps = ({
   ],
   totals = {foo: 5, bar: 10, baz: 15},
   columns = ['foo', 'bar', 'baz']
-}) => ({updateRows, updateTotals, toggleChecked, rows, totals, columns});
+}): TableProps => ({updateRows, updateTotals, toggleChecked, rows, totals, columns});

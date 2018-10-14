@@ -1,25 +1,25 @@
 import {createStore} from 'redux';
 import {reducer as tableReducer} from '../reducer';
 import {initialState} from './initialState';
-import {TABLE_DATA, TABLE_TOTALS, TOGGLE_CHECKED} from '../actions';
+import {tableAction} from '../actions';
 
 describe('Table state', () => {
   const store = createStore(tableReducer);
   const state = () => store.getState();
 
   beforeEach(() => {
-    store.dispatch({type: TABLE_DATA});
+    store.dispatch({type: tableAction.TABLE_DATA});
   });
 
   describe('table data', () => {
-    it('should have the data', () => {
-      expect(state().data).toBe(initialState.data);
+    it('should have the rows', () => {
+      expect(state().rows).toBe(initialState.rows);
     });
   });
 
   describe('table columns', () => {
     it('should total the columns', () => {
-      store.dispatch({type: TABLE_TOTALS, rows: initialState.rows});
+      store.dispatch({type: tableAction.TABLE_TOTALS, rows: initialState.rows});
 
       const column = {
         totals: {
@@ -42,9 +42,9 @@ describe('Table state', () => {
 
   describe('checked rows', () => {
     it('should toggle checked of a row', () => {
-      store.dispatch({type: TOGGLE_CHECKED, row: {name: 'Harrison', checked: true}});
+      store.dispatch({type: tableAction.TOGGLE_CHECKED, row: {name: 'Harrison', data: {}, checked: true}});
 
-      expect(state().rows.filter(row => !row.checked)[0]?.name).toBe('Harrison');
+      expect(state().rows.filter(row => !row.checked)[0].name).toBe('Harrison');
     });
   });
 });

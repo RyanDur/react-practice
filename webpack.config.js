@@ -1,15 +1,17 @@
-const parts = require('./config');
-const merge = require('webpack-merge');
-const path = require('path');
-const glob = require('glob');
-
-const PATHS = {
-  app: path.resolve(__dirname, 'src'),
-  dist: path.resolve(__dirname, 'dist'),
-  records: path.join(__dirname, 'records.json')
-};
+const parts = require('./config'),
+  merge = require('webpack-merge'),
+  path = require('path'), PATHS = {
+    app: path.resolve(__dirname, 'src'),
+    dist: path.resolve(__dirname, 'dist'),
+    records: path.join(__dirname, 'records.json')
+  };
 
 const commonConfig = merge([
+  {
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
+    }
+  },
   {
     output: {
       chunkFilename: '[name].[chunkhash].js',
@@ -17,10 +19,7 @@ const commonConfig = merge([
       path: PATHS.dist
     }
   },
-  parts.loadJS({
-    include: PATHS.app,
-    exclude: /node_modules/
-  }),
+  parts.loadTS(),
   parts.loadFonts(),
   parts.loadImages({
     options: {
@@ -28,14 +27,15 @@ const commonConfig = merge([
       name: '[name].[hash].[ext]'
     }
   }),
-  parts.clean({dir: PATHS.dist}),
   parts.html(),
+  parts.clean({dir: PATHS.dist}),
   parts.manifest(),
   {recordsPath: PATHS.records}
 ]);
 
 const prodConfig = merge([
   parts.splitChunks(),
+  parts.minifyJS(),
   parts.extractCSS({
     use: [{
       loader: 'css-loader',
@@ -52,10 +52,6 @@ const prodConfig = merge([
         ])
       }
     }]
-  }),
-  parts.minifyJS(),
-  parts.purifyCSS({
-    paths: glob.sync(`${PATHS.app}/**/!(__test__)/*.js`, {nodir: true})
   }),
   parts.minifyCSS({
     options: {
@@ -78,10 +74,7 @@ const devConfig = merge([
   parts.monitor(false)
 ]);
 
-module.exports = mode => {
-  if (mode === 'production') {
-    return merge(commonConfig, prodConfig, {mode});
-  } else {
-    return merge(commonConfig, devConfig, {mode});
-  }
-};
+module.exports = mode =>
+  mode === 'production' ?
+    merge(commonConfig, prodConfig, {mode}) :
+    merge(commonConfig, devConfig, {mode});

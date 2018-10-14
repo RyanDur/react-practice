@@ -1,12 +1,12 @@
 import {
   collectEntries,
   flattenObjects,
-  getRows,
-  sum,
+  getRowsData,
+  sumEntry,
   sumColumns,
   transposeRows,
   updateChecked,
-  getCheckedRows
+  getCheckedRowsData
 } from '../helpers';
 import {initialState} from './initialState';
 
@@ -17,12 +17,14 @@ describe('helpers', () => {
     {name: 'Alex', data: {foo: 1, bar: 2, baz: 3}, checked: true}
   ];
 
-  describe('getCheckedRows', () => {
-    const updatedRows = updateChecked({name: 'Ryan'}, rows);
-    const expected = [{foo: 1, bar: 2, baz: 3}, {foo: 1, bar: 2, baz: 3}];
+  describe('getCheckedRowsData', () => {
+    it('should get the rows that are checked', () => {
+      const updatedRows = updateChecked({name: 'Ryan', data: {foo: 1, bar: 2, baz: 3}, checked: true}, rows);
+      const expected = [{foo: 1, bar: 2, baz: 3}, {foo: 1, bar: 2, baz: 3}];
 
-    const checkedRows = getCheckedRows(updatedRows);
-    expect(checkedRows).toEqual(expected);
+      const checkedRows = getCheckedRowsData(updatedRows);
+      expect(checkedRows).toEqual(expected);
+    });
   });
 
   describe('transpose', () => {
@@ -33,14 +35,14 @@ describe('helpers', () => {
         [['baz', 3], ['baz', 3], ['baz', 3]]
       ];
 
-      expect(transposeRows(getCheckedRows(rows))).toEqual(expected);
+      expect(transposeRows(getCheckedRowsData(rows))).toEqual(expected);
     });
   });
 
   describe('collectEntries', () => {
     it('should collect each entry into key value pairs', () => {
-      const totals = transposeRows(getRows(rows))
-        .map(collectEntries(sum));
+      const totals = transposeRows(getRowsData(rows))
+        .map(collectEntries(sumEntry));
 
       expect(totals).toEqual([{foo: 3}, {bar: 6}, {baz: 9}]);
     });
@@ -48,8 +50,8 @@ describe('helpers', () => {
 
   describe('flattenObjects', () => {
     it('should flatten a list of objects', () => {
-      const totals = transposeRows(getRows(rows))
-        .map(collectEntries(sum))
+      const totals = transposeRows(getRowsData(rows))
+        .map(collectEntries(sumEntry))
         .reduce(flattenObjects, {});
 
       expect(totals).toEqual({foo: 3, bar: 6, baz: 9});
@@ -80,10 +82,15 @@ describe('helpers', () => {
     expect(sumColumns(initialState.rows)).toEqual(expected);
   });
 
-  describe('getRows', () => {
+  describe('getRowsData', () => {
     it('should get the rows', () => {
-      const state = {rows: [{data: {foo: 1}}, {data: {bar: 2}}, {data: {baz: 3}}]};
-      expect(getRows(state.rows)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
+      const state = {
+        rows: [
+          {data: {foo: 1}, name: '', checked: false},
+          {data: {bar: 2}, name: '', checked: false},
+          {data: {baz: 3}, name: '', checked: false}]
+      };
+      expect(getRowsData(state.rows)).toEqual([{foo: 1}, {bar: 2}, {baz: 3}]);
     });
   });
 });

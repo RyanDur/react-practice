@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {Component, ReactNode} from 'react';
 import {TableHead} from './elements/TableHead';
 import {TableRow} from './elements/TableRow';
 import {ColumnHeader} from './elements/ColumnHeader';
@@ -10,39 +10,32 @@ import {TableCorner} from './elements/TableCorner';
 import {TableData} from './elements/TableData';
 import {Checkbox} from './elements/Checkbox';
 import './FancyTable.css';
+import {TableProps} from "./connector";
+import {Data, Row, TableState} from "./reducer";
 
-class FancyTable extends Component {
-  static propTypes = {
-    updateRows: PropTypes.func.isRequired,
-    updateTotals: PropTypes.func.isRequired,
-    toggleChecked: PropTypes.func.isRequired,
-    rows: PropTypes.array.isRequired,
-    totals: PropTypes.object.isRequired,
-    columns: PropTypes.array.isRequired
-  };
-
-  createData = ([key, value], i) =>
+class FancyTable extends Component<TableProps ,TableState> {
+  createData = ([key, value]: [string, number], i: number): ReactNode =>
     <TableData column={key} key={i}>{value}</TableData>;
 
-  handleChecked = (name, checked) => () =>
-    this.props.toggleChecked({name, checked});
+  handleChecked = (row: Row) => () =>
+    this.props.toggleChecked(row);
 
-  columns = (columns = []) =>
+  columns = (columns: string[] = []) =>
     columns.map((name, key) =>
       <ColumnHeader key={key}>{name}</ColumnHeader>);
 
-  rows = (rows = []) =>
-    rows.map(({name, data, checked} = {}, idx) => {
+  rows = (rows: Row[] = []) =>
+    rows.map(({name, data, checked}: Row, idx) => {
       return <TableRow key={idx}>
         <TableData className='row-header'>
           <Checkbox index={idx} label={name} checked={checked}
-                    change={this.handleChecked(name)}/>
+                    change={this.handleChecked({name, data, checked})}/>
         </TableData>
         {Object.entries(data).map(this.createData)}
       </TableRow>;
     });
 
-  totals = (totals = {}) =>
+  totals = (totals: Data = {}) =>
     Object.entries(totals)
       .map(this.createData);
 
@@ -50,7 +43,7 @@ class FancyTable extends Component {
     this.props.updateRows();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: TableProps) {
     if (this.props.rows !== prevProps.rows) {
       this.props.updateTotals(this.props.rows);
     }

@@ -1,3 +1,4 @@
+import {loadTS} from './parts/loaders/loadTS';
 const {manifest} = require('./parts/optimizers/manifest');
 const {errorOverlay} = require('./parts/devHelpers/errorOverlay');
 const {monitor} = require('./parts/devHelpers/monitor');
@@ -8,20 +9,17 @@ const {extractCSS} = require('./parts/loaders/extractCSS');
 const {loadCSS} = require('./parts/loaders/loadCSS');
 const {loadFonts} = require('./parts/loaders/loadFonts');
 const {loadImages} = require('./parts/loaders/loadImages');
-const {loadJS} = require('./parts/loaders/loadJs');
 const {minifyCSS} = require('./parts/optimizers/minifyCSS');
 const {minifyJS} = require('./parts/optimizers/minifyJS');
-const {purifyCSS} = require('./parts/optimizers/purifyCSS');
 const {splitChunks} = require('./parts/optimizers/splitChunks');
 
 module.exports = {
-  loadJS,
+  loadTS,
   minifyJS,
   minifyCSS,
   splitChunks,
   html,
   clean,
-  purifyCSS,
   devServer,
   loadCSS,
   loadFonts,
