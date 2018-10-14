@@ -14,8 +14,8 @@ import {TableProps} from "./connector";
 import {Data, Row, TableState} from "./reducer";
 
 class FancyTable extends Component<TableProps, TableState> {
-  createData = ([key, value]: [string, number], i: number): JSX.Element =>
-    <TableData column={key} key={i}>{value}</TableData>;
+  createData = (section: string) => ([key, value]: [string, number], i: number): JSX.Element =>
+    <TableData id={`table-data-${section}-${i}`} column={key} key={i}>{value}</TableData>;
 
   handleChecked = (row: Row) => (): void =>
     this.props.toggleChecked(row);
@@ -31,12 +31,12 @@ class FancyTable extends Component<TableProps, TableState> {
           <Checkbox index={idx} label={row.name} checked={row.checked}
                     change={this.handleChecked(row)}/>
         </TableData>
-        {Object.entries(row.data).map(this.createData)}
+        {Object.entries(row.data).map(this.createData('body'))}
       </TableRow>);
 
   totals = (totals: Data = {}): JSX.Element[] =>
     Object.entries(totals)
-      .map(this.createData);
+      .map(this.createData('footer'));
 
   componentDidMount() {
     this.props.updateRows();

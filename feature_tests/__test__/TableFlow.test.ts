@@ -13,12 +13,13 @@ describe('the table', () => {
   });
 
   it('should update the total row if a name is unchecked', async () => {
-    const expected = '9';
+    const before = await page.$eval('#table-data-footer-0', elem => elem.textContent);
+    expect(before).toBe('10');
+
     const checkBox: ElementHandle<Element> = await page.$('#row-check-0');
     await checkBox.click();
 
-    const firstTotal = await page.$('#table-data-0');
-    const actual = await (await firstTotal.getProperty('value')).jsonValue()
-    expect(actual).toBe(expected);
+    const after = await page.$eval('#table-data-footer-0', elem => elem.textContent);
+    expect(after).toBe('9');
   });
 });
