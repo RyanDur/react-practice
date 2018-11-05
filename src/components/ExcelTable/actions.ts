@@ -1,7 +1,0 @@
-export enum tableAction {
-  TABLE_TOTALS = 'TABLE_TOTALS',
-  TABLE_DATA = 'TABLE_DATA',
-  TOGGLE_CHECKED = 'TOGGLE_CHECKED'
-}
-
-

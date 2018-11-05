@@ -1,12 +1,13 @@
 import {Browser, Page} from "puppeteer";
+import server from '../fake/backend';
+
 const Path = require('path');
 const express = require('express');
-const server = require('../fake/backend');
 const puppeteer = require('puppeteer');
 
 interface Puppet {
-  headless: boolean
-  slowMo: number
+  headless?: boolean
+  slowMo?: number
 }
 
 const testBrowser = ({headless = true, slowMo = 0}: Puppet) => {
@@ -18,9 +19,9 @@ const testBrowser = ({headless = true, slowMo = 0}: Puppet) => {
   app.use(express.static(Path.join(__dirname, '..', 'dist')));
 
   return {
-    setup: async (): Promise<Page> => {
+    setup: async (data?: []): Promise<Page> => {
       await new Promise((resolve) => {
-        fakeBackendHandle = server.listen(7771, () => {
+        fakeBackendHandle = server(JSON.stringify(data)).listen(7771, () => {
           appServerHandle = app.listen(7770, () => {
             resolve()
           })
@@ -50,4 +51,4 @@ const testBrowser = ({headless = true, slowMo = 0}: Puppet) => {
   }
 };
 
-module.exports = testBrowser;
+export default testBrowser;

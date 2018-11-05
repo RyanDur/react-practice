@@ -15,6 +15,7 @@ export const Checkbox = ({index, label, checked, change}: CheckboxProps): JSX.El
       type="checkbox"
       defaultChecked={checked}
       className={'row-check'}
+      value={'checked'}
       onChange={change}
     />
     <label

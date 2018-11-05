@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Table from './ExcelTable/connector';
+import Table from './Table/connector';
 
 const App = () => (
   <div>

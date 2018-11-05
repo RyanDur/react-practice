@@ -11,9 +11,9 @@ const wss: WebSocket.Server = new WebSocket.Server({server});
 
 const names: string[] = ['Anna', 'Travis', 'Mendel', 'Harrison', 'Alex', 'Jordan', 'Mike', 'Krishna', 'Mohammad', 'Paulina'];
 
-wss.on('connection', (socket: WebSocket) => {
-  socket.send(JSON.stringify({connection: "ok"}));
-  socket.send(JSON.stringify(`{data: ${JSON.stringify(names.map(createRow))}}`));
-});
-
-module.exports =  server;
+export default (data: string = JSON.stringify(names.map(createRow))) => {
+  wss.on('connection', (socket: WebSocket) => {
+    socket.send(data);
+  });
+  return server;
+};
