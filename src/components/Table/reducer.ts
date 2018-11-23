@@ -21,8 +21,7 @@ export const reducer = (
     case tableAction.TOGGLE_CHECKED:
       return {...state, rows: updateChecked(action.row, state.rows)};
     case tableAction.UPDATE_TOTALS:
-      const totals = sumColumns(state.rows, state.columns.active);
-      return {...state, totals: totals};
+      return {...state, totals: sumColumns(state.rows, state.columns.active)};
     case tableAction.ADD_COLUMN:
       return {...state, columns: addColumns(action.side, action.column, action.columns, state.columns)};
     default:
