@@ -9,4 +9,4 @@ export interface AppState {
 
 export const store = createStore(combineReducers<AppState>({
   table
-}), applyMiddleware(createMySocketMiddleware('ws://localhost:7771')));
+}), applyMiddleware(createMySocketMiddleware('ws://localhost:8999')));
