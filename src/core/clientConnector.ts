@@ -1,4 +1,4 @@
-import {Data} from "../components/Table/TableState";
+import {Data} from '../components/Table/types';
 import {webSocket} from "rxjs/webSocket";
 
 export const clientConnector = (url: string, fn: (data: Data) => void) => {

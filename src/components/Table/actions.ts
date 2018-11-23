@@ -1,7 +1,9 @@
 import {Action} from "redux";
-import {Row} from "./TableState";
+import {Row} from './types';
+import {Direction} from './menu/types';
 
 export enum tableAction {
+  ADD_COLUMN = 'ADD_COLUMN',
   SET_DEFAULT_CHECKED = 'SET_DEFAULT_CHECKED',
   TABLE_TOTALS = 'TABLE_TOTALS',
   TABLE_DATA = 'TABLE_DATA',
@@ -35,8 +37,16 @@ interface UpdateTotals {
   type: tableAction.UPDATE_TOTALS
 }
 
+interface AddColumn {
+  type: tableAction.ADD_COLUMN
+  side: Direction
+  column: string
+  columns: string[]
+}
+
 export type TableAction = TableTotals
   | TableData
   | ToggleChecked
   | SetDefaultChecked
   | UpdateTotals
+  | AddColumn

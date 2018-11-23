@@ -4,15 +4,19 @@ import {TableCorner} from "../elements/TableCorner";
 import {TableHead} from "../elements/TableHead";
 import * as React from "react";
 import {ColumnHeader} from "../elements/ColumnHeader";
+import Menu from "../menu/connector";
 
 export interface HeaderProps {
-  columns: string[]
+  columns: string[];
 }
 
 export class Header extends Component<HeaderProps> {
   columns = (columns: string[] = []): JSX.Element[] =>
     columns.map((name, key) =>
-      <ColumnHeader key={key}>{name}</ColumnHeader>);
+      <ColumnHeader key={key} column={name}>
+        <Menu column={name}/>
+        <div className="value">{name}</div>
+      </ColumnHeader>);
 
   render() {
     const {columns} = this.props;

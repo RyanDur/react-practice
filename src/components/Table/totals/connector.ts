@@ -3,7 +3,7 @@ import {Totals} from './Totals';
 import {AppState} from '../../../store';
 import {Dispatch} from 'redux';
 import {tableAction, TableAction} from '../actions';
-import {Data, Row} from '../TableState';
+import {Data, Row} from '../types';
 
 export interface TotalsStateProps {
   totals: Data;
@@ -20,7 +20,7 @@ export type TotalsProps = TotalsStateProps & TotalsDispatchProps;
 export default connect<TotalsStateProps, TotalsDispatchProps>(
   ({table}: AppState) => ({
     totals: table.totals,
-    columns: table.columns,
+    columns: table.columns.active,
     rows: table.rows
   }),
   (dispatch: Dispatch<TableAction>) => ({

@@ -1,10 +1,10 @@
-import * as React from "react";
-import {Component} from "react";
-import {TableRow} from "../elements/TableRow";
-import {TableFooter} from "../elements/TableFooter";
-import {TableData} from "../elements/TableData";
-import {Data} from "../TableState";
-import {TotalsProps} from "./connector";
+import * as React from 'react';
+import {Component} from 'react';
+import {TableRow} from '../elements/TableRow';
+import {TableFooter} from '../elements/TableFooter';
+import {TableData} from '../elements/TableData';
+import {Data} from '../types';
+import {TotalsProps} from './connector';
 
 export class Totals extends Component<TotalsProps> {
   totals = (totals: Data = {}, columns: string[]): JSX.Element[] =>

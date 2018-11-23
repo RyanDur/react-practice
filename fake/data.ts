@@ -10,6 +10,8 @@ interface data {
   coo: number
   cor: number
   cop: number
+  another: number
+  yet_another: number
 }
 
 const row = (name: string): data => {
@@ -24,7 +26,9 @@ const row = (name: string): data => {
     far: 7,
     faz: 8,
     foo: 9,
-    fop: 10
+    fop: 10,
+    another: 11,
+    yet_another: 12
   }
 };
 

@@ -1,15 +1,15 @@
-import {mount} from "enzyme";
-import {Totals} from "../Totals";
-import * as React from "react";
-import {TotalsProps} from "../connector";
-import {Data, Row} from "../../TableState";
+import {mount} from 'enzyme';
+import {Totals} from '../Totals';
+import * as React from 'react';
+import {TotalsProps} from '../connector';
+import {Data, Row} from '../../types';
 
 const mockProps = (
-                     columns: string[] = ['a', 'b', 'c'],
-                     totals: Data = {a: 1, b: 2, c: 3},
-                     rows: Row[] = [{name: '', data: [{a: 1, b: 2, c: 3}], checked: true}],
-                     updateTotals: () => void = jest.fn()
-                   ): TotalsProps => ({columns, totals, rows, updateTotals});
+  columns: string[] = ['a', 'b', 'c'],
+  totals: Data = {a: 1, b: 2, c: 3},
+  rows: Row[] = [{name: '', data: [{a: 1, b: 2, c: 3}], checked: true}],
+  updateTotals: () => void = jest.fn()
+): TotalsProps => ({columns, totals, rows, updateTotals});
 
 
 describe('table totals', () => {

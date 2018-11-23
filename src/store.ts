@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {reducer as table} from './components/Table/reducer';
-import {TableState} from "./components/Table/TableState";
-import {createMySocketMiddleware} from "./core/client";
+import {TableState} from './components/Table/types';
+import {createMySocketMiddleware} from './core/client';
 
 export interface AppState {
   table: TableState;
@@ -9,4 +9,4 @@ export interface AppState {
 
 export const store = createStore(combineReducers<AppState>({
   table
-}), applyMiddleware(createMySocketMiddleware('ws://localhost:8999')));
+}), applyMiddleware(createMySocketMiddleware('ws://localhost:7771')));
