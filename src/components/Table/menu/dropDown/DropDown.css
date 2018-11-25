@@ -17,21 +17,21 @@
       margin: 0.2rem 0;
       transition: 0.4s;
     }
+  }
 
-    & .change {
-      & .bar1 {
-        transform: rotate(-45deg) translate(-5px, 4px);
-        height: 0.4rem;
-      }
+  & .change {
+    & .bar1 {
+      transform: rotate(-45deg) translate(-5px, 4px);
+      height: 0.4rem;
+    }
 
-      & .bar2 {
-        opacity: 0;
-      }
+    & .bar2 {
+      opacity: 0;
+    }
 
-      & .bar3 {
-        transform: rotate(45deg) translate(-3px, -2px);
-        height: 0.4rem;
-      }
+    & .bar3 {
+      transform: rotate(45deg) translate(-3px, -2px);
+      height: 0.4rem;
     }
   }
 
