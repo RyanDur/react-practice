@@ -1,7 +1,12 @@
+.content {
+    position: relative;
+}
+
 .table-wrapper {
     max-width: 50rem;
     max-height: 30rem;
     overflow: scroll;
+    border: 0.1rem solid black;
 }
 
 .table {

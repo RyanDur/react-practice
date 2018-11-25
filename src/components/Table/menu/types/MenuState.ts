@@ -1,3 +1,4 @@
 export interface MenuState {
-  columns: string[];
+  addColumns: string[];
+  removeColumns: string[];
 }

@@ -5,10 +5,13 @@ interface CheckBoxes {
   checked: () => Promise<boolean[]>;
 }
 
-interface Menu {
+export interface Menu {
   select: (name: string) => Promise<void>;
   addRight: () => Promise<void>;
   addLeft: () => Promise<void>;
+  remove: () => Promise<void>;
+  open: () => Promise<void>;
+  close: () => Promise<void>;
 }
 
 interface Column {
@@ -49,21 +52,26 @@ export const table = (page: Page): TableData => {
     }),
     column: (name: string): Column => ({
       menu: async (): Promise<Menu> => {
-        const columnMenu: ElementHandle = await page.$(`.column-header[data-column="${name}"] .menu`);
         return ({
+          open: async (): Promise<void> => {
+            await page.click(`.column-header[data-column="${name}"] .drop-down .hamburger`);
+          },
+          close: async (): Promise<void> => {
+            await page.click(`.column-header[data-column="${name}"] .drop-down .hamburger`);
+          },
           select: async (column: string): Promise<void> => {
-            await columnMenu.$(`[data-column="${column}"]`)
-              .then(choice => choice.click())
+            await page.click(`.column-header[data-column="${name}"] .drop-down [data-column="${column}"]`);
           },
           addRight: async (): Promise<void> => {
-            await columnMenu.$('.add-right')
-              .then(action => action.click());
+            await page.click(`.column-header[data-column="${name}"] .drop-down .add-right`);
           },
           addLeft: async (): Promise<void> => {
-            await columnMenu.$('.add-left')
-              .then(action => action.click());
+            await page.click(`.column-header[data-column="${name}"] .drop-down .add-left`);
+          },
+          remove: async (): Promise<void> => {
+            await page.click(`.column-header[data-column="${name}"] .drop-down .remove`)
           }
-        });
+        })
       }
     })
   }

@@ -1,4 +1,4 @@
-import {addColumns, normalize, sumColumns, updateChecked} from './helpers';
+import {addColumns, normalize, removeColumns, sumColumns, updateChecked} from './helpers';
 import {tableAction, TableAction} from './actions';
 import {TableState} from './types';
 
@@ -22,8 +22,10 @@ export const reducer = (
       return {...state, rows: updateChecked(action.row, state.rows)};
     case tableAction.UPDATE_TOTALS:
       return {...state, totals: sumColumns(state.rows, state.columns.active)};
-    case tableAction.ADD_COLUMN:
+    case tableAction.ADD_COLUMNS:
       return {...state, columns: addColumns(action.side, action.column, action.columns, state.columns)};
+    case tableAction.REMOVE_COLUMNS:
+      return {...state, columns: removeColumns(action.columns, state.columns)};
     default:
       return state;
   }

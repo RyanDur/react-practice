@@ -14,13 +14,13 @@ class FancyTable extends Component<TableProps, TableState> {
   }
 
   render() {
-    return <div className={'table-wrapper'}>
-      <Table>
-        <Header/>
-        <Rows defaultCheck={true}/>
-        <Totals/>
-      </Table>
-    </div>;
+    return <div className="table-wrapper">
+        <Table>
+          <Header/>
+          <Rows defaultCheck={true}/>
+          <Totals/>
+        </Table>
+      </div>;
   }
 }
 

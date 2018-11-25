@@ -69,7 +69,7 @@ describe('Table state', () => {
           inactive: ['another', 'yet_another']
         });
         store.dispatch({
-          type: tableAction.ADD_COLUMN,
+          type: tableAction.ADD_COLUMNS,
           side: Direction.Right,
           column: 'bar',
           columns: ['yet_another']
@@ -109,7 +109,7 @@ describe('Table state', () => {
           inactive: ['another', 'yet_another']
         });
         store.dispatch({
-          type: tableAction.ADD_COLUMN,
+          type: tableAction.ADD_COLUMNS,
           side: Direction.Left,
           column: 'bar',
           columns: ['another']
@@ -129,6 +129,42 @@ describe('Table state', () => {
             'fop'
           ],
           inactive: ['yet_another']
+        })
+      });
+    });
+
+    describe('removing', () => {
+      it('should be able to remove a column', () => {
+        expect(store.getState().table.columns).toEqual({
+          active: [
+            'bar',
+            'baz',
+            'bob',
+            'coo',
+            'cop',
+            'cor',
+            'far',
+            'faz',
+            'foo',
+            'fop'
+          ],
+          inactive: ['another', 'yet_another']
+        });
+        store.dispatch({
+          type: tableAction.REMOVE_COLUMNS,
+          columns: ['bar', 'coo', 'foo']
+        });
+        expect(store.getState().table.columns).toEqual({
+          active: [
+            'baz',
+            'bob',
+            'cop',
+            'cor',
+            'far',
+            'faz',
+            'fop'
+          ],
+          inactive: ['another', 'yet_another', 'bar', 'coo', 'foo']
         })
       });
     });

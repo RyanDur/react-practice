@@ -42,6 +42,11 @@ export const addColumns = (
   };
 };
 
+export const removeColumns = (columnsToRemove: string[], columns: Columns): Columns => ({
+  active: remove(columnsToRemove, columns.active),
+  inactive: [...columns.inactive, ...columnsToRemove]
+});
+
 const merge = (data: (r: Data) => Data) => (acc: Data, row: Data): Data => ({...acc, ...data(row)});
 
 const removeFromObject = (obj: Data, prop: string): Data =>

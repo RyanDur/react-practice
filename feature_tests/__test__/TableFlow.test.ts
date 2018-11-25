@@ -1,9 +1,9 @@
 import {Page} from 'puppeteer';
 import testBrowser from '../mockBrowser';
-import {table} from './helpers';
+import {Menu, table} from './helpers';
 
 describe('the table flow', () => {
-  const {setup, tearDown} = testBrowser({});
+  const {setup, tearDown} = testBrowser({headless: false, slowMo: 250});
   let page: Page;
   const columns: string[] = ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop'];
 
@@ -23,56 +23,57 @@ describe('the table flow', () => {
         expect(columnHeaders).toEqual(columns);
       });
 
-      it('should allow a user to add a column to the right of an existing column', async () => {
-        const menu = await table(page).column('bar').menu();
-        await menu.select('another');
-        await menu.addRight();
-        const newColumns: string[] = [
-          'bar',
-          'another',
-          'baz',
-          'bob',
-          'coo',
-          'cop',
-          'cor',
-          'far',
-          'faz',
-          'foo',
-          'fop'
-        ];
-        const columnHeaders = await table(page).valuesOf('.column-header .value');
+      describe('menu', () => {
+        let menu: Menu;
+        beforeEach(async () => {
+          menu = await table(page).column('bar').menu();
+          await menu.open();
+        });
 
-        expect(columnHeaders).toEqual(newColumns);
-      }, 10000);
+        describe('adding', () => {
+          beforeEach(async () => {
+            await menu.select('yet_another');
+          });
 
-      it('should allow a user to add a column to the left of an existing column', async () => {
-        const menu = await table(page).column('bar').menu();
-        await menu.select('another');
-        await menu.addLeft();
-        const newColumns: string[] = [
-          'another',
-          'bar',
-          'baz',
-          'bob',
-          'coo',
-          'cop',
-          'cor',
-          'far',
-          'faz',
-          'foo',
-          'fop'
-        ];
-        const columnHeaders = await table(page).valuesOf('.column-header .value');
+          it('should allow to the right', async () => {
+            await menu.addRight();
+            await menu.close();
+            const [head, ...tail] = columns;
+            const newColumns: string[] = [head, 'yet_another', ...tail];
+            const columnHeaders = await table(page).valuesOf('.column-header .value');
 
-        expect(columnHeaders).toEqual(newColumns);
-      }, 10000);
+            expect(columnHeaders).toEqual(newColumns);
+          });
 
-      xit('should allow a user to remove a column', () => {
+          it('should allow to the left', async () => {
+            await menu.addLeft();
+            await menu.close();
+            const newColumns: string[] = ['yet_another', ...columns];
+            const columnHeaders = await table(page).valuesOf('.column-header .value');
 
-      });
+            expect(columnHeaders).toEqual(newColumns);
+          });
+        });
 
-      xit('should allow a user to add a column when none exist', () => {
+        describe('removing', () => {
+          beforeEach(async () => {
+            await menu.select('baz');
+          });
 
+          it('should allow a user to remove a column', async () => {
+            await menu.remove();
+            await menu.close();
+            const [first, , ...rest] = columns;
+            const newColumns: string[] = [first, ...rest];
+            const columnHeaders = await table(page).valuesOf('.column-header .value');
+
+            expect(columnHeaders).toEqual(newColumns);
+          });
+        });
+
+        xit('should allow a user to add a column when none exist', () => {
+
+        });
       });
     });
 
@@ -144,21 +145,42 @@ describe('the table flow', () => {
         expect(columnHeaders.sort()).toEqual(columns.sort());
       });
 
+      describe('menu', () => {
+        let menu: Menu;
+        beforeEach(async () => {
+          menu = await table(page).column('bar').menu();
+        });
 
-      xit('should allow a user to add a column to the right of an existing column', () => {
+        describe('adding', () => {
+          beforeEach(async () => {
+            await menu.select('another');
+          });
 
-      });
+          it('should allow to the right', async () => {
+            await menu.addRight();
+            const [head, ...tail] = columns;
+            const newColumns: string[] = [head, 'another', ...tail];
+            const columnHeaders = await table(page).valuesOf('.column-header .value');
 
-      xit('should allow a user to add a column to the left of an existing column', () => {
+            expect(columnHeaders).toEqual(newColumns);
+          });
 
-      });
+          it('should allow to the left', async () => {
+            await menu.addLeft();
+            const newColumns: string[] = ['another', ...columns];
+            const columnHeaders = await table(page).valuesOf('.column-header .value');
 
-      xit('should allow a user to remove a column', () => {
+            expect(columnHeaders).toEqual(newColumns);
+          });
+        });
 
-      });
+        xit('should allow a user to remove a column', () => {
 
-      xit('should allow a user to add a column when none exist', () => {
+        });
 
+        xit('should allow a user to add a column when none exist', () => {
+
+        });
       });
     });
 

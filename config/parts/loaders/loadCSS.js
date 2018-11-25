@@ -12,8 +12,11 @@ exports.loadCSS = ({ include, exclude }) => ({
             loader: 'postcss-loader',
             options: {
               plugins: () => ([
-                require('precss'),
-                require('postcss-cssnext')
+                require('postcss-preset-env')({
+                  features: {
+                    'nesting-rules': true
+                  }
+                })
               ])
             }
           }

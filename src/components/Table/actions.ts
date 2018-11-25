@@ -3,7 +3,8 @@ import {Row} from './types';
 import {Direction} from './menu/types';
 
 export enum tableAction {
-  ADD_COLUMN = 'ADD_COLUMN',
+  REMOVE_COLUMNS = 'REMOVE_COLUMN',
+  ADD_COLUMNS = 'ADD_COLUMN',
   SET_DEFAULT_CHECKED = 'SET_DEFAULT_CHECKED',
   TABLE_TOTALS = 'TABLE_TOTALS',
   TABLE_DATA = 'TABLE_DATA',
@@ -38,9 +39,14 @@ interface UpdateTotals {
 }
 
 interface AddColumn {
-  type: tableAction.ADD_COLUMN
+  type: tableAction.ADD_COLUMNS
   side: Direction
   column: string
+  columns: string[]
+}
+
+interface RemoveColumn {
+  type: tableAction.REMOVE_COLUMNS
   columns: string[]
 }
 
@@ -50,3 +56,4 @@ export type TableAction = TableTotals
   | SetDefaultChecked
   | UpdateTotals
   | AddColumn
+  | RemoveColumn

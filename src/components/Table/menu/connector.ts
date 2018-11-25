@@ -11,6 +11,8 @@ export default connect<MenuStateProps, MenuDispatchProps>(
   }),
   (dispatch: Dispatch<TableAction>) => ({
     add: (side: Direction, column: string, columns: string[]) =>
-      dispatch({type: tableAction.ADD_COLUMN, side, column, columns})
+      dispatch({type: tableAction.ADD_COLUMNS, side, column, columns}),
+    remove: (columns: string[]) =>
+      dispatch({type: tableAction.REMOVE_COLUMNS, columns})
   })
 )(Menu);
