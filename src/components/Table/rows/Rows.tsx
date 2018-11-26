@@ -11,7 +11,7 @@ export interface Default {
 
 export class Rows extends Component<RowsProps & Default> {
 
-  rows = (rows: RowType[] = []): JSX.Element[] =>
+  rows = (rows: RowType[] = []) =>
     rows.map((row: RowType, index) => <Row
       key={index}
       index={index}
@@ -22,6 +22,6 @@ export class Rows extends Component<RowsProps & Default> {
     const {rows} = this.props;
     return <TableBody>
       {this.rows(rows)}
-    </TableBody>
+    </TableBody>;
   }
 }

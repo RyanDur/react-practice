@@ -2,9 +2,9 @@ import {Component} from 'react';
 import {TableData} from '../../elements/TableData';
 import {Checkbox} from '../../elements/Checkbox';
 import {TableRow} from '../../elements/TableRow';
-import {Row as RowType} from '../../types'
+import {Row as RowType} from '../../types';
 import * as React from 'react';
-import {RowProps} from "./connector";
+import {RowProps} from './connector';
 
 export interface Props {
   index: number;
@@ -14,7 +14,7 @@ export interface Props {
 
 export class Row extends Component<RowProps & Props> {
 
-  createData = (row: RowType) => (column: string, i: number): JSX.Element =>
+  createData = (row: RowType) => (column: string, i: number) =>
     <TableData
       key={i}
       id={`row-data-${column}-${i}`}

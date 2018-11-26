@@ -8,7 +8,7 @@ interface TableDataProps extends ElementProps {
   id?: string
 }
 
-export const TableData = (props: TableDataProps): JSX.Element =>
+export const TableData = (props: TableDataProps) =>
   <div
     data-column={props.column}
     className={'table-data ' + props.className}

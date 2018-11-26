@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Component, MouseEvent} from 'react';
+import {Component, MouseEvent, ReactNode} from 'react';
 import './DropDown.css';
 
-export class DropDown extends Component {
+export class DropDown extends Component<{children?: ReactNode}> {
 
   state = {
     height: 0

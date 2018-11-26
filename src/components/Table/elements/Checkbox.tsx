@@ -8,7 +8,7 @@ interface CheckboxProps {
   change: () => void
 }
 
-export const Checkbox = ({index, label, checked, change}: CheckboxProps): JSX.Element =>
+export const Checkbox = ({index, label, checked, change}: CheckboxProps) =>
   <Fragment>
     <input
       id={`row-check-${index}`}

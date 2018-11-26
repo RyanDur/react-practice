@@ -5,14 +5,14 @@ import {TableCorner} from '../elements/TableCorner';
 import {TableHead} from '../elements/TableHead';
 import {ColumnHeader} from '../elements/ColumnHeader';
 import Menu from '../menu/connector';
-import {DropDown} from "../menu/dropDown/DropDown";
+import {DropDown} from '../menu/dropDown/DropDown';
 
 export interface HeaderProps {
   columns: string[];
 }
 
 export class Header extends Component<HeaderProps> {
-  columns = (columns: string[] = []): JSX.Element[] =>
+  columns = (columns: string[] = []) =>
     columns.map((name, key) =>
       <ColumnHeader key={key} column={name}>
         <DropDown>

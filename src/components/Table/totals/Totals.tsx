@@ -7,7 +7,7 @@ import {Data} from '../types';
 import {TotalsProps} from './connector';
 
 export class Totals extends Component<TotalsProps> {
-  totals = (totals: Data = {}, columns: string[]): JSX.Element[] =>
+  totals = (totals: Data = {}, columns: string[]) =>
     columns.map((column: string, index: number) =>
       <TableData
         className={'total'}
@@ -19,7 +19,7 @@ export class Totals extends Component<TotalsProps> {
     const previouslyChecked = prevProps.rows.map(row => row.checked);
     const currentlyChecked = this.props.rows.map(row => row.checked);
     if (previouslyChecked.toString() !== currentlyChecked.toString()) {
-      this.props.updateTotals()
+      this.props.updateTotals();
     }
   }
 

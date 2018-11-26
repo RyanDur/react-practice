@@ -6,7 +6,7 @@ import {TableProps} from './connector';
 import {TableState} from './types';
 import Totals from './totals/connector';
 import Rows from './rows/connector';
-import Header from "./header/connector";
+import Header from './header/connector';
 
 class FancyTable extends Component<TableProps, TableState> {
   componentDidMount() {
