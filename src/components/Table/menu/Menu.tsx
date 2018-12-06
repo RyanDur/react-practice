@@ -26,7 +26,7 @@ export class Menu extends Component<MenuProps & ColumnName> {
 
   handleRemove = () => {
     this.props.remove(this.state.removeColumns);
-    this.setState({removeColumns: []})
+    this.setState({removeColumns: []});
   };
 
   handleAddChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +82,7 @@ export class Menu extends Component<MenuProps & ColumnName> {
         Add Right
       </button>
       <ul className="remove-columns">
-        {active.map(
+        {active.filter(column => this.props.column !== column).map(
           (name: string, index: number) =>
             <li key={index}>
               <input

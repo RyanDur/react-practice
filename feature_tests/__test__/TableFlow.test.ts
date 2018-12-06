@@ -3,21 +3,21 @@ import testBrowser from '../mockBrowser';
 import {Menu, table} from './helpers';
 
 describe('the table flow', () => {
-  const {setup, tearDown} = testBrowser({headless: false, slowMo: 250});
+  const {setup, tearDown} = testBrowser({});
   let page: Page;
   const columns: string[] = ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop'];
 
-  afterEach(async () => {
-    await tearDown()
+  afterEach(async() => {
+    await tearDown();
   });
 
   describe('with data', () => {
-    beforeEach(async () => {
+    beforeEach(async() => {
       page = await setup();
     });
 
     describe('the columns', () => {
-      it('should have default titles', async () => {
+      it('should have default titles', async() => {
         const columnHeaders = await table(page).valuesOf('.column-header .value');
 
         expect(columnHeaders).toEqual(columns);
@@ -25,17 +25,17 @@ describe('the table flow', () => {
 
       describe('menu', () => {
         let menu: Menu;
-        beforeEach(async () => {
+        beforeEach(async() => {
           menu = await table(page).column('bar').menu();
           await menu.open();
         });
 
         describe('adding', () => {
-          beforeEach(async () => {
+          beforeEach(async() => {
             await menu.select('yet_another');
           });
 
-          it('should allow to the right', async () => {
+          it('should allow to the right', async() => {
             await menu.addRight();
             await menu.close();
             const [head, ...tail] = columns;
@@ -45,7 +45,7 @@ describe('the table flow', () => {
             expect(columnHeaders).toEqual(newColumns);
           });
 
-          it('should allow to the left', async () => {
+          it('should allow to the left', async() => {
             await menu.addLeft();
             await menu.close();
             const newColumns: string[] = ['yet_another', ...columns];
@@ -56,11 +56,22 @@ describe('the table flow', () => {
         });
 
         describe('removing', () => {
-          beforeEach(async () => {
+          beforeEach(async() => {
             await menu.select('baz');
           });
 
-          it('should allow a user to remove a column', async () => {
+          it('should allow a user to remove a column', async() => {
+            await menu.remove();
+            await menu.close();
+            const [first, , ...rest] = columns;
+            const newColumns: string[] = [first, ...rest];
+            const columnHeaders = await table(page).valuesOf('.column-header .value');
+
+            expect(columnHeaders).toEqual(newColumns);
+          });
+
+          it('should not allow a user to remove the column they are on', async() => {
+            await menu.select('bar');
             await menu.remove();
             await menu.close();
             const [first, , ...rest] = columns;
@@ -70,10 +81,6 @@ describe('the table flow', () => {
             expect(columnHeaders).toEqual(newColumns);
           });
         });
-
-        xit('should allow a user to add a column when none exist', () => {
-
-        });
       });
     });
 
@@ -81,14 +88,14 @@ describe('the table flow', () => {
       const rowNames: string[] = ['Anna', 'Travis', 'Mendel', 'Harrison', 'Alex', 'Jordan', 'Mike', 'Krishna', 'Mohammad', 'Paulina'];
 
       describe('headers', () => {
-        it('should have default names', async () => {
+        it('should have default names', async() => {
           const rowHeaders = await table(page).valuesOf('.row-header');
 
           expect(rowHeaders).toEqual(rowNames);
         });
 
         describe('checkbox', () => {
-          it('should default to checked', async () => {
+          it('should default to checked', async() => {
             const checks: boolean[] = await table(page).checkboxesOf('.row-header').checked();
 
             checks.forEach(check => expect(check).toBeTruthy());
@@ -98,11 +105,11 @@ describe('the table flow', () => {
     });
 
     describe('the totals', () => {
-      it('should be the same length as their are columns', async () => {
+      it('should be the same length as their are columns', async() => {
         expect((await table(page).lengthOf('.total'))).toBe(columns.length);
       });
 
-      it('should sum the columns', async () => {
+      it('should sum the columns', async() => {
         expect(await table(page).contentOf('.total')).toEqual({
           bar: '10',
           baz: '20',
@@ -117,7 +124,7 @@ describe('the table flow', () => {
         });
       });
 
-      it('should update the total row if a name is unchecked', async () => {
+      it('should update the total row if a name is unchecked', async() => {
         const getFirstTotalValue = () =>
           page.$eval('.total[data-column="bar"]', elem => elem.textContent);
 
@@ -134,12 +141,12 @@ describe('the table flow', () => {
   });
 
   describe('without data', () => {
-    beforeEach(async () => {
+    beforeEach(async() => {
       page = await setup([]);
     });
 
     describe('the columns', () => {
-      it('should have default titles', async () => {
+      it('should have default titles', async() => {
         const columnHeaders = await table(page).valuesOf('.column-header .value');
 
         expect(columnHeaders.sort()).toEqual(columns.sort());
@@ -147,16 +154,16 @@ describe('the table flow', () => {
 
       describe('menu', () => {
         let menu: Menu;
-        beforeEach(async () => {
+        beforeEach(async() => {
           menu = await table(page).column('bar').menu();
         });
 
         describe('adding', () => {
-          beforeEach(async () => {
+          beforeEach(async() => {
             await menu.select('another');
           });
 
-          it('should allow to the right', async () => {
+          it('should allow to the right', async() => {
             await menu.addRight();
             const [head, ...tail] = columns;
             const newColumns: string[] = [head, 'another', ...tail];
@@ -165,7 +172,7 @@ describe('the table flow', () => {
             expect(columnHeaders).toEqual(newColumns);
           });
 
-          it('should allow to the left', async () => {
+          it('should allow to the left', async() => {
             await menu.addLeft();
             const newColumns: string[] = ['another', ...columns];
             const columnHeaders = await table(page).valuesOf('.column-header .value');
@@ -185,11 +192,11 @@ describe('the table flow', () => {
     });
 
     describe('the totals', () => {
-      it('should be the same length as their are columns', async () => {
+      it('should be the same length as their are columns', async() => {
         expect(await table(page).lengthOf('.total')).toBe(columns.length);
       });
 
-      it('should default to dashes', async () => {
+      it('should default to dashes', async() => {
         expect(await table(page).contentOf('.total')).toEqual({
           foo: '—',
           bar: '—',
@@ -201,7 +208,7 @@ describe('the table flow', () => {
           coo: '—',
           cor: '—',
           cop: '—'
-        })
+        });
       });
     });
   });

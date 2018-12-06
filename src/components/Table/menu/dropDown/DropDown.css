@@ -1,12 +1,13 @@
 .drop-down {
-  position: static;
+  position: relative;
+  float: left;
+  z-index: unset;
 
   & .hamburger {
+    position: relative;
     display: inline-block;
     cursor: pointer;
-    position: absolute;
-    bottom: 60%;
-    right: 33%;
+    z-index: 2;
 
     & .bar1,
     & .bar2,
@@ -15,7 +16,7 @@
       height: 0.2rem;
       background-color: rgb(51, 51, 51);
       margin: 0.2rem 0;
-      transition: 0.4s;
+      transition: 0.2s;
     }
   }
 
@@ -35,14 +36,11 @@
     }
   }
 
-  & .outer-container {
-    position: relative;
-
-    & .container {
-      height: 0;
-      position: absolute;
-      overflow: auto;
-      transition: height 0.4s;
-    }
+  & .container {
+    height: 0;
+    position: absolute;
+    overflow: auto;
+    transition: height 0.4s;
+    top: -1rem;
   }
 }

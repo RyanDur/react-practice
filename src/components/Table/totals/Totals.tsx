@@ -10,24 +10,16 @@ export class Totals extends Component<TotalsProps> {
   totals = (totals: Data = {}, columns: string[]) =>
     columns.map((column: string, index: number) =>
       <TableData
-        className={'total'}
+        className={'total stick-bottom gray'}
         id={`table-data-footer-${index}`}
         column={column}
         key={index}>{totals[column] || '—'}</TableData>);
-
-  componentDidUpdate(prevProps: TotalsProps) {
-    const previouslyChecked = prevProps.rows.map(row => row.checked);
-    const currentlyChecked = this.props.rows.map(row => row.checked);
-    if (previouslyChecked.toString() !== currentlyChecked.toString()) {
-      this.props.updateTotals();
-    }
-  }
 
   render() {
     const {totals, columns} = this.props;
     return <TableFooter>
       <TableRow>
-        <TableData>Totals:</TableData>
+        <TableData className={'stick-bottom stick-left gray corner'}>Totals:</TableData>
         {this.totals(totals, columns)}
       </TableRow>
     </TableFooter>;

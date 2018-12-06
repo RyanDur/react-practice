@@ -1,9 +1,7 @@
 import {connect} from 'react-redux';
 import FancyTable from './FancyTable';
-import {Action, Dispatch} from "redux";
-import {AppState} from "../../store";
-import {socketAction} from "../../core/action";
-import {tableAction} from "./actions";
+import {Action, Dispatch} from 'redux';
+import {socketAction} from '../../core/action';
 
 interface TableStateProps {
 }

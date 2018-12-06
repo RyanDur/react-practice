@@ -4,7 +4,6 @@ import {TableState} from './types';
 
 const defaultState: TableState = {
   rows: [],
-  totals: {},
   columns: {
     active: ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop'],
     inactive: ['another', 'yet_another']
@@ -20,8 +19,6 @@ export const reducer = (
       return {...state, rows: normalize(action.data, state.rows)};
     case tableAction.TOGGLE_CHECKED:
       return {...state, rows: updateChecked(action.row, state.rows)};
-    case tableAction.UPDATE_TOTALS:
-      return {...state, totals: sumColumns(state.rows, state.columns.active)};
     case tableAction.ADD_COLUMNS:
       return {...state, columns: addColumns(action.side, action.column, action.columns, state.columns)};
     case tableAction.REMOVE_COLUMNS:

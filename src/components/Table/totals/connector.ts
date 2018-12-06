@@ -1,29 +1,21 @@
 import {connect} from 'react-redux';
 import {Totals} from './Totals';
 import {AppState} from '../../../store';
-import {Dispatch} from 'redux';
-import {tableAction, TableAction} from '../actions';
 import {Data, Row} from '../types';
+import {sumColumns} from '../helpers';
 
-export interface TotalsStateProps {
+export interface TotalsState {
   totals: Data;
   columns: string[];
   rows: Row[]
 }
 
-export interface TotalsDispatchProps {
-  updateTotals: () => void
-}
+export type TotalsProps = TotalsState;
 
-export type TotalsProps = TotalsStateProps & TotalsDispatchProps;
-
-export default connect<TotalsStateProps, TotalsDispatchProps>(
+export default connect<TotalsState>(
   ({table}: AppState) => ({
-    totals: table.totals,
+    totals: sumColumns(table.rows, table.columns.active),
     columns: table.columns.active,
     rows: table.rows
-  }),
-  (dispatch: Dispatch<TableAction>) => ({
-    updateTotals: () => dispatch({type: tableAction.UPDATE_TOTALS})
   })
-)(Totals)
+)(Totals);

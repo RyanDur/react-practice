@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
 export interface ElementProps {
-  children?: React.ReactNode | React.ReactNode[]
-  className?: string
+  children?: React.ReactNode | React.ReactNode[];
+  className?: string;
 }

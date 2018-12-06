@@ -14,18 +14,20 @@ export interface HeaderProps {
 export class Header extends Component<HeaderProps> {
   columns = (columns: string[] = []) =>
     columns.map((name, key) =>
-      <ColumnHeader key={key} column={name}>
-        <DropDown>
-          <Menu column={name}/>
-        </DropDown>
-        <div className="value">{name}</div>
+      <ColumnHeader classes={['stick-top gray']} key={key} column={name}>
+        <div className="center split gray">
+          <DropDown>
+            <Menu column={name}/>
+          </DropDown>
+          <div className="value">{name}</div>
+        </div>
       </ColumnHeader>);
 
   render() {
     const {columns} = this.props;
     return <TableHead>
       <TableRow>
-        <TableCorner>Name</TableCorner>
+        <TableCorner classes={['stick-top stick-left corner gray']}>Name</TableCorner>
         {this.columns(columns)}
       </TableRow>
     </TableHead>;

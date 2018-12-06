@@ -8,8 +8,7 @@ const mockProps = (
   columns: string[] = ['a', 'b', 'c'],
   totals: Data = {a: 1, b: 2, c: 3},
   rows: Row[] = [{name: '', data: [{a: 1, b: 2, c: 3}], checked: true}],
-  updateTotals: () => void = jest.fn()
-): TotalsProps => ({columns, totals, rows, updateTotals});
+): TotalsProps => ({columns, totals, rows});
 
 
 describe('table totals', () => {
@@ -17,14 +16,14 @@ describe('table totals', () => {
   let props: TotalsProps;
 
   beforeEach(() => {
-    props = mockProps()
+    props = mockProps();
   });
 
   it('should be as long as the number of columns', () => {
     const actual = footer(props)
       .find('.total').hostNodes();
 
-    expect(actual.length).toEqual(props.columns.length);
+    expect(actual).toHaveLength(props.columns.length);
   });
 
   describe('table cell', () => {
@@ -36,7 +35,7 @@ describe('table totals', () => {
           [{name: '', data: [{a: 1}], checked: true}]
         )).find('.total');
 
-        actual.map(total => expect(total.text()).toBe('—'))
+        actual.map(total => expect(total.text()).toBe('—'));
       });
     });
 
@@ -56,22 +55,6 @@ describe('table totals', () => {
         .hostNodes();
 
       expect(total.text()).toBe('3');
-    });
-
-    it('should update if the rows that are checked have changed', () => {
-      const rows = [{name: '', data: [{a: 1, b: 2, c: 3}], checked: false}];
-      const totals = footer(props);
-      expect(props.updateTotals).not.toHaveBeenCalled();
-      totals.setProps({rows});
-      expect(props.updateTotals).toHaveBeenCalled();
-    });
-
-    it('should not update if the rows that are checked have not changed', () => {
-      const rows = [{name: '', data: [{a: 1, b: 2, c: 4}], checked: true}];
-      const totals = footer(props);
-      expect(props.updateTotals).not.toHaveBeenCalled();
-      totals.setProps({rows});
-      expect(props.updateTotals).not.toHaveBeenCalled();
     });
   });
 });

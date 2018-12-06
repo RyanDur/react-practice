@@ -33,7 +33,7 @@ export class Row extends Component<RowProps & Props> {
   render() {
     const {index, row, columns} = this.props;
     return <TableRow>
-      <TableData className='row-header'>
+      <TableData className='row-header stick-left gray'>
         <Checkbox index={index}
                   label={row.name}
                   checked={row.checked || this.props.defaultCheck}

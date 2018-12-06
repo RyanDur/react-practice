@@ -1,51 +1,59 @@
-.table-wrapper {
-  max-width: 50rem;
-  max-height: 30rem;
-  overflow: scroll;
-  border: 0.1rem solid black;
+.table {
+  border: 0.1rem solid rgb(221, 221, 221);
+  border-collapse: collapse;
 
-  & .table {
-    position: relative;
+  & .column-header,
+  & .table-data {
     border: 0.1rem solid rgb(221, 221, 221);
-    border-collapse: collapse;
+    height: 5rem;
+    min-width: 5rem;
   }
 
-  & .table-data,
-  & .column-header,
-  & .table-corner {
-    white-space: nowrap;
-    border: 0.1rem solid rgb(221, 221, 221);
-    padding: 2rem;
-    text-align: center;
+  & .top {
+    z-index: 2;
   }
 
   & .column-header {
-    background-color: rgb(238, 238, 238);
-    position: sticky;
-    top: -0.1rem;
-    z-index: 2;
+    padding: 0 1rem;
   }
 
-  & .table-corner {
-    background-color: rgb(238, 238, 238);
+  & .stick-left {
     position: sticky;
-    left: 0;
-    top: 0;
+    left: -0.09rem;
+  }
+
+  & .stick-top {
+    position: sticky;
+    top: -0.09rem;
+  }
+
+  & .stick-bottom {
+    position: sticky;
+    bottom: -0.09rem;
+  }
+
+  & .corner {
     z-index: 3;
   }
 
-  & .table-body .table-row .table-data:first-child,
-  & .table-footer .table-row .table-data:first-child {
+  & .gray {
     background-color: rgb(238, 238, 238);
-    position: sticky;
-    left: -0.1rem;
-    text-align: left;
-    z-index: 2;
   }
 
-  & .row-header {
+  & .center {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+  }
+
+  & .split {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
   }
 }

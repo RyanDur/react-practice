@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component, MouseEvent, ReactNode} from 'react';
 import './DropDown.css';
 
-export class DropDown extends Component<{children?: ReactNode}> {
+export class DropDown extends Component<{ children?: ReactNode }> {
 
   state = {
     height: 0
@@ -10,6 +10,8 @@ export class DropDown extends Component<{children?: ReactNode}> {
 
   handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.currentTarget.classList.toggle('change');
+    event.currentTarget.closest('.column-header')
+      .classList.toggle('top');
     const element = event.currentTarget.closest('.drop-down')
       .querySelector('.container');
     if (this.state.height > 0) {
@@ -20,6 +22,10 @@ export class DropDown extends Component<{children?: ReactNode}> {
   };
 
   handleBlur = (event: MouseEvent<HTMLDivElement>) => {
+    event.currentTarget
+      .closest('.column-header')
+      .classList
+      .remove('top');
     event.currentTarget.closest('.drop-down')
       .querySelector('.hamburger')
       .classList.remove('change');
@@ -28,20 +34,18 @@ export class DropDown extends Component<{children?: ReactNode}> {
 
   render() {
     return <div className="drop-down">
-        <div
-          className="hamburger"
-          onClick={this.handleClick}>
-          <div className="bar1"/>
-          <div className="bar2"/>
-          <div className="bar3"/>
-        </div>
-      <div className="outer-container">
-        <div
-          className="container"
-          style={{height: this.state.height}}
-          onMouseLeave={this.handleBlur}>
-          {this.props.children}
-        </div>
+      <div
+        className="hamburger"
+        onClick={this.handleClick}>
+        <div className="bar1"/>
+        <div className="bar2"/>
+        <div className="bar3"/>
+      </div>
+      <div
+        className="container"
+        style={{height: this.state.height}}
+        onMouseLeave={this.handleBlur}>
+        {this.props.children}
       </div>
     </div>;
   }

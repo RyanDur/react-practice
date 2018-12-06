@@ -22,4 +22,4 @@ export default connect<RowState, RowDispatch>(
   (dispatch: Dispatch<TableAction>): RowDispatch => ({
     toggleChecked: (row: RowType) => dispatch({type: tableAction.TOGGLE_CHECKED, row})
   })
-)(Row)
+)(Row);
