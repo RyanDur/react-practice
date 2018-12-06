@@ -1,59 +1,65 @@
-.table {
-  border: 0.1rem solid rgb(221, 221, 221);
-  border-collapse: collapse;
+.table-wrapper {
+  overflow: auto;
+  max-height: 50rem;
+  max-width: 50rem;
 
-  & .column-header,
-  & .table-data {
+  & .table {
     border: 0.1rem solid rgb(221, 221, 221);
-    height: 5rem;
-    min-width: 5rem;
-  }
+    border-collapse: collapse;
 
-  & .top {
-    z-index: 2;
-  }
+    & .column-header,
+    & .table-data {
+      border: 0.1rem solid rgb(221, 221, 221);
+      height: 5rem;
+      min-width: 5rem;
+    }
 
-  & .column-header {
-    padding: 0 1rem;
-  }
+    & .top {
+      z-index: 2;
+    }
 
-  & .stick-left {
-    position: sticky;
-    left: -0.09rem;
-  }
+    & .column-header {
+      padding: 0 1rem;
+    }
 
-  & .stick-top {
-    position: sticky;
-    top: -0.09rem;
-  }
+    & .stick-left {
+      position: sticky;
+      left: -0.09rem;
+    }
 
-  & .stick-bottom {
-    position: sticky;
-    bottom: -0.09rem;
-  }
+    & .stick-top {
+      position: sticky;
+      top: -0.09rem;
+    }
 
-  & .corner {
-    z-index: 3;
-  }
+    & .stick-bottom {
+      position: sticky;
+      bottom: -0.09rem;
+    }
 
-  & .gray {
-    background-color: rgb(238, 238, 238);
-  }
+    & .corner {
+      z-index: 3;
+    }
 
-  & .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    & .gray {
+      background-color: rgb(238, 238, 238);
+    }
 
-  & .split {
-    display: flex;
-    justify-content: space-between;
-  }
+    & .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+    & .split {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
   }
 }
