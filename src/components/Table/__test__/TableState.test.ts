@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
+import {tableAction} from '../actions';
 import {reducer as table} from '../reducer';
 import {initialState, initialTableState} from './initialState';
-import {TableAction, tableAction} from '../actions';
 import {createMySocketMiddleware} from '../../../core/client';
 import {AppState} from '../../../store';
 import {socketAction} from '../../../core/action';
-import {Data, Row, TableState} from '../types';
+import {Data, Row} from '../types';
 import {Direction} from '../menu/types';
 
 jest.mock('../../../core/clientConnector', () => ({
@@ -32,25 +32,6 @@ describe('Table state', () => {
   });
 
   describe('table columns', () => {
-    describe('initial state', () => {
-      it('should total the columns', () => {
-        state().table.rows.forEach(row => store.dispatch({type: tableAction.TOGGLE_CHECKED, row}));
-        store.dispatch({type: tableAction.UPDATE_TOTALS});
-        expect(state().table.totals).toEqual({
-          foo: 10,
-          bar: 20,
-          baz: 30,
-          bob: 40,
-          far: 50,
-          faz: 60,
-          fop: 70,
-          coo: 80,
-          cor: 90,
-          cop: 100
-        });
-      });
-    });
-
     describe('adding', () => {
       it('should be able to add the right of a column', () => {
         expect(store.getState().table.columns).toEqual({
@@ -89,7 +70,7 @@ describe('Table state', () => {
             'fop'
           ],
           inactive: ['another']
-        })
+        });
       });
 
       it('should be able to add the left of a column', () => {
@@ -129,7 +110,7 @@ describe('Table state', () => {
             'fop'
           ],
           inactive: ['yet_another']
-        })
+        });
       });
     });
 
@@ -165,7 +146,7 @@ describe('Table state', () => {
             'fop'
           ],
           inactive: ['another', 'yet_another', 'bar', 'coo', 'foo']
-        })
+        });
       });
     });
   });
@@ -185,41 +166,6 @@ describe('Table state', () => {
     it('should set undefined to true', () => {
       store.dispatch({type: tableAction.TOGGLE_CHECKED, row: {name: 'Harrison', data: {}}});
       expect(state().table.rows.filter((row: Row) => row.name === 'Harrison')[0].checked).toBeTruthy();
-    });
-  });
-
-  describe('update totals', () => {
-    it('should use only the checked rows', () => {
-      store.dispatch({type: tableAction.UPDATE_TOTALS});
-      expect(state().table.totals).toEqual({
-        foo: 0,
-        bar: 0,
-        baz: 0,
-        bob: 0,
-        far: 0,
-        faz: 0,
-        fop: 0,
-        coo: 0,
-        cor: 0,
-        cop: 0
-      });
-      store.dispatch({
-        type: tableAction.TOGGLE_CHECKED,
-        row: state().table.rows.find(row => row.name === 'Harrison')
-      });
-      store.dispatch({type: tableAction.UPDATE_TOTALS});
-      expect(state().table.totals).toEqual({
-        foo: 1,
-        bar: 2,
-        baz: 3,
-        bob: 4,
-        far: 5,
-        faz: 6,
-        fop: 7,
-        coo: 8,
-        cor: 9,
-        cop: 10
-      });
     });
   });
 });

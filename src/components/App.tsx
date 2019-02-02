@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Table from './Table/connector';
+import FancyTable from './Table/Fancy/connector';
+import {Draggable} from './Table/Draggable';
 import {Dropdown} from './Dropdown/Dropdown';
 
 const list = [
@@ -9,7 +10,8 @@ const list = [
 
 const App = () => (
   <>
-    <Table/>
+    <FancyTable/>
+    <Draggable/>
     <Dropdown
       options={list}
       selectionFormat={(option) => option.title}>

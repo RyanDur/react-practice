@@ -37,7 +37,7 @@ export const addColumns = (
   columnsToAdd: string[],
   columns: Columns): Columns => {
   return {
-    active: addTo(side, column, columnsToAdd, columns.active),
+    active: addTo({side, column, columnsToAdd, columns: columns.active}),
     inactive: remove(columnsToAdd, columns.inactive)
   };
 };
@@ -51,7 +51,7 @@ const merge = (data: (r: Data) => Data) => (acc: Data, row: Data): Data => ({...
 
 const removeFromObject = (obj: Data, prop: string): Data =>
   Object.keys(obj).reduce((object: Data, key: string) => {
-    if (key !== prop) object[key] = obj[key];
+    if (key !== prop) { object[key] = obj[key]; }
     return object;
   }, {});
 
@@ -68,15 +68,13 @@ const remove = (
   }, columns);
 
 const addTo = (
-  side: Direction,
-  column: string,
-  addColumns: string[],
-  columns: string[],
+  parameters: { side: Direction, column: string, columnsToAdd: string[], columns: string[] }
 ): string[] => {
+  const {side, column, columnsToAdd, columns} = parameters;
   const columnIndex = columns.indexOf(column);
   const front = (n: number) => columns.slice(0, columnIndex + n);
   const back = (n: number) => columns.slice(columnIndex + n);
   return side === Direction.Right ?
-    [...front(1), ...addColumns, ...back(1)] :
-    [...front(0), ...addColumns, ...back(0)];
+    [...front(1), ...columnsToAdd, ...back(1)] :
+    [...front(0), ...columnsToAdd, ...back(0)];
 };

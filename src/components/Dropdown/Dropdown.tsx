@@ -34,18 +34,18 @@ export class Dropdown<T> extends Component<Props<T>, State<T>> {
   render() {
     const {children, defaultSelected, options, selectionFormat} = this.props;
     return <section
-      className="dropdown"
+      className='dropdown'
       onMouseLeave={(event) => this.getOptionsList(event).add('hide')}>
-      <h1 className="selected"
+      <h1 className='selected'
           onClick={(event) => this.getOptionsList(event).toggle('hide')}>
         {selectionFormat(this.state.selected || defaultSelected || options[0])}
       </h1>
-      <ul className="options hide">
+      <ul className='options hide'>
         {options.map((option: T, index) =>
           <li
             key={index}
             onClick={() => this.handleSelection(option)}
-            className="option">{children[index]}</li>)}
+            className='option'>{children[index]}</li>)}
       </ul>
     </section>;
   }

@@ -1,5 +1,5 @@
 import {Data} from '../components/Table/types';
-import {webSocket} from "rxjs/webSocket";
+import {webSocket} from 'rxjs/webSocket';
 
 export const clientConnector = (url: string, fn: (data: Data) => void) => {
   webSocket(url).subscribe(

@@ -1,4 +1,4 @@
-import {Action} from "redux";
+import {Action} from 'redux';
 import {Row} from './types';
 import {Direction} from './menu/types';
 
@@ -9,9 +9,8 @@ export enum tableAction {
   TABLE_TOTALS = 'TABLE_TOTALS',
   TABLE_DATA = 'TABLE_DATA',
   TOGGLE_CHECKED = 'TOGGLE_CHECKED',
-  UPDATE_TOTALS = "UPDATE_TOTALS"
+  UPDATE_TOTALS = 'UPDATE_TOTALS'
 }
-
 
 interface TableTotals extends Action {
   type: tableAction.TABLE_TOTALS;
@@ -30,30 +29,25 @@ interface ToggleChecked extends Action {
 }
 
 interface SetDefaultChecked {
-  type: tableAction.SET_DEFAULT_CHECKED
-  checked: boolean
-}
-
-interface UpdateTotals {
-  type: tableAction.UPDATE_TOTALS
+  type: tableAction.SET_DEFAULT_CHECKED;
+  checked: boolean;
 }
 
 interface AddColumn {
-  type: tableAction.ADD_COLUMNS
-  side: Direction
-  column: string
-  columns: string[]
+  type: tableAction.ADD_COLUMNS;
+  side: Direction;
+  column: string;
+  columns: string[];
 }
 
 interface RemoveColumn {
-  type: tableAction.REMOVE_COLUMNS
-  columns: string[]
+  type: tableAction.REMOVE_COLUMNS;
+  columns: string[];
 }
 
 export type TableAction = TableTotals
   | TableData
   | ToggleChecked
   | SetDefaultChecked
-  | UpdateTotals
   | AddColumn
-  | RemoveColumn
+  | RemoveColumn;

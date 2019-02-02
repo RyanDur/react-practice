@@ -1,7 +1,7 @@
-import {tableAction} from '../components/Table/actions';
 import {Middleware, Store} from 'redux';
-import {socketAction} from "./action";
-import {clientConnector} from './clientConnector'
+import {tableAction} from '../components/Table/actions';
+import {socketAction} from './action';
+import {clientConnector} from './clientConnector';
 
 export const createMySocketMiddleware = (url: string): Middleware<any, any, any> =>
   (store: Store) => next => action => {

@@ -27,7 +27,7 @@ describe('dropdown', () => {
     expect(dropdown.find('.selected').text()).toBe('your');
   });
 
-  it('should show the list of options when the header is clicked', () => {
+  xit('should show the list of options when the header is clicked', () => {
     dropdown.find('.selected').simulate('click');
     expect(dropdown.find('.options').hasClass('hide')).toBe(false);
   });

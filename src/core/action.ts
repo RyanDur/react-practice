@@ -1,16 +1,16 @@
-import {Action} from "redux";
+import {Action} from 'redux';
 
 export enum socketAction {
-  CONNECT = "CONNECT",
-  STOP = "STOP"
+  CONNECT = 'CONNECT',
+  STOP = 'STOP'
 }
 
 export interface ConnectAction extends Action {
-  type: socketAction.CONNECT
+  type: socketAction.CONNECT;
 }
 
 export interface StopAction extends Action {
-  type: socketAction.STOP
+  type: socketAction.STOP;
 }
 
-export type SocketAction = ConnectAction | StopAction
+export type SocketAction = ConnectAction | StopAction;
