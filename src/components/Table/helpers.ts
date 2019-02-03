@@ -1,5 +1,5 @@
 import {Columns, Data, Row} from './types';
-import {Direction} from './menu/types';
+import {Direction} from './Menu/types';
 
 export const sumColumns = (rows: Row[], columns: string[]): Data => {
   return columns.map(column =>

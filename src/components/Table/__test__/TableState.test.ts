@@ -6,7 +6,7 @@ import {createMySocketMiddleware} from '../../../core/client';
 import {AppState} from '../../../store';
 import {socketAction} from '../../../core/action';
 import {Data, Row} from '../types';
-import {Direction} from '../menu/types';
+import {Direction} from '../Menu/types';
 
 jest.mock('../../../core/clientConnector', () => ({
   clientConnector: jest.fn((url: string, fn: (data: Data) => void) => fn(initialState))

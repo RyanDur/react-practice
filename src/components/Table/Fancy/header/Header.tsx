@@ -4,8 +4,8 @@ import {TableRow} from '../elements/TableRow';
 import {TableCorner} from '../elements/TableCorner';
 import {TableHead} from '../elements/TableHead';
 import {ColumnHeader} from '../elements/ColumnHeader';
-import Menu from '../../menu/connector';
-import {DropDown} from '../../menu/dropDown/DropDown';
+import Menu from '../../Menu/connector';
+import {DropDown} from '../../Menu/dropDown/DropDown';
 
 export interface HeaderProps {
   columns: string[];

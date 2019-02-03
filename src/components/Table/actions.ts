@@ -1,6 +1,6 @@
 import {Action} from 'redux';
 import {Row} from './types';
-import {Direction} from './menu/types';
+import {Direction} from './Menu/types';
 
 export enum tableAction {
   REMOVE_COLUMNS = 'REMOVE_COLUMN',
