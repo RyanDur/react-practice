@@ -5,7 +5,7 @@ export const sumColumns = (rows: Row[], columns: string[]): Data => {
   return columns.map(column =>
     ({
       [column]: rows
-        .map((row: Row) => row.checked ? row.data[column] : 0)
+        .map((row: Row) => row.data[column])
         .reduce((acc, num) => acc + num, 0)
     })
   ).reduce((acc, col) => ({...acc, ...col}), {});

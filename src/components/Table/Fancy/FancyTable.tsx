@@ -2,17 +2,11 @@ import * as React from 'react';
 import {Component} from 'react';
 import {Table} from './elements/Table';
 import './FancyTable.css';
-import {TableProps} from './connector';
-import {TableState} from '../types';
 import Header from './header/connector';
 import Rows from './rows/connector';
 import Totals from './totals/connector';
 
-class FancyTable extends Component<TableProps, TableState> {
-  componentDidMount() {
-    this.props.connect();
-  }
-
+class FancyTable extends Component {
   render() {
     return <div className='table-wrapper'>
       <Table>

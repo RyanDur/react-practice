@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {Component} from 'react';
+import {cats} from '../cats';
 import {DraggableProps} from './connector';
 
 export class Draggable extends Component<DraggableProps> {
-  public render() {
+
+  render() {
     const {columns, rows, totals} = this.props;
     return <table>
       <thead>
@@ -16,10 +18,10 @@ export class Draggable extends Component<DraggableProps> {
       </thead>
       <tbody>
       {rows.map((row) =>
-        <tr key={row.name}>
-          <td draggable={true}>{row.name}</td>
+        <tr key={row.name} draggable={true}>
+          <td>{row.name}</td>
           {columns.map((column) =>
-            <td data-group={column} key={column}>row.data[column]</td>
+            <td data-group={column} key={column}>{cats[row.data[column]]}</td>
           )}
         </tr>
       )}
@@ -28,7 +30,9 @@ export class Draggable extends Component<DraggableProps> {
       <tr>
         <td>Totals:</td>
         {columns.map((column) =>
-          <td data-group={column} key={column}>{totals[column]}</td>
+          <td data-group={column} key={column}>
+            {cats[Math.trunc(totals[column] / 10)]}
+          </td>
         )}
       </tr>
       </tfoot>

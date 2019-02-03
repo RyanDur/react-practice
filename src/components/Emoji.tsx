@@ -1,12 +1,16 @@
-import {symbol} from 'prop-types';
+import * as React from 'react';
 
-const Emoji = props => (
+interface EmojiProps {
+  label: string;
+  symbol: string;
+}
+
+export const Emoji = (props: EmojiProps) => (
   <span
-    className="emoji"
-role="img"
-aria-label={props.label ? props.label : ""}
-aria-hidden={props.label ? "false" : "true"}
-  >
+    className='emoji'
+    role='img'
+    aria-label={props.label ? props.label : ''}
+    aria-hidden={props.label ? 'false' : 'true'}>
   {props.symbol}
   </span>
 );

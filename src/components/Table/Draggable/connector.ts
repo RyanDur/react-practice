@@ -14,8 +14,8 @@ export type DraggableProps = TableStateProps;
 
 export default connect<TableStateProps>(
   ({table}: AppState) => ({
+    totals: sumColumns(table.rows, table.columns.active),
     columns: table.columns.active,
-    rows: table.rows,
-    totals: sumColumns(table.rows, table.columns.active)
+    rows: table.rows
   })
 )(Draggable);
