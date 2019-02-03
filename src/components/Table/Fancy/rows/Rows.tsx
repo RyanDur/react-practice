@@ -3,7 +3,7 @@ import {Component} from 'react';
 import {TableBody} from '../elements/TableBody';
 import Row from './row/connector';
 import {RowsProps} from './connector';
-import {Row as RowType} from '../../types';
+import {Row as RowType} from '../../../../core/types';
 
 export interface Default {
   defaultCheck?: boolean;

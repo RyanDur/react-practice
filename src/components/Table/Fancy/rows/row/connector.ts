@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {Row} from './Row';
-import {Row as RowType} from '../../../types';
+import {Row as RowType} from '../../../../../core/types';
 import {Dispatch} from 'redux';
 import {tableAction, TableAction} from '../../../actions';
 import {AppState} from '../../../../../store';

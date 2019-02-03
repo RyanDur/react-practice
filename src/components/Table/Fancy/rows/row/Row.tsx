@@ -2,7 +2,7 @@ import {Component} from 'react';
 import {TableData} from '../../elements/TableData';
 import {Checkbox} from '../../elements/Checkbox';
 import {TableRow} from '../../elements/TableRow';
-import {Row as RowType} from '../../../types';
+import {Row as RowType} from '../../../../../core/types';
 import * as React from 'react';
 import {RowProps} from './connector';
 

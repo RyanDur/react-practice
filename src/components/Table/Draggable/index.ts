@@ -1,2 +1,2 @@
-import connector from './connector';
-export const Draggable = connector;
+import Draggable from './connector';
+export {Draggable};

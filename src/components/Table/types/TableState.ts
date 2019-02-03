@@ -1,5 +1,4 @@
-import {Row} from './Row';
-import {Data} from './Data';
+import {Data, Row} from '../../../core/types';
 import {Columns} from './Columns';
 
 export interface TableState {

@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
+import {Data, Row} from '../../../core/types';
 import {tableAction} from '../actions';
 import {reducer as table} from '../reducer';
 import {initialState, initialTableState} from './initialState';
 import {createMySocketMiddleware} from '../../../core/client';
 import {AppState} from '../../../store';
 import {socketAction} from '../../../core/action';
-import {Data, Row} from '../types';
 import {Direction} from '../Menu/types';
 
 jest.mock('../../../core/clientConnector', () => ({

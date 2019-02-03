@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
+import {Row} from '../../../../core/types';
 import {tableAction} from '../../actions';
 import {Rows} from './Rows';
 import {Action, Dispatch} from 'redux';
-import {Row} from '../../types';
 import {AppState} from '../../../../store';
 
 interface RowsStateProps {
@@ -17,8 +17,8 @@ interface RowDispatchProps {
 export type RowsProps = RowsStateProps & RowDispatchProps;
 
 export default connect<RowsStateProps, RowDispatchProps>(
-  ({table}: AppState): RowsStateProps => ({
-    rows: table.rows,
+  ({table, data}: AppState): RowsStateProps => ({
+    rows: data.rows,
     columns: table.columns.active
   }),
   (dispatch: Dispatch<Action>): RowDispatchProps => ({

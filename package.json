@@ -8,6 +8,7 @@
     "@reactivex/rxjs": "^6.3.3",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^7.0.0-bridge.0",
+    "path": "^0.12.7",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.5.2",

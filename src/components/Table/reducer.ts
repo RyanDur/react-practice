@@ -1,4 +1,4 @@
-import {addColumns, normalize, removeColumns, updateChecked} from './helpers';
+import {addColumns, removeColumns, updateChecked} from './helpers';
 import {tableAction, TableAction} from './actions';
 import {TableState} from './types';
 
@@ -15,8 +15,6 @@ export const reducer = (
   action: TableAction
 ): TableState => {
   switch (action.type) {
-  case tableAction.TABLE_DATA:
-    return {...state, rows: normalize(action.data, state.rows)};
   case tableAction.TOGGLE_CHECKED:
     return {...state, rows: updateChecked(action.row, state.rows)};
   case tableAction.ADD_COLUMNS:

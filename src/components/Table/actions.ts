@@ -1,5 +1,5 @@
 import {Action} from 'redux';
-import {Row} from './types';
+import {Row} from '../../core/types';
 import {Direction} from './Menu/types';
 
 export enum tableAction {
@@ -7,20 +7,12 @@ export enum tableAction {
   ADD_COLUMNS = 'ADD_COLUMN',
   SET_DEFAULT_CHECKED = 'SET_DEFAULT_CHECKED',
   TABLE_TOTALS = 'TABLE_TOTALS',
-  TABLE_DATA = 'TABLE_DATA',
-  TOGGLE_CHECKED = 'TOGGLE_CHECKED',
-  UPDATE_TOTALS = 'UPDATE_TOTALS'
+  TOGGLE_CHECKED = 'TOGGLE_CHECKED'
 }
 
 interface TableTotals extends Action {
   type: tableAction.TABLE_TOTALS;
   rows: Row[];
-}
-
-interface TableData extends Action {
-  type: tableAction.TABLE_DATA;
-  data?: any;
-  defaultChecked?: boolean;
 }
 
 interface ToggleChecked extends Action {
@@ -46,7 +38,6 @@ interface RemoveColumn {
 }
 
 export type TableAction = TableTotals
-  | TableData
   | ToggleChecked
   | SetDefaultChecked
   | AddColumn

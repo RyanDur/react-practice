@@ -1,4 +1,5 @@
-import {Columns, Data, Row} from './types';
+import {Data, Row} from '../../core/types';
+import {Columns} from './types';
 import {Direction} from './Menu/types';
 
 export const sumColumns = (rows: Row[], columns: string[]): Data => {
@@ -15,22 +16,6 @@ export const updateChecked = (namedRow: Row, rows: Row[] = []): Row[] =>
   rows.map((row) =>
     namedRow.name === row.name ? {...namedRow, checked: !namedRow.checked} : row);
 
-export const normalize = (
-  newData: Data[] = [],
-  oldRows: Row[] = []): Row[] => {
-  const newState: Data = newData.reduce(merge((row: Data) => ({
-    [row.name]: {
-      name: row.name,
-      data: removeFromObject(row, 'name')
-    }
-  })), {});
-  const oldState: Data = oldRows.reduce(merge((row: Data) => ({[row.name]: row})), {});
-
-  return Object.keys(newState).map(name =>
-    ({...oldState[name], ...newState[name]})
-  );
-};
-
 export const addColumns = (
   side: Direction,
   column: string,
@@ -46,14 +31,6 @@ export const removeColumns = (columnsToRemove: string[], columns: Columns): Colu
   active: remove(columnsToRemove, columns.active),
   inactive: [...columns.inactive, ...columnsToRemove]
 });
-
-const merge = (data: (r: Data) => Data) => (acc: Data, row: Data): Data => ({...acc, ...data(row)});
-
-const removeFromObject = (obj: Data, prop: string): Data =>
-  Object.keys(obj).reduce((object: Data, key: string) => {
-    if (key !== prop) { object[key] = obj[key]; }
-    return object;
-  }, {});
 
 const remove = (
   columnsToRemove: string[],

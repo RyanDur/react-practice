@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
+import {Data, Row} from '../../../../core/types';
 import {Totals} from './Totals';
-import {Data, Row} from '../../types';
 import {AppState} from '../../../../store';
 import {sumColumns} from '../../helpers';
 
@@ -13,9 +13,9 @@ export interface TotalsState {
 export type TotalsProps = TotalsState;
 
 export default connect<TotalsState>(
-  ({table}: AppState) => ({
-    totals: sumColumns(table.rows, table.columns.active),
+  ({table, data}: AppState) => ({
+    totals: sumColumns(data.rows, table.columns.active),
     columns: table.columns.active,
-    rows: table.rows
+    rows: data.rows
   })
 )(Totals);

@@ -1,9 +1,14 @@
 import * as React from 'react';
-import {Component} from 'react';
+import {Component, DragEvent} from 'react';
 import {cats} from '../cats';
 import {DraggableProps} from './connector';
 
 export class Draggable extends Component<DraggableProps> {
+
+  handleDragHeaderEnter = (event: DragEvent) => {
+    console.log(event.pageX);
+    console.log(event.currentTarget.getClientRects());
+  };
 
   render() {
     const {columns, rows, totals} = this.props;
@@ -12,7 +17,11 @@ export class Draggable extends Component<DraggableProps> {
       <tr>
         <th>Header:</th>
         {columns.map((column) =>
-          <th data-group={column} key={column} draggable={true}>{column}</th>
+          <th
+            key={column}
+            data-group={column}
+            onDragEnter={this.handleDragHeaderEnter}
+            draggable={true}>{column}</th>
         )}
       </tr>
       </thead>

@@ -1,8 +1,8 @@
 import {mount} from 'enzyme';
+import {Data, Row} from '../../../../../core/types';
 import {Totals} from '../Totals';
 import * as React from 'react';
 import {TotalsProps} from '../connector';
-import {Data, Row} from '../../../types';
 
 const mockProps = (
   columns: string[] = ['a', 'b', 'c'],
