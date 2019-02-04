@@ -1,7 +1,5 @@
-import {table, Fancy, Draggable} from './Table';
 import {Dropdown} from './Dropdown/Dropdown';
 import {Emoji} from './Emoji';
+import {Draggable, Fancy, table} from './Table';
 
-const components = {table};
-
-export {components, Fancy, Draggable, Dropdown, Emoji};
+export {table, Fancy, Draggable, Dropdown, Emoji};

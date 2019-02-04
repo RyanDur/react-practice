@@ -1,4 +1,5 @@
 import {Data, Row} from '../../core/types';
+import {CheckedRow} from './Fancy/types';
 import {Columns} from './types';
 import {Direction} from './Menu/types';
 
@@ -12,7 +13,7 @@ export const sumColumns = (rows: Row[], columns: string[]): Data => {
   ).reduce((acc, col) => ({...acc, ...col}), {});
 };
 
-export const updateChecked = (namedRow: Row, rows: Row[] = []): Row[] =>
+export const updateChecked = (namedRow: Row, rows: CheckedRow[] = []): CheckedRow[] =>
   rows.map((row) =>
     namedRow.name === row.name ? {...namedRow, checked: !namedRow.checked} : row);
 

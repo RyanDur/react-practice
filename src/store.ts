@@ -1,16 +1,15 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {components} from './components';
-import {core} from './core';
-import {TableState} from './components/Table/types';
+import {table, TableState} from './components/Table';
+import {core as data} from './core';
 import {createMySocketMiddleware} from './core/client';
 import {DataState} from './core/types';
 
 export interface AppState {
-  table?: TableState;
-  data?: DataState;
+  table: TableState;
+  data: DataState;
 }
 
 export const store = createStore(combineReducers<AppState>({
-  ...components,
-  ...core
+  table,
+  data
 }), applyMiddleware(createMySocketMiddleware('ws://localhost:8999')));

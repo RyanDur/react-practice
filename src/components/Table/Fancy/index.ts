@@ -1,2 +1,3 @@
 import Fancy from './FancyTable';
-export {Fancy};
+import {reducer as fancy} from './reducer';
+export {Fancy, fancy};

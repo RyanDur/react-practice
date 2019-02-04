@@ -1,19 +1,20 @@
-import {addColumns, removeColumns, updateChecked} from './helpers';
-import {tableAction, TableAction} from './actions';
-import {TableState} from './types';
+import {tableAction, TableAction} from '../actions';
+import {addColumns, removeColumns, updateChecked} from '../helpers';
+import {FancyState} from './types';
 
-const defaultState: TableState = {
-  rows: [],
+export const defaultState: FancyState = {
+  rows: [{name: 'Anna'}, {name: 'Travis'}, {name: 'Mendel'}, {name: 'Harrison'}, {name: 'Alex'}, {name: 'Jordan'}, {name: 'Mike'}, {name: 'Krishna'}, {name: 'Mohammad'}, {name: 'Paulina'}],
   columns: {
     active: ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop'],
     inactive: ['another', 'yet_another']
   }
+
 };
 
 export const reducer = (
-  state: TableState = defaultState,
+  state: FancyState = defaultState,
   action: TableAction
-): TableState => {
+): FancyState => {
   switch (action.type) {
   case tableAction.TOGGLE_CHECKED:
     return {...state, rows: updateChecked(action.row, state.rows)};

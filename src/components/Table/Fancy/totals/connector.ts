@@ -14,8 +14,8 @@ export type TotalsProps = TotalsState;
 
 export default connect<TotalsState>(
   ({table, data}: AppState) => ({
-    totals: sumColumns(data.rows, table.columns.active),
-    columns: table.columns.active,
+    totals: sumColumns(data.rows, table.fancy.columns.active),
+    columns: table.fancy.columns.active,
     rows: data.rows
   })
 )(Totals);

@@ -17,7 +17,7 @@ export type RowProps = RowState & RowDispatch;
 
 export default connect<RowState, RowDispatch>(
   ({table}: AppState) => ({
-    columns: table.columns.active
+    columns: table.fancy.columns.active
   }),
   (dispatch: Dispatch<TableAction>): RowDispatch => ({
     toggleChecked: (row: RowType) => dispatch({type: tableAction.TOGGLE_CHECKED, row})

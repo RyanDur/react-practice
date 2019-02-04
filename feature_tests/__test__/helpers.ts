@@ -1,5 +1,5 @@
 import {Page} from 'puppeteer';
-import {Data} from '../../src/components/Table/types';
+import {Data} from '../../src/core/types';
 
 interface CheckBoxes {
   checked: () => Promise<boolean[]>;
@@ -38,40 +38,40 @@ export const table = (page: Page): TableData => {
   const content = (elems: HTMLElement[]): Data =>
     elems.map(elem => ({
       [elem.dataset.column]: elem.textContent
-    })).reduce((acc, elem) => Object.assign({}, acc, elem), {});
+    })).reduce((acc, elem) => ({...acc, ...elem}), {});
 
   const checkedInputs = (elems: HTMLElement[]): boolean[] =>
     elems.map(elem => elem.querySelector('input').checked);
 
   return {
-    lengthOf: async(selector) => await getAll<number>(selector, length),
-    contentOf: async(selector) => await getAll<Data>(selector, content),
-    valuesOf: async(selector) => await getAll<string[]>(selector, getText),
+    lengthOf: async (selector) => getAll<number>(selector, length),
+    contentOf: async (selector) => getAll<Data>(selector, content),
+    valuesOf: async (selector) => getAll<string[]>(selector, getText),
     checkboxesOf: (selector) => ({
-      checked: async() => await getAll<boolean[]>(selector, checkedInputs)
+      checked: async () => getAll<boolean[]>(selector, checkedInputs)
     }),
     column: (name: string): Column => ({
-      menu: async(): Promise<Menu> => {
-        const exists = async(selector: string): Promise<boolean> => await page.$(selector) !== null;
+      menu: async (): Promise<Menu> => {
+        const exists = async (selector: string): Promise<boolean> => await page.$(selector) !== null;
         return ({
-          open: async(): Promise<void> => {
-            await page.click(`.column-header[data-column="${name}"] .drop-down .hamburger`);
+          open: async (): Promise<void> => {
+            await page.click(`.column-header[data-group="${name}"] .drop-down .hamburger`);
           },
-          close: async(): Promise<void> => {
-            await page.click(`.column-header[data-column="${name}"] .drop-down .hamburger`);
+          close: async (): Promise<void> => {
+            await page.click(`.column-header[data-group="${name}"] .drop-down .hamburger`);
           },
-          select: async(column: string): Promise<void> => {
-            const selector = `.column-header[data-column="${name}"] .drop-down [data-column="${column}"]`;
-            if (await exists(selector)) await page.click(selector);
+          select: async (column: string): Promise<void> => {
+            const selector = `.column-header[data-group="${name}"] .drop-down [data-group="${column}"]`;
+            if (await exists(selector)) { await page.click(selector); }
           },
-          addRight: async(): Promise<void> => {
-            await page.click(`.column-header[data-column="${name}"] .drop-down .add-right`);
+          addRight: async (): Promise<void> => {
+            await page.click(`.column-header[data-group="${name}"] .drop-down .add-right`);
           },
-          addLeft: async(): Promise<void> => {
-            await page.click(`.column-header[data-column="${name}"] .drop-down .add-left`);
+          addLeft: async (): Promise<void> => {
+            await page.click(`.column-header[data-group="${name}"] .drop-down .add-left`);
           },
-          remove: async(): Promise<void> => {
-            await page.click(`.column-header[data-column="${name}"] .drop-down .remove`);
+          remove: async (): Promise<void> => {
+            await page.click(`.column-header[data-group="${name}"] .drop-down .remove`);
           }
         });
       }

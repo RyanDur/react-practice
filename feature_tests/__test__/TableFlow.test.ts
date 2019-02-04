@@ -30,7 +30,7 @@ describe('the table flow', () => {
           await menu.open();
         });
 
-        xdescribe('adding', () => {
+        describe('adding', () => {
           beforeEach(async () => {
             await menu.select('yet_another');
           });
@@ -55,7 +55,7 @@ describe('the table flow', () => {
           });
         });
 
-        xdescribe('removing', () => {
+        describe('removing', () => {
           beforeEach(async () => {
             await menu.select('baz');
           });
@@ -87,7 +87,7 @@ describe('the table flow', () => {
     describe('the rows', () => {
       const rowNames: string[] = ['Anna', 'Travis', 'Mendel', 'Harrison', 'Alex', 'Jordan', 'Mike', 'Krishna', 'Mohammad', 'Paulina'];
 
-      xdescribe('headers', () => {
+      describe('headers', () => {
         it('should have default names', async () => {
           const rowHeaders = await table(page).valuesOf('.row-header');
 
@@ -109,7 +109,7 @@ describe('the table flow', () => {
         expect((await table(page).lengthOf('.total'))).toBe(columns.length);
       });
 
-      xit('should sum the columns', async () => {
+      it('should sum the columns', async () => {
         expect(await table(page).contentOf('.total')).toEqual({
           bar: '10',
           baz: '20',
@@ -124,7 +124,7 @@ describe('the table flow', () => {
         });
       });
 
-      xit('should update the total row if a name is unchecked', async () => {
+      it('should update the total row if a name is unchecked', async () => {
         const getFirstTotalValue = () =>
           page.$eval('.total[data-column="bar"]', elem => elem.textContent);
 
@@ -152,7 +152,7 @@ describe('the table flow', () => {
         expect(columnHeaders.sort()).toEqual(columns.sort());
       });
 
-      xdescribe('menu', () => {
+      describe('menu', () => {
         let menu: Menu;
         beforeEach(async () => {
           menu = await table(page).column('bar').menu();
