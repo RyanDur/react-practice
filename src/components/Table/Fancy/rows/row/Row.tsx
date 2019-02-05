@@ -1,4 +1,5 @@
 import {Component} from 'react';
+import {Data} from '../../../../../core/types';
 import {TableData} from '../../elements/TableData';
 import {Checkbox} from '../../elements/Checkbox';
 import {TableRow} from '../../elements/TableRow';
@@ -14,12 +15,12 @@ export interface Props {
 
 export class Row extends Component<RowProps & Props> {
 
-  createData = (row: CheckedRow) => (column: string, i: number) =>
+  createData = (data: Data = {}) => (column: string, i: number) =>
     <TableData
       key={i}
       id={`row-data-${column}-${i}`}
       className={'row-cell'}
-      column={column}>{row.data[column] || '—'}</TableData>;
+      column={column}>{data[column] || '—'}</TableData>;
 
   handleChecked = (row: CheckedRow) => (): void =>
     this.props.toggleChecked(row);
@@ -39,7 +40,7 @@ export class Row extends Component<RowProps & Props> {
                   checked={row.checked || this.props.defaultCheck}
                   change={this.handleChecked(row)}/>
       </TableData>
-      {columns.map(this.createData(row))}
+      {columns.map(this.createData(row.data))}
     </TableRow>;
   }
 }
