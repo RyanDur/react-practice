@@ -1,11 +1,4 @@
-import {combineReducers, Reducer} from 'redux';
 import {Draggable} from './Draggable';
-import {Fancy, fancy} from './Fancy';
-import {FancyState} from './Fancy/types';
+import {Fancy} from './Fancy';
 
-export interface TableState {
-  fancy: FancyState;
-}
-const table: Reducer<TableState> = combineReducers<TableState>({fancy});
-
-export {Fancy, table, Draggable};
+export {Fancy, Draggable};

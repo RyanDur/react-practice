@@ -7,7 +7,7 @@ import {Direction, MenuDispatchProps, MenuStateProps} from './types';
 
 export default connect<MenuStateProps, MenuDispatchProps>(
   ({components}: AppState) => ({
-    columns: components.table.fancy.columns
+    columns: components.fancy.columns
   }),
   (dispatch: Dispatch<TableAction>) => ({
     add: (side: Direction, column: string, columns: string[]) =>

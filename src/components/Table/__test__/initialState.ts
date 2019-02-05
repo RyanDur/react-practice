@@ -2,16 +2,16 @@ import {FancyState} from '../Fancy/types';
 
 export const initialTableState: FancyState = {
   rows: [
-    {name: 'Anna', data: []},
-    {name: 'Travis', data: []},
-    {name: 'Mendel', data: []},
-    {name: 'Harrison', data: []},
-    {name: 'Alex', data: []},
-    {name: 'Jordan', data: []},
-    {name: 'Mike', data: []},
-    {name: 'Krishna', data: []},
-    {name: 'Mohammad', data: []},
-    {name: 'Paulina', data: []}
+    {name: 'Anna'},
+    {name: 'Travis'},
+    {name: 'Mendel'},
+    {name: 'Harrison'},
+    {name: 'Alex'},
+    {name: 'Jordan'},
+    {name: 'Mike'},
+    {name: 'Krishna'},
+    {name: 'Mohammad'},
+    {name: 'Paulina'}
   ],
   totals: {},
   columns: {
