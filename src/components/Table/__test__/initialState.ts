@@ -1,7 +1,18 @@
 import {FancyState} from '../Fancy/types';
 
 export const initialTableState: FancyState = {
-  rows: [{name: 'Anna'}, {name: 'Travis'}, {name: 'Mendel'}, {name: 'Harrison'}, {name: 'Alex'}, {name: 'Jordan'}, {name: 'Mike'}, {name: 'Krishna'}, {name: 'Mohammad'}, {name: 'Paulina'}],
+  rows: [
+    {name: 'Anna', data: []},
+    {name: 'Travis', data: []},
+    {name: 'Mendel', data: []},
+    {name: 'Harrison', data: []},
+    {name: 'Alex', data: []},
+    {name: 'Jordan', data: []},
+    {name: 'Mike', data: []},
+    {name: 'Krishna', data: []},
+    {name: 'Mohammad', data: []},
+    {name: 'Paulina', data: []}
+  ],
   totals: {},
   columns: {
     active: ['foo', 'bar', 'baz', 'bob', 'far', 'faz', 'fop', 'coo', 'cor', 'cop'],

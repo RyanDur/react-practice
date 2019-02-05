@@ -2,7 +2,7 @@ import {Page} from 'puppeteer';
 import testBrowser from '../mockBrowser';
 import {Menu, table} from './helpers';
 
-describe('the table flow', () => {
+xdescribe('the table flow', () => {
   const {setup, tearDown} = testBrowser({});
   let page: Page;
   const columns: string[] = ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop'];
