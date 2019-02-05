@@ -1,7 +1,6 @@
-import {CheckedRow} from '../../components/Table/Fancy/types';
 import {Data} from './Data';
 
-export interface Row extends Partial<CheckedRow> {
+export interface Row {
   name: string;
   data: Data;
 }

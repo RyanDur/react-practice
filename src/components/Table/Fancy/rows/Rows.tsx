@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {TableBody} from '../elements/TableBody';
+import {CheckedRow} from '../types';
 import Row from './row/connector';
 import {RowsProps} from './connector';
-import {Row as RowType} from '../../../../core/types';
 
 export interface Default {
   defaultCheck?: boolean;
@@ -11,8 +11,8 @@ export interface Default {
 
 export class Rows extends Component<RowsProps & Default> {
 
-  rows = (rows: RowType[] = []) =>
-    rows.map((row: RowType, index) => <Row
+  rows = (rows: CheckedRow[] = []) =>
+    rows.map((row: CheckedRow, index) => <Row
       key={index}
       index={index}
       row={row}

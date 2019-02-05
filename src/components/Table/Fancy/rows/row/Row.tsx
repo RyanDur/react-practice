@@ -2,26 +2,26 @@ import {Component} from 'react';
 import {TableData} from '../../elements/TableData';
 import {Checkbox} from '../../elements/Checkbox';
 import {TableRow} from '../../elements/TableRow';
-import {Row as RowType} from '../../../../../core/types';
 import * as React from 'react';
+import {CheckedRow} from '../../types';
 import {RowProps} from './connector';
 
 export interface Props {
   index: number;
-  row: RowType;
+  row: CheckedRow;
   defaultCheck: boolean;
 }
 
 export class Row extends Component<RowProps & Props> {
 
-  createData = (row: RowType) => (column: string, i: number) =>
+  createData = (row: CheckedRow) => (column: string, i: number) =>
     <TableData
       key={i}
       id={`row-data-${column}-${i}`}
       className={'row-cell'}
       column={column}>{row.data[column] || '—'}</TableData>;
 
-  handleChecked = (row: RowType) => (): void =>
+  handleChecked = (row: CheckedRow) => (): void =>
     this.props.toggleChecked(row);
 
   componentDidMount() {

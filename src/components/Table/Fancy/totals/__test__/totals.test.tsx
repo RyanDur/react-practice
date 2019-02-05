@@ -1,14 +1,13 @@
 import {mount} from 'enzyme';
-import {Data, Row} from '../../../../../core/types';
-import {Totals} from '../Totals';
 import * as React from 'react';
+import {Data} from '../../../../../core/types';
 import {TotalsProps} from '../connector';
+import {Totals} from '../Totals';
 
 const mockProps = (
   columns: string[] = ['a', 'b', 'c'],
-  totals: Data = {a: 1, b: 2, c: 3},
-  rows: Row[] = [{name: '', data: [{a: 1, b: 2, c: 3}], checked: true}]
-): TotalsProps => ({columns, totals, rows});
+  totals: Data = {a: 1, b: 2, c: 3}
+): TotalsProps => ({columns, totals});
 
 describe('table totals', () => {
   const footer = (propsToAdd: TotalsProps) => mount(<Totals {...propsToAdd}/>);
@@ -30,8 +29,7 @@ describe('table totals', () => {
       it('should default to —', () => {
         const actual = footer(mockProps(
           ['a'],
-          {a: 0},
-          [{name: '', data: [{a: 1}], checked: true}]
+          {a: 0}
         )).find('.total');
 
         actual.map(total => expect(total.text()).toBe('—'));

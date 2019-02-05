@@ -13,7 +13,7 @@ export const sumColumns = (rows: Row[], columns: string[]): Data => {
   ).reduce((acc, col) => ({...acc, ...col}), {});
 };
 
-export const updateChecked = (namedRow: Row, rows: CheckedRow[] = []): CheckedRow[] =>
+export const updateChecked = (namedRow: CheckedRow, rows: CheckedRow[] = []): CheckedRow[] =>
   rows.map((row) =>
     namedRow.name === row.name ? {...namedRow, checked: !namedRow.checked} : row);
 

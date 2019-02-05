@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {CheckedRow} from '../../types';
 import {Row} from './Row';
 import {Row as RowType} from '../../../../../core/types';
 import {Dispatch} from 'redux';
@@ -10,14 +11,14 @@ interface RowState {
 }
 
 export interface RowDispatch {
-  toggleChecked: (row: RowType) => void;
+  toggleChecked: (row: CheckedRow) => void;
 }
 
 export type RowProps = RowState & RowDispatch;
 
 export default connect<RowState, RowDispatch>(
-  ({table}: AppState) => ({
-    columns: table.fancy.columns.active
+  ({components}: AppState) => ({
+    columns: components.table.fancy.columns.active
   }),
   (dispatch: Dispatch<TableAction>): RowDispatch => ({
     toggleChecked: (row: RowType) => dispatch({type: tableAction.TOGGLE_CHECKED, row})
