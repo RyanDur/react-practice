@@ -4,8 +4,8 @@ import {dataAction} from './types';
 import {DataState} from './types';
 
 const defaultState: DataState = {
-  rows: [],
-  columns: ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop', 'another', 'yet_another']
+  rows: {},
+  columns: []
 };
 
 export const reducer = (

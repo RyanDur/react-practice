@@ -19,7 +19,7 @@ export type RowsProps = RowsStateProps & RowDispatchProps;
 export default connect<RowsStateProps, RowDispatchProps>(
   ({components, data}: AppState): RowsStateProps => ({
     rows: components.fancy.rows.map(checkedRow =>
-      ({...checkedRow, ...(data.rows.find(row => row.name === checkedRow.name) || {})})),
+      ({...checkedRow, ...(data.rows[checkedRow.name] || {})})),
     columns: components.fancy.columns.active
   }),
   (dispatch: Dispatch<Action>): RowDispatchProps => ({

@@ -1,6 +1,6 @@
 import {Row} from './Row';
 
 export interface DataState {
-  rows: Row[];
+  rows: {[name: string]: Row};
   columns: string[];
 }

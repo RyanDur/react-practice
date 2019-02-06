@@ -2,18 +2,17 @@ import {Data, Row} from './types';
 
 export const normalize = (
   newData: Data[] = [],
-  oldRows: Row[] = []): Row[] => {
+  oldRows: {[name: string]: Row} = {}): {[name: string]: Row} => {
   const newState: Data = newData.reduce(merge((row: Data) => ({
     [row.name]: {
       name: row.name,
       data: remove(row, 'name')
     }
   })), {});
-  const oldState: Data = oldRows.reduce(merge((row: Data) => ({[row.name]: row})), {});
 
   return Object.keys(newState).map(name =>
-    ({...oldState[name], ...newState[name]})
-  );
+    ({...(oldRows[name] || {}), ...newState[name]})
+  ).reduce((acc, state) => ({...acc, ...state}), {});
 };
 
 const merge = (data: (r: Data) => Data) => (acc: Data, row: Data): Data => ({...acc, ...data(row)});

@@ -13,7 +13,7 @@ export type TotalsProps = TotalsState;
 
 export default connect<TotalsState>(
   ({components, data}: AppState) => ({
-    totals: sumColumns(data.rows, components.fancy.columns.active),
+    totals: sumColumns(Object.values(data.rows), components.fancy.columns.active),
     columns: components.fancy.columns.active
   })
 )(Totals);

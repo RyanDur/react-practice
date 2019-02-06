@@ -3,21 +3,10 @@ import {addColumns, removeColumns, updateChecked} from '../helpers';
 import {FancyState} from './types';
 
 export const defaultState: FancyState = {
-  rows: [
-    {name: 'Anna'},
-    {name: 'Travis'},
-    {name: 'Mendel'},
-    {name: 'Harrison'},
-    {name: 'Alex'},
-    {name: 'Jordan'},
-    {name: 'Mike'},
-    {name: 'Krishna'},
-    {name: 'Mohammad'},
-    {name: 'Paulina'}
-  ],
+  rows: [],
   columns: {
-    active: ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop'],
-    inactive: ['another', 'yet_another']
+    active: [],
+    inactive: []
   }
 };
 

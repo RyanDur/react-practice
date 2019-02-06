@@ -3,7 +3,7 @@ import {CheckedRow} from './Fancy/types';
 import {Columns} from './types';
 import {Direction} from './Menu/types';
 
-export const sumColumns = (rows: Row[], columns: string[]): Data => {
+export const sumColumns = (rows: Row[] = [], columns: string[]): Data => {
   return columns.map(column =>
     ({
       [column]: rows

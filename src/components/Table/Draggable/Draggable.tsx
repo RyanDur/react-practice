@@ -16,9 +16,9 @@ export class Draggable extends Component<DraggableProps> {
       <thead>
       <tr>
         <th>Header:</th>
-        {columns.map((column) =>
+        {columns.map((column, index) =>
           <th
-            key={column}
+            key={`${column}-header-draggable-${index}`}
             data-group={column}
             onDragEnter={this.handleDragHeaderEnter}
             draggable={true}>{column}</th>
@@ -26,8 +26,8 @@ export class Draggable extends Component<DraggableProps> {
       </tr>
       </thead>
       <tbody>
-      {rows.map((row) =>
-        <tr key={row.name} draggable={true}>
+      {rows.map((row, index) =>
+        <tr key={`${row.name}-draggable-${index}`} draggable={true}>
           <td>{row.name}</td>
           {columns.map((column) =>
             <td data-group={column} key={column}>{cats[row.data[column]]}</td>
@@ -38,8 +38,8 @@ export class Draggable extends Component<DraggableProps> {
       <tfoot>
       <tr>
         <td>Totals:</td>
-        {columns.map((column) =>
-          <td data-group={column} key={column}>
+        {columns.map((column, index) =>
+          <td key={`${column}-footer-draggable-${index}`} data-group={column}>
             {cats[Math.trunc(totals[column] / 10)]}
           </td>
         )}

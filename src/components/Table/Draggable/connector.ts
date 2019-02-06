@@ -14,8 +14,8 @@ export type DraggableProps = TableStateProps;
 
 export default connect<TableStateProps>(
   ({components, data}: AppState) => ({
-    totals: sumColumns(data.rows, components.fancy.columns.active),
+    totals: sumColumns(Object.values(data.rows), components.fancy.columns.active),
     columns: components.fancy.columns.active,
-    rows: data.rows
+    rows: Object.values(data.rows)
   })
 )(Draggable);
