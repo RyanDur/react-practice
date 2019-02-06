@@ -37,7 +37,7 @@ export class Draggable extends Component<DraggableProps> {
       </tbody>
       <tfoot>
       <tr>
-        <td>Totals:</td>
+        <td>Footer:</td>
         {columns.map((column, index) =>
           <td key={`${column}-footer-draggable-${index}`} data-group={column}>
             {cats[Math.trunc(totals[column] / 10)]}

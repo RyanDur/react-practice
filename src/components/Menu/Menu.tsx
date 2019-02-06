@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {ChangeEvent, Component} from 'react';
-import {ColumnName, Direction, MenuProps, MenuState} from './types';
+import {Direction} from '../types';
+import {ColumnName, MenuProps, MenuState} from './types';
 import './Menu.css';
 
 export class Menu extends Component<MenuProps & ColumnName> {

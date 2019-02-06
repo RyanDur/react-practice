@@ -2,8 +2,9 @@ import {connect} from 'react-redux';
 import {AppState} from '../../../store';
 import {Dispatch} from 'redux';
 import {tableAction, TableAction} from '../actions';
+import {Direction} from '../types';
 import {Menu} from './Menu';
-import {Direction, MenuDispatchProps, MenuStateProps} from './types';
+import {MenuDispatchProps, MenuStateProps} from './types';
 
 export default connect<MenuStateProps, MenuDispatchProps>(
   ({components}: AppState) => ({
