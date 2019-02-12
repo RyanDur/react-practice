@@ -1,5 +1,5 @@
 import {Action} from 'redux';
-import {dataAction} from './types';
+import {Data, dataAction} from './types';
 
 export enum socketAction {
   CONNECT = 'CONNECT',
@@ -16,7 +16,7 @@ export interface StopAction extends Action {
 
 export interface TableDataAction extends Action {
   type: dataAction.DATA;
-  data?: any;
+  data?: Data[];
 }
 
 export type SocketAction = ConnectAction | StopAction;

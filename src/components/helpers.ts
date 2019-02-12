@@ -1,14 +1,13 @@
-import {Data, Row} from '../../core/types';
-import {CheckedRow} from './Fancy/types';
-import {Columns} from './types';
-import {Direction} from './Menu/types';
+import {Data, Row} from '../core/types';
+import {CheckedRow} from './Table/Fancy/types';
+import {Columns, Direction} from './Table/types';
 
-export const sumColumns = (rows: Row[] = [], columns: string[]): Data => {
+export const sumColumns = (rows: Row[] = [], columns: string[] = []): Data => {
   return columns.map(column =>
     ({
       [column]: rows
-        .map((row: Row) => row.data[column])
-        .reduce((acc, num) => acc + num, 0)
+        .map((row: Row) => row && row.data && row.data[column] || 0)
+        .reduce((acc, num) => acc + num || 0, 0)
     })
   ).reduce((acc, col) => ({...acc, ...col}), {});
 };
@@ -56,3 +55,6 @@ const addTo = (
     [...front(1), ...columnsToAdd, ...back(1)] :
     [...front(0), ...columnsToAdd, ...back(0)];
 };
+
+export const union = <T>(arr1: T[], arr2: T[]): T[] =>
+  Array.from(new Set<T>([...(arr1 || []), ...(arr2 || [])]));

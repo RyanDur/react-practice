@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ChangeEvent, Component} from 'react';
-import {Direction} from '../types';
+import {Direction} from '../Table/types';
 import {ColumnName, MenuProps, MenuState} from './types';
 import './Menu.css';
 

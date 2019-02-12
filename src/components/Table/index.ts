@@ -1,3 +1,5 @@
 import {Draggable} from './Draggable';
 import {Fancy} from './Fancy';
-export {Fancy, Draggable};
+import {FancyAction} from './Fancy/actions';
+
+export {Fancy, Draggable, FancyAction};

@@ -14,7 +14,10 @@ export const reducer = (
 ): DataState => {
   switch (action.type) {
   case dataAction.DATA:
-    return {...state, rows: normalize(action.data, state.rows)};
+    return {
+      columns: Object.keys(action.data[0]).splice(1),
+      rows: normalize(action.data, state.rows)
+    };
   default:
     return state;
   }

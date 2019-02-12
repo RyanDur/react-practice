@@ -1,13 +1,13 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {core as data} from '../../../core';
 import {socketAction} from '../../../core/action';
-import {createMySocketMiddleware} from '../../../core/client';
+import {socketMiddleware} from '../../../core/middleware';
 import {Data, Row} from '../../../core/types';
 import {AppState} from '../../../store';
 import {components} from '../../index';
+import {fancyAction} from '../Fancy/actions';
 import {CheckedRow} from '../Fancy/types';
-import {tableAction} from '../actions';
-import {Direction} from '../Menu/types';
+import {Direction} from '../types';
 import {initialState, initialTableState} from './initialState';
 
 jest.mock('../../../core/clientConnector', () => ({
@@ -23,7 +23,7 @@ describe('Table state', () => {
     store = createStore(combineReducers<AppState>({
       components,
       data
-    }), applyMiddleware(createMySocketMiddleware('ws://my-butt:some-port')));
+    }), applyMiddleware(socketMiddleware('ws://my-butt:some-port')));
 
     store.dispatch({type: socketAction.CONNECT});
   });
@@ -53,7 +53,7 @@ describe('Table state', () => {
           inactive: ['another', 'yet_another']
         });
         store.dispatch({
-          type: tableAction.ADD_COLUMNS,
+          type: fancyAction.ADD_COLUMNS,
           side: Direction.Right,
           column: 'bar',
           columns: ['yet_another']
@@ -93,7 +93,7 @@ describe('Table state', () => {
           inactive: ['another', 'yet_another']
         });
         store.dispatch({
-          type: tableAction.ADD_COLUMNS,
+          type: fancyAction.ADD_COLUMNS,
           side: Direction.Left,
           column: 'bar',
           columns: ['another']
@@ -135,7 +135,7 @@ describe('Table state', () => {
           inactive: ['another', 'yet_another']
         });
         store.dispatch({
-          type: tableAction.REMOVE_COLUMNS,
+          type: fancyAction.REMOVE_COLUMNS,
           columns: ['bar', 'coo', 'foo']
         });
         expect(state().components.fancy.columns).toEqual({
@@ -157,17 +157,17 @@ describe('Table state', () => {
   describe('checked rows', () => {
     beforeEach(() => {
       state().components.fancy.rows.forEach(
-        row => store.dispatch({type: tableAction.TOGGLE_CHECKED, row}));
+        row => store.dispatch({type: fancyAction.TOGGLE_CHECKED, row}));
     });
 
     it('should toggle checked of a row', () => {
-      store.dispatch({type: tableAction.TOGGLE_CHECKED, row: {name: 'Harrison', data: {}, checked: true}});
+      store.dispatch({type: fancyAction.TOGGLE_CHECKED, row: {name: 'Harrison', data: {}, checked: true}});
 
       expect(state().components.fancy.rows.filter((row: CheckedRow) => !row.checked)[0].name).toBe('Harrison');
     });
 
     it('should set undefined to true', () => {
-      store.dispatch({type: tableAction.TOGGLE_CHECKED, row: {name: 'Harrison', data: {}}});
+      store.dispatch({type: fancyAction.TOGGLE_CHECKED, row: {name: 'Harrison', data: {}}});
       expect(state().components.fancy.rows.filter((row: Row) => row.name === 'Harrison')[0].checked).toBeTruthy();
     });
   });

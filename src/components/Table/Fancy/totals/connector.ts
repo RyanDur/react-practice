@@ -1,7 +1,8 @@
 import {connect} from 'react-redux';
 import {Data} from '../../../../core/types';
 import {AppState} from '../../../../store';
-import {sumColumns} from '../../helpers';
+import {sumColumns} from '../../../helpers';
+import {Selected} from '../types/Selected';
 import {Totals} from './Totals';
 
 export interface TotalsState {
@@ -13,7 +14,11 @@ export type TotalsProps = TotalsState;
 
 export default connect<TotalsState>(
   ({components, data}: AppState) => ({
-    totals: sumColumns(Object.values(data.rows), components.fancy.columns.active),
+    totals: sumColumns(
+      components.fancy.rows
+        .map((row: Selected) => data.rows[row.name] || {}),
+      components.fancy.columns.active
+    ),
     columns: components.fancy.columns.active
   })
 )(Totals);

@@ -1,9 +1,9 @@
 import {Data} from '../../../../core/types';
 import {Columns} from '../../types';
-import {CheckedRow} from './CheckedRow';
+import {Selected} from './Selected';
 
 export interface FancyState {
-  rows: CheckedRow[];
+  rows: Selected[];
   columns: Columns;
   totals?: Data;
   defaultChecked?: boolean;

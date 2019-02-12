@@ -1,4 +1,4 @@
-import {Columns} from '../../types';
+import {Columns} from '../../Table/types';
 
 export interface MenuStateProps {
   columns: Columns;

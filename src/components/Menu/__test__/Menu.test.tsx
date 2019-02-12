@@ -1,7 +1,8 @@
 import {mount, ReactWrapper} from 'enzyme';
 import * as React from 'react';
+import {Direction} from '../../Table/types';
 import {Menu} from '../Menu';
-import {ColumnName, Direction, MenuProps} from '../types';
+import {ColumnName, MenuProps} from '../types';
 
 describe('The Menu', () => {
   let props: MenuProps & ColumnName;

@@ -1,5 +1,7 @@
-import {tableAction, TableAction} from '../actions';
-import {addColumns, removeColumns, updateChecked} from '../helpers';
+import {AppAction} from '../../../actions';
+import {dataAction} from '../../../core/types';
+import {addColumns, removeColumns, updateChecked} from '../../helpers';
+import {fancyAction} from './actions';
 import {FancyState} from './types';
 
 export const defaultState: FancyState = {
@@ -12,14 +14,19 @@ export const defaultState: FancyState = {
 
 export const reducer = (
   state: FancyState = defaultState,
-  action: TableAction
+  action: AppAction
 ): FancyState => {
   switch (action.type) {
-  case tableAction.TOGGLE_CHECKED:
+  case dataAction.DATA:
+    return {
+      rows: Object.values(action.data).map(row => ({name: row.name})),
+      columns: {active: Object.keys(action.data[0]).splice(1), inactive: []}
+    };
+  case fancyAction.TOGGLE_CHECKED:
     return {...state, rows: updateChecked(action.row, state.rows)};
-  case tableAction.ADD_COLUMNS:
+  case fancyAction.ADD_COLUMNS:
     return {...state, columns: addColumns(action.side, action.column, action.columns, state.columns)};
-  case tableAction.REMOVE_COLUMNS:
+  case fancyAction.REMOVE_COLUMNS:
     return {...state, columns: removeColumns(action.columns, state.columns)};
   default:
     return state;

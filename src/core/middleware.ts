@@ -1,9 +1,10 @@
-import {Middleware, Store} from 'redux';
+import {Store} from 'redux';
+import {AppMiddleware} from '../store';
 import {socketAction} from './action';
 import {clientConnector} from './clientConnector';
 import {dataAction} from './types';
 
-export const createMySocketMiddleware = (url: string): Middleware<any, any, any> =>
+export const socketMiddleware = (url: string): AppMiddleware =>
   (store: Store) => next => action => {
     if (action.type === socketAction.CONNECT) {
       clientConnector(url,

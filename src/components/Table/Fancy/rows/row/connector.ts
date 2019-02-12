@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+import {Row as RowType} from '../../../../../core/types';
+import {AppState} from '../../../../../store';
+import {fancyAction, FancyAction} from '../../actions';
 import {CheckedRow} from '../../types';
 import {Row} from './Row';
-import {Row as RowType} from '../../../../../core/types';
-import {Dispatch} from 'redux';
-import {tableAction, TableAction} from '../../../actions';
-import {AppState} from '../../../../../store';
 
 interface RowState {
   columns: string[];
@@ -20,7 +20,7 @@ export default connect<RowState, RowDispatch>(
   ({components}: AppState) => ({
     columns: components.fancy.columns.active
   }),
-  (dispatch: Dispatch<TableAction>): RowDispatch => ({
-    toggleChecked: (row: RowType) => dispatch({type: tableAction.TOGGLE_CHECKED, row})
+  (dispatch: Dispatch<FancyAction>): RowDispatch => ({
+    toggleChecked: (row: RowType) => dispatch({type: fancyAction.TOGGLE_CHECKED, row})
   })
 )(Row);

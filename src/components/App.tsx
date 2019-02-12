@@ -12,7 +12,6 @@ export class App extends Component<AppProps> {
     return (
       <>
         <Fancy/>
-        <Draggable/>
       </>
     );
   }

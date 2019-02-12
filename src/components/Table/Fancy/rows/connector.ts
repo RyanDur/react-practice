@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Action, Dispatch} from 'redux';
 import {AppState} from '../../../../store';
-import {tableAction} from '../../actions';
+import {fancyAction} from '../actions';
 import {CheckedRow} from '../types';
 import {Rows} from './Rows';
 
@@ -23,6 +23,6 @@ export default connect<RowsStateProps, RowDispatchProps>(
     columns: components.fancy.columns.active
   }),
   (dispatch: Dispatch<Action>): RowDispatchProps => ({
-    toggleChecked: (row: CheckedRow) => dispatch({type: tableAction.TOGGLE_CHECKED, row})
+    toggleChecked: (row: CheckedRow) => dispatch({type: fancyAction.TOGGLE_CHECKED, row})
   })
 )(Rows);
