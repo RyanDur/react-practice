@@ -16,7 +16,7 @@ export const reducer = (
   case dataAction.DATA:
     return {
       columns: Object.keys(action.data[0]).splice(1),
-      rows: normalize(action.data, state.rows)
+      rows: normalize(state.rows, action.data)
     };
   default:
     return state;
