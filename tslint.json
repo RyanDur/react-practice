@@ -21,6 +21,7 @@
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     "no-implicit-dependencies": [true, "dev"],
     "no-submodule-imports": false,
-    "jsx-key": true
+    "jsx-key": true,
+    "curly": [true, "ignore-same-line"]
   }
 }
