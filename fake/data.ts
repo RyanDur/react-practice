@@ -1,20 +1,22 @@
-interface data {
-  name: string
-  foo: number
-  bar: number
-  baz: number
-  bob: number
-  far: number
-  faz: number
-  fop: number
-  coo: number
-  cor: number
-  cop: number
-  another: number
-  yet_another: number
+import {Data} from '../src/core/types';
+
+interface FakeData extends Data {
+  name: string;
+  foo: number;
+  bar: number;
+  baz: number;
+  bob: number;
+  far: number;
+  faz: number;
+  fop: number;
+  coo: number;
+  cor: number;
+  cop: number;
+  another: number;
+  yet_another: number;
 }
 
-const row = (name: string): data => {
+const row = (name: string): FakeData => {
   return {
     name,
     bar: 1,
@@ -29,7 +31,7 @@ const row = (name: string): data => {
     fop: 10,
     another: 11,
     yet_another: 12
-  }
+  };
 };
 
 export const createRow = (name: string) => row(name);

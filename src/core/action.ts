@@ -6,17 +6,16 @@ export enum socketAction {
   STOP = 'STOP'
 }
 
-export interface ConnectAction extends Action {
-  type: socketAction.CONNECT;
-}
+export type ConnectAction = Action<socketAction.CONNECT>;
 
-export interface StopAction extends Action {
-  type: socketAction.STOP;
-}
+export type StopAction = Action<socketAction.STOP>;
 
-export interface TableDataAction extends Action {
-  type: dataAction.DATA;
-  data?: Data[];
+export interface TableDataAction extends Action<dataAction.DATA> {
+  response: {
+    data: Data[];
+    columns: string[];
+    rows: string[];
+  };
 }
 
 export type SocketAction = ConnectAction | StopAction;

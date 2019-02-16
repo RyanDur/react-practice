@@ -1,10 +1,10 @@
 import {DataAction} from './action';
 import {normalize} from './helpers';
-import {dataAction} from './types';
-import {DataState} from './types';
+import {dataAction, DataState} from './types';
 
 const defaultState: DataState = {
-  rows: {},
+  data: {},
+  rows: [],
   columns: []
 };
 
@@ -15,8 +15,9 @@ export const reducer = (
   switch (action.type) {
   case dataAction.DATA:
     return {
-      columns: Object.keys(action.data[0]).splice(1),
-      rows: normalize(state.rows, action.data)
+      data: normalize(state.data, action.response.data),
+      rows: action.response.rows,
+      columns: action.response.columns
     };
   default:
     return state;

@@ -1,11 +1,12 @@
 const merge = require('webpack-merge');
 const common = require("./common").common;
+const parts = require('./parts');
 
 module.exports = prod = (paths) => merge([
   common(paths),
-  config.parts.optimizers.splitChunks(),
-  config.parts.optimizers.minifyJS(),
-  config.parts.loaders.extractCSS({
+  parts.optimizers.splitChunks(),
+  parts.optimizers.minifyJS(),
+  parts.loaders.extractCSS({
     use: [{
       loader: 'css-loader',
       options: {
@@ -22,7 +23,7 @@ module.exports = prod = (paths) => merge([
       }
     }]
   }),
-  config.parts.optimizers.minifyCSS({
+  parts.optimizers.minifyCSS({
     options: {
       discardComments: {
         removeAll: true

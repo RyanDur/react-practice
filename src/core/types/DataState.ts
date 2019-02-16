@@ -1,6 +1,7 @@
 import {Data} from './Data';
 
 export interface DataState {
-  rows: Data;
+  data: Data;
   columns: string[];
+  rows: string[];
 }

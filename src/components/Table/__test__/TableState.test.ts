@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {core as data} from '../../../core';
 import {socketAction} from '../../../core/action';
+import {clientConnector} from '../../../core/clientConnector';
 import {socketMiddleware} from '../../../core/middleware';
 import {Data, Row} from '../../../core/types';
 import {AppState} from '../../../store';
@@ -23,7 +24,7 @@ describe('Table state', () => {
     store = createStore(combineReducers<AppState>({
       components,
       data
-    }), applyMiddleware(socketMiddleware('ws://my-butt:some-port')));
+    }), applyMiddleware(socketMiddleware(clientConnector(new WebSocket('ws://my-butt:some-port')))));
 
     store.dispatch({type: socketAction.CONNECT});
   });

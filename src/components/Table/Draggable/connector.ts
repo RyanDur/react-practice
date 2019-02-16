@@ -16,6 +16,6 @@ export default connect<TableStateProps>(
   ({components, data}: AppState) => ({
     totals: sumColumns([], components.fancy.columns.active),
     columns: components.fancy.columns.active,
-    rows: Object.values(data.rows)
+    rows: Object.values(data.data)
   })
 )(Draggable);

@@ -11,7 +11,7 @@ export enum fancyAction {
 }
 
 interface ConsolidateData extends Action<fancyAction.CONSOLIDATE_DATA> {
-  rows: Row[];
+  rows: string[];
   columns: string[];
 }
 

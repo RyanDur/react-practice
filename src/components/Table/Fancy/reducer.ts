@@ -19,8 +19,8 @@ export const reducer = (
   switch (action.type) {
   case dataAction.DATA:
     return {
-      rows: Object.values(action.data).map(row => ({name: row.name})),
-      columns: {active: Object.keys(action.data[0]).splice(1), inactive: []}
+      rows: action.response.rows.map(row => ({name: row})),
+      columns: {active: action.response.columns, inactive: []}
     };
   case fancyAction.TOGGLE_CHECKED:
     return {...state, rows: updateChecked(action.row, state.rows)};

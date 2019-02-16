@@ -1,10 +1,10 @@
-import {webSocket} from 'rxjs/webSocket';
-import {Data} from './types';
+import {ValidationError} from 'io-ts';
+import {failure} from 'io-ts/lib/PathReporter';
+import {Response, ValidateResponse} from './types/Response';
 
-export const clientConnector = (url: string, fn: (data: Data) => void) => {
-  webSocket(url).subscribe(
-    data => fn(data),
-    (err: any) => console.log(err),
-    () => console.log('complete')
-  );
+export const clientConnector = (socket: WebSocket) => (fn: (data: Response) => void) => {
+  socket.onmessage = (data) => fn(ValidateResponse.decode(JSON.parse(data.data))
+    .getOrElseL((errors: ValidationError[]) => {
+      throw new Error(failure(errors).join('\n'));
+    }) as Response);
 };

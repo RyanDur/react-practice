@@ -27,8 +27,8 @@ export class Draggable extends Component<DraggableProps> {
       </thead>
       <tbody>
       {rows.map((row, index) =>
-        <tr key={`${row.name}-draggable-${index}`} draggable={true}>
-          <td>{row.name}</td>
+        <tr key={`${row.name}-draggable-${index}`}>
+          <td draggable={true}>{row.name}</td>
           {columns.map((column) =>
             <td data-group={column} key={column}>{cats[row.data[column]]}</td>
           )}

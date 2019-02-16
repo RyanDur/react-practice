@@ -16,7 +16,7 @@ export default connect<TotalsState>(
   ({components, data}: AppState) => ({
     totals: sumColumns(
       components.fancy.rows
-        .map((row: Selected) => data.rows[row.name] || {}),
+        .map((row: Selected) => data.data[row.name] || {}),
       components.fancy.columns.active
     ),
     columns: components.fancy.columns.active

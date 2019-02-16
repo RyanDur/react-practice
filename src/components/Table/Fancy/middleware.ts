@@ -6,8 +6,8 @@ export const fancyMiddleware: AppMiddleware = (store) => (next) => (action) => {
   if (action.type === dataAction.DATA) {
     store.dispatch({
       type: fancyAction.CONSOLIDATE_DATA,
-      columns: Object.keys(action.data[0]).splice(1),
-      rows: Object.values(action.data).map(row => row.name)
+      columns: action.response.columns,
+      rows: action.response.rows
     });
     next(action);
   }
