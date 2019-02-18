@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {TableBody} from '../elements/TableBody';
-import {CheckedRow} from '../types';
+import {Selected} from '../types';
 import Row from './row/connector';
 import {RowsProps} from './connector';
 
@@ -11,8 +11,8 @@ export interface Default {
 
 export class Rows extends Component<RowsProps & Default> {
 
-  rows = (rows: CheckedRow[] = []) =>
-    rows.map((row: CheckedRow, index) => <Row
+  rows = (rows: Selected[] = []) =>
+    rows.map((row: Selected, index) => <Row
       key={index}
       index={index}
       row={row}

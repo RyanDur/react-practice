@@ -1,4 +1,7 @@
+import {Data} from '../../../../core/types';
+
 export interface Selected {
   name: string;
-  checked?: boolean;
+  selected: boolean;
+  data: Data<number>;
 }

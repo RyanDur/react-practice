@@ -1,21 +1,21 @@
 import {connect} from 'react-redux';
-import {Data, Row} from '../../../core/types';
+import {Data} from '../../../core/types';
 import {AppState} from '../../../store';
 import {sumColumns} from '../../helpers';
 import {Draggable} from './Draggable';
 
 interface TableStateProps {
-  totals: Data;
+  totals: Data<number>;
   columns: string[];
-  rows: Row[];
+  rows: Array<{name: string, data: Data<number>}>;
 }
 
 export type DraggableProps = TableStateProps;
 
 export default connect<TableStateProps>(
-  ({components, data}: AppState) => ({
+  ({components, core}: AppState) => ({
     totals: sumColumns([], components.fancy.columns.active),
     columns: components.fancy.columns.active,
-    rows: Object.values(data.data)
+    rows: components.base.rows.map(name => ({name, data: core.data[name]}))
   })
 )(Draggable);

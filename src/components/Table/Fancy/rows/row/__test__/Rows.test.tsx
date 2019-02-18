@@ -5,8 +5,8 @@ import {Props, Row} from '../Row';
 
 describe('table row', () => {
   let props: TestRowProps;
-  const tableRow = (props: TestRowProps) => mount(<Row {...props}/>);
-  const rowDataCells = (props: TestRowProps) => tableRow(props).find('.row-cell').hostNodes();
+  const tableRow = (testProps: TestRowProps) => mount(<Row {...testProps}/>);
+  const rowDataCells = (testProps: TestRowProps) => tableRow(testProps).find('.row-cell').hostNodes();
 
   beforeEach(() => {
     props = mockProps({});
@@ -31,6 +31,7 @@ describe('table row', () => {
   describe('without data', () => {
     const rowWithoutData = {
       name: 'foo',
+      selected: true,
       data: {}
     };
 
@@ -59,7 +60,7 @@ describe('table row', () => {
 
   describe('row header', () => {
     it('should hold the name', () => {
-      expect(tableRow(props).find('.row-header').hostNodes().text()).toBe('foo')
+      expect(tableRow(props).find('.row-header').hostNodes().text()).toBe('foo');
     });
 
     describe('checkbox', () => {
@@ -80,6 +81,7 @@ const mockProps = (
   {
     row = {
       name: 'foo',
+      selected: true,
       data: {a: 1, b: 2, c: 3}
     },
     columns = ['a', 'b', 'c'],

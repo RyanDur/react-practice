@@ -1,25 +1,25 @@
-import {Row} from '../../core/types';
+import {Data, Rows} from '../../core/types';
 import {sumColumns, union} from '../helpers';
 
 describe('helpers', () => {
 
   describe('summing the columns', () => {
     it('should handle empty rows', () => {
-      const rows = [] as Row[];
+      const rows = [{}];
       const columns = ['foo'];
       const aggrigated = sumColumns(rows, columns);
       expect(aggrigated).toEqual({foo: 0});
     });
 
     it('should handle empty columns', () => {
-      const rows = [{name: 'foo', data: {bar: 1}}] as Row[];
+      const rows = [{bar: 1}];
       const columns = [] as string[];
       const aggregated = sumColumns(rows, columns);
       expect(aggregated).toEqual({});
     });
 
     it('should handle empty columns and rows', () => {
-      const rows = [] as Row[];
+      const rows = [] as Array<Data<number>>;
       const columns = [] as string[];
       const aggregated = sumColumns(rows, columns);
       expect(aggregated).toEqual({});

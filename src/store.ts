@@ -2,14 +2,14 @@ import {applyMiddleware, combineReducers, createStore, Dispatch, MiddlewareAPI} 
 import {AppAction} from './actions';
 import {components, ComponentState} from './components';
 import {fancyMiddleware} from './components/Table/Fancy/middleware';
-import {core as data} from './core';
+import {core} from './core';
 import {clientConnector} from './core/clientConnector';
 import {socketMiddleware} from './core/middleware';
-import {DataState} from './core/types';
+import {CoreState} from './core/types';
 
 export interface AppState {
   components: ComponentState;
-  data: DataState;
+  core: CoreState;
 }
 
 export type AppMiddleware =
@@ -20,5 +20,5 @@ const socket = new WebSocket('ws://localhost:8999');
 
 export const store = createStore(combineReducers<AppState>({
   components,
-  data
+  core
 }), applyMiddleware(socketMiddleware(clientConnector(socket)), fancyMiddleware));

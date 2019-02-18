@@ -1,28 +1,22 @@
 import {connect} from 'react-redux';
-import {Action, Dispatch} from 'redux';
 import {AppState} from '../../../../store';
-import {fancyAction} from '../actions';
-import {CheckedRow} from '../types';
+import {Selected} from '../types';
 import {Rows} from './Rows';
 
 interface RowsStateProps {
-  rows: CheckedRow[];
+  rows: Selected[];
   columns: string[];
 }
 
-interface RowDispatchProps {
-  toggleChecked: (row: CheckedRow) => void;
-}
+export type RowsProps = RowsStateProps;
 
-export type RowsProps = RowsStateProps & RowDispatchProps;
-
-export default connect<RowsStateProps, RowDispatchProps>(
-  ({components, data}: AppState): RowsStateProps => ({
-    rows: components.fancy.rows.map(checkedRow =>
-      ({...checkedRow, ...(data.data[checkedRow.name] || {})})),
+export default connect<RowsStateProps>(
+  ({components, core}: AppState): RowsStateProps => ({
+    rows: components.fancy.rows.map(row => ({
+      name: row,
+      selected: components.fancy.selected.includes(row),
+      data: core.data[row]
+    })),
     columns: components.fancy.columns.active
-  }),
-  (dispatch: Dispatch<Action>): RowDispatchProps => ({
-    toggleChecked: (row: CheckedRow) => dispatch({type: fancyAction.TOGGLE_CHECKED, row})
   })
 )(Rows);

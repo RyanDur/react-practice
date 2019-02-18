@@ -95,8 +95,8 @@ describe('the table flow', () => {
         });
 
         describe('checkbox', () => {
-          it('should default to checked', async () => {
-            const checks: boolean[] = await table(page).checkboxesOf('.row-header').checked();
+          it('should default to selected', async () => {
+            const checks: boolean[] = await table(page).checkboxesOf('.row-header').selected();
 
             checks.forEach(check => expect(check).toBeTruthy());
           });

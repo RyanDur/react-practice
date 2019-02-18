@@ -26,7 +26,7 @@ describe('The Menu', () => {
 
       it('should allow a user to add one', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('.add-right').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
@@ -38,11 +38,11 @@ describe('The Menu', () => {
 
       it('should allow a user to change there mind', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('[data-column="yet_another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'yet_another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'yet_another'}}});
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: false, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: false, nextElementSibling: {textContent: 'another'}}});
         menu.find('.add-right').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
@@ -54,9 +54,9 @@ describe('The Menu', () => {
 
       it('should allow a user to add multiple', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('[data-column="yet_another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'yet_another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'yet_another'}}});
         menu.find('.add-right').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
@@ -68,7 +68,7 @@ describe('The Menu', () => {
 
       it('should not be able to add a column immediately after adding', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('.add-right').simulate('click');
         menu.find('.add-right').simulate('click');
 
@@ -84,7 +84,7 @@ describe('The Menu', () => {
 
       it('should allow a user to add one', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('.add-left').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
@@ -96,11 +96,11 @@ describe('The Menu', () => {
 
       it('should allow a user to change there mind', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('[data-column="yet_another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'yet_another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'yet_another'}}});
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: false, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: false, nextElementSibling: {textContent: 'another'}}});
         menu.find('.add-left').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
@@ -112,9 +112,9 @@ describe('The Menu', () => {
 
       it('should allow a user to add multiple', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('[data-column="yet_another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'yet_another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'yet_another'}}});
         menu.find('.add-left').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
@@ -126,7 +126,7 @@ describe('The Menu', () => {
 
       it('should not be able to add a column immediately after adding', () => {
         menu.find('[data-column="another"]')
-          .simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'another'}}});
+          .simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'another'}}});
         menu.find('.add-left').simulate('click');
         menu.find('.add-left').simulate('click');
 
@@ -141,22 +141,22 @@ describe('The Menu', () => {
     });
 
     it('should be able to remove a chosen column', () => {
-      menu.find('[data-column="columnName"]').simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'columnName'}}});
+      menu.find('[data-column="columnName"]').simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'columnName'}}});
       menu.find('.remove').simulate('click');
 
       expect(props.remove).toHaveBeenCalledWith(['columnName']);
     });
 
     it('should let a user change their mind', () => {
-      menu.find('[data-column="columnName"]').simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'columnName'}}});
-      menu.find('[data-column="columnName"]').simulate('change', {target: {checked: false, nextElementSibling: {textContent: 'columnName'}}});
+      menu.find('[data-column="columnName"]').simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'columnName'}}});
+      menu.find('[data-column="columnName"]').simulate('change', {target: {selected: false, nextElementSibling: {textContent: 'columnName'}}});
       menu.find('.remove').simulate('click');
 
       expect(props.remove).not.toHaveBeenCalled();
     });
 
     it('should not try to remove a column twice', () => {
-      menu.find('[data-column="columnName"]').simulate('change', {target: {checked: true, nextElementSibling: {textContent: 'columnName'}}});
+      menu.find('[data-column="columnName"]').simulate('change', {target: {selected: true, nextElementSibling: {textContent: 'columnName'}}});
       menu.find('.remove').simulate('click');
       menu.find('.remove').simulate('click');
 

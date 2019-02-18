@@ -1,5 +1,6 @@
 import {Action} from 'redux';
 import {Data, dataAction} from './types';
+import {ResponseData} from './types/Response';
 
 export enum socketAction {
   CONNECT = 'CONNECT',
@@ -12,7 +13,7 @@ export type StopAction = Action<socketAction.STOP>;
 
 export interface TableDataAction extends Action<dataAction.DATA> {
   response: {
-    data: Data[];
+    data: ResponseData[];
     columns: string[];
     rows: string[];
   };

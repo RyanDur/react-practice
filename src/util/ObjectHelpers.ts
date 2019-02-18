@@ -1,12 +1,12 @@
 import {Data} from '../core/types';
 
-export const merge = (
-  left: Record<string, any> = {},
-  right: Record<string, any> = {}
-): Record<string, any> => ({...left, ...right});
+export const merge = <T>(
+  left: Data<T> = {},
+  right: Data<T> = {}
+): Data<T> => ({...left, ...right});
 
-export const remove = (obj: Data, prop: string): Data =>
-  Object.keys(obj).reduce((object: Data, key: string) => {
+export const remove = <T, S>(obj: Data<T | S>, prop: string): Data<S> =>
+  Object.keys(obj).reduce((object: Data<T | S>, key: string) => {
     if (key !== prop) {
       object[key] = obj[key];
     }

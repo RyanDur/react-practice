@@ -41,14 +41,14 @@ export const table = (page: Page): TableData => {
     })).reduce((acc, elem) => ({...acc, ...elem}), {});
 
   const checkedInputs = (elems: HTMLElement[]): boolean[] =>
-    elems.map(elem => elem.querySelector('input').checked);
+    elems.map(elem => elem.querySelector('input').selected);
 
   return {
     lengthOf: async (selector) => getAll<number>(selector, length),
     contentOf: async (selector) => getAll<Data>(selector, content),
     valuesOf: async (selector) => getAll<string[]>(selector, getText),
     checkboxesOf: (selector) => ({
-      checked: async () => getAll<boolean[]>(selector, checkedInputs)
+      selected: async () => getAll<boolean[]>(selector, checkedInputs)
     }),
     column: (name: string): Column => ({
       menu: async (): Promise<Menu> => {

@@ -12,14 +12,13 @@ export const ValidateResponse = t.type({
   columnNames: t.union([t.array(t.string), t.undefined])
 });
 
-interface DataName {
-  name: string;
+interface DataNumber {
+  [s: string]: number | string;
 }
-type DataNumber = Record<string, number>;
-type Data = DataName & DataNumber;
+export type ResponseData = DataNumber;
 
 export interface Response {
-  data: Data[];
+  data: ResponseData[];
   rowNames: string[];
   columnNames: string[];
 }

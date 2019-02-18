@@ -1,20 +1,17 @@
-import {Data, Row} from '../core/types';
-import {CheckedRow} from './Table/Fancy/types';
+import {Data} from '../core/types';
 import {Columns, Direction} from './Table/types';
 
-export const sumColumns = (rows: Row[] = [], columns: string[] = []): Data => {
-  return columns.map(column =>
-    ({
-      [column]: rows
-        .map((row: Row) => row && row.data && row.data[column] || 0)
-        .reduce((acc, num) => acc + num || 0, 0)
-    })
-  ).reduce((acc, col) => ({...acc, ...col}), {});
-};
+const sum = (acc: number, num: number = 0) => acc + num;
 
-export const updateChecked = (namedRow: CheckedRow, rows: CheckedRow[] = []): CheckedRow[] =>
-  rows.map((row) =>
-    namedRow.name === row.name ? {...namedRow, checked: !namedRow.checked} : row);
+const rowData = (column: string) => (data: Data<number> = {}) => data[column] || 0;
+
+export const sumColumns = (data: Array<Data<number>> = [], columns: string[] = []): Data<number> =>
+  columns.map(column =>
+    ({[column]: data.map(rowData(column)).reduce(sum, 0)})
+  ).reduce((acc, col) => ({...acc, ...col}), {});
+
+export const updateChecked = (row: string, rows: string[] = []): string[] =>
+  rows.includes(row) ? remove([row], rows) : rows.concat(row);
 
 export const addColumns = (
   side: Direction,
@@ -32,17 +29,17 @@ export const removeColumns = (columnsToRemove: string[], columns: Columns): Colu
   inactive: [...columns.inactive, ...columnsToRemove]
 });
 
-const remove = (
-  columnsToRemove: string[],
-  columns: string[]
-): string[] =>
-  columnsToRemove.reduce((
-    acc: string[],
-    column: string
-  ): string[] => {
-    const index = acc.indexOf(column);
+const remove = <T>(
+  thingsToRemove: T[],
+  things: T[]
+): T[] =>
+  thingsToRemove.reduce((
+    acc: T[],
+    thing: T
+  ): T[] => {
+    const index = acc.indexOf(thing);
     return [...acc.slice(0, index), ...acc.slice(index + 1)];
-  }, columns);
+  }, things);
 
 const addTo = (
   parameters: { side: Direction, column: string, columnsToAdd: string[], columns: string[] }

@@ -5,6 +5,7 @@ import {fancyAction} from './actions';
 import {FancyState} from './types';
 
 export const defaultState: FancyState = {
+  selected: [],
   rows: [],
   columns: {
     active: [],
@@ -19,11 +20,12 @@ export const reducer = (
   switch (action.type) {
   case dataAction.DATA:
     return {
-      rows: action.response.rows.map(row => ({name: row})),
+      ...state,
+      rows: action.response.rows,
       columns: {active: action.response.columns, inactive: []}
     };
   case fancyAction.TOGGLE_CHECKED:
-    return {...state, rows: updateChecked(action.row, state.rows)};
+    return {...state, selected: updateChecked(action.row, state.selected)};
   case fancyAction.ADD_COLUMNS:
     return {...state, columns: addColumns(action.side, action.column, action.columns, state.columns)};
   case fancyAction.REMOVE_COLUMNS:

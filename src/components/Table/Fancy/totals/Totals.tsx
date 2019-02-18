@@ -7,7 +7,7 @@ import {TableData} from '../elements/TableData';
 import {TotalsProps} from './connector';
 
 export class Totals extends Component<TotalsProps> {
-  totals = (totals: Data = {}, columns: string[]) =>
+  totals = (totals: Data<number> = {}, columns: string[]) =>
     columns.map((column: string, index: number) =>
       <TableData
         className={'total stick-bottom gray'}

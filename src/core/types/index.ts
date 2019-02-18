@@ -1,4 +1,4 @@
 export {Data} from './Data';
-export {Row} from './Row';
+export {Rows} from './Rows';
 export {dataAction} from './dataAction';
-export {DataState} from './DataState';
+export {CoreState} from './CoreState';

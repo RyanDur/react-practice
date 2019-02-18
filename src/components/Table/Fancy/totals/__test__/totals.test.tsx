@@ -6,7 +6,7 @@ import {Totals} from '../Totals';
 
 const mockProps = (
   columns: string[] = ['a', 'b', 'c'],
-  totals: Data = {a: 1, b: 2, c: 3}
+  totals: Data<number> = {a: 1, b: 2, c: 3}
 ): TotalsProps => ({columns, totals});
 
 describe('table totals', () => {

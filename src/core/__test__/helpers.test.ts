@@ -1,16 +1,18 @@
-import {normalize, NormalizedRows} from '../helpers';
+import {normalize} from '../helpers';
+import {Rows} from '../types';
+import {ResponseData} from '../types/Response';
 
 describe('normalizing the data', () => {
 
   it('should take the data and turn it into a row', () => {
-    const row: NormalizedRows = {
-      foo: {
-        name: 'foo',
-        data: {fip: 4}
-      }
+    const row: Rows = {
+      foo: {fip: 4}
     };
 
-    const data = [{name: 'foo', fip: 3}];
+    const data: ResponseData[] = [{
+      name: 'foo',
+      fip: 3
+    }];
 
     expect(normalize(row, data)).toEqual({
       foo: {
@@ -21,15 +23,9 @@ describe('normalizing the data', () => {
   });
 
   it('should take multiple data points and turn it into current state', () => {
-    const row: NormalizedRows = {
-      foo: {
-        name: 'foo',
-        data: {fip: 4, fop: 5}
-      },
-      far: {
-        name: 'far',
-        data: {fip: 3, fop: 1}
-      }
+    const row: Rows = {
+      foo: {fip: 4, fop: 5},
+      far: {fip: 3, fop: 1}
     };
 
     const data = [
@@ -50,15 +46,9 @@ describe('normalizing the data', () => {
   });
 
   it('should remove the row from the current ste if it is not in the new rows', () => {
-    const currentState: NormalizedRows = {
-      foo: {
-        name: 'foo',
-        data: {fip: 4, fop: 5}
-      },
-      far: {
-        name: 'far',
-        data: {fip: 3, fop: 1}
-      }
+    const currentState: Rows = {
+      foo: {fip: 4, fop: 5},
+      far: {fip: 3, fop: 1}
     };
 
     const newData = [
@@ -74,15 +64,9 @@ describe('normalizing the data', () => {
   });
 
   it('should remove the column that are no longer reflected in the new data', () => {
-    const current: NormalizedRows = {
-      foo: {
-        name: 'foo',
-        data: {fip: 4, fop: 5}
-      },
-      far: {
-        name: 'far',
-        data: {fip: 3, fop: 1}
-      }
+    const current: Rows = {
+      foo: {fip: 4, fop: 5},
+      far: {fip: 3, fop: 1}
     };
 
     const data = [
@@ -103,11 +87,8 @@ describe('normalizing the data', () => {
   });
 
   it('should handle undefined current state', () => {
-    const current: NormalizedRows = {
-      foo: {
-        name: 'foo',
-        data: {fip: 4}
-      }
+    const current: Rows = {
+      foo: {fip: 4}
     };
 
     expect(normalize(current, undefined)).toEqual({

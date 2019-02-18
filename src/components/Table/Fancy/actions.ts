@@ -1,6 +1,5 @@
 import {Action} from 'redux';
 import {Direction} from '../types';
-import {Row} from '../../../core/types';
 
 export enum fancyAction {
   CONSOLIDATE_DATA = 'CONSOLIDATE_DATA',
@@ -16,7 +15,7 @@ interface ConsolidateData extends Action<fancyAction.CONSOLIDATE_DATA> {
 }
 
 interface ToggleChecked extends Action<fancyAction.TOGGLE_CHECKED> {
-  row: Row;
+  row: string;
 }
 
 interface SetDefaultChecked extends Action<fancyAction.SET_DEFAULT_CHECKED> {

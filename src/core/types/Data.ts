@@ -1,3 +1,1 @@
-export interface Data {
-  [s: string]: any;
-}
+export type Data<T> = Record<string, T>;

@@ -1,41 +1,16 @@
 import {merge, remove} from '../util/ObjectHelpers';
-import {NormalizedRows} from './helpers';
-import {Data, Row} from './types';
+import {Rows} from './types';
+import {ResponseData} from './types/Response';
 
-export interface NormalizedRows {
-  [name: string]: Row;
-}
-
-const mergeData = (
-  {data}: Data = {data: {}},
-  right: Data = {}
-): Data => merge(data, right);
-
-const getData = (
-  {data}: Data = {data: {}},
-  newData: Data
-): Data => ({
-  ...Object.keys(newData)
-    .map(column => data[column])
-    .reduce(merge, {}),
-  ...newData
-});
-
-const createStateFrom = ({newState, basedOn}: { newState: Data[], basedOn: NormalizedRows }) =>
+const createStateFrom = ({newState}: { newState: ResponseData[]}): Rows =>
   newState.map(newRow => ({
-    name: newRow.name,
-    data: getData(basedOn[newRow.name], remove(newRow, 'name'))
-  })).reduce((acc: NormalizedRows, row: Row) => ({
-    ...acc, [row.name]: {
-      name: row.name,
-      data: mergeData(acc[row.name], row.data)
-    }
-  }), {});
+    [newRow.name]: remove<string, number>(newRow, 'name')
+  })).reduce(merge, {});
 
 export const normalize = (
-  currentState: NormalizedRows = {},
-  newState: Data[] = []
-): NormalizedRows =>
+  currentState: Rows = {},
+  newState: ResponseData[] = []
+): Rows =>
   (newState.length === 0) ?
     currentState :
-    createStateFrom({newState, basedOn: currentState});
+    createStateFrom({newState});
