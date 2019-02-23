@@ -1,5 +1,5 @@
-import {AppAction} from '../../../actions';
-import {dataAction} from '../../../core/types';
+import {AppAction} from '../../../../actions';
+import {dataAction} from '../../../../core/types';
 
 export interface BaseState {
   columns: string[];

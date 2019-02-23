@@ -1,15 +1,16 @@
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {Data} from '../../../core/types';
-import {AppState} from '../../../store';
-import {Selectable} from './Selectable';
-import {SelectableAction, toggleSelect} from './store/actions';
-import {columns, selectableRows, selectedTotals} from './store/selectors';
-import {Selected} from './types/Selectable';
+import {Data} from '../../../../core/types';
+import {AppState} from '../../../../store';
+import {columns} from '../../Base/store/selectors';
+import {Selectable} from '../Selectable';
+import {SelectedRow} from '../types/SelectableRow';
+import {SelectableAction, toggleSelect} from './actions';
+import {selectableRows, selectedTotals} from './selectors';
 
 export interface SelectableStateProps {
   columns: string[];
-  rows: Selected[];
+  rows: SelectedRow[];
   totals: Data<number>;
 }
 

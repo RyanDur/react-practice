@@ -1,5 +1,6 @@
 import {Page} from 'puppeteer';
 import {Data} from '../../src/core/types';
+import {merge} from '../../src/util/ObjectHelpers';
 
 interface Elem extends HTMLInputElement {
   [key: string]: any;
@@ -20,7 +21,7 @@ interface Column {
 
 export interface TableData {
   lengthOf: (f: string) => Promise<number>;
-  contentOf: <T>(f: string) => Promise<Data<string>>;
+  contentOf: <T>(f: string) => Promise<Data<number>>;
   inputOfType: (type: string, method: string) => Promise<boolean[]>;
   valuesOf: (f: string) => Promise<string[]>;
   column: (name: string) => Column;
@@ -28,13 +29,17 @@ export interface TableData {
 
 export const setup = (page: Page) => (table: string): TableData => {
   const getAll = <T>(selector: string, fn: (f: HTMLElement[]) => T) => {
-    return page.$$eval(selector, fn).then((f) => f);
+    return page.$$eval(selector, fn);
   };
 
-  const checks = (method: string) =>
+  const inputMethods = (method: string) =>
     (elems: Elem[]) => {
-      const anies = elems.map(elem => elem.checked);
-      return anies;
+      return elems.map(elem => {
+        switch (method) {
+        case 'checked':
+          return elem.checked;
+        }
+      });
     };
 
   const length = (elems: HTMLElement[]): number => elems.length;
@@ -42,18 +47,18 @@ export const setup = (page: Page) => (table: string): TableData => {
   const text = (elems: HTMLElement[]): string[] =>
     elems.map((elem: HTMLElement) => elem.textContent);
 
-  const content = (elems: HTMLElement[]): Data<string> =>
+  const content = (elems: HTMLElement[]): Data<any> =>
     elems.map(elem => ({
-      [elem.dataset.column]: elem.textContent
-    })).reduce((acc, elem) => ({...acc, ...elem}), {});
+      [elem.dataset.group]: elem.textContent
+    })).reduce(merge, {});
 
   return {
     lengthOf: (selector) => getAll<number>(`${table} ${selector}`, length),
-    contentOf: async (selector: string) => getAll<Data<string>>(`${table} ${selector}`, content),
+    contentOf: async (selector: string) => getAll<Data<any>>(`${table} ${selector}`, content),
     valuesOf: async (selector) => getAll<string[]>(`${table} ${selector}`, text),
     inputOfType: async (type, method) => getAll<boolean[]>(
       `${table} input[type=${type}]`,
-      checks(method)).then(boxes => boxes.filter(checked => checked)),
+      inputMethods(method)).then(boxes => boxes.filter(checked => checked)),
     column: (name: string): Column => ({
       menu: async (): Promise<Menu> => {
         const exists = async (selector: string): Promise<boolean> => await page.$(selector) !== null;

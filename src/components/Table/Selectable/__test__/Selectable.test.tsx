@@ -1,7 +1,7 @@
 import {mount} from 'enzyme';
 import * as React from 'react';
-import {SelectableProps} from '../connector';
 import {Selectable, ManuallyDefinedProps} from '../Selectable';
+import {SelectableProps} from '../store/connector';
 
 describe('selectable table', () => {
   const mockProps: () => SelectableProps & ManuallyDefinedProps = () => ({

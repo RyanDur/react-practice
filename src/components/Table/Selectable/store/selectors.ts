@@ -7,10 +7,8 @@ export const selectedTotals = ({base, selectable, core}: AppState) =>
     core.columns);
 
 export const selectableRows = ({base, selectable, core}: AppState) =>
-  base.rows.map(rowName => ({
+  base.rows.map((rowName: string) => ({
     name: rowName,
     selected: selectable.selected.includes(rowName),
     data: core.data[rowName]
   }));
-
-export const columns = ({base}: AppState) => base.columns;

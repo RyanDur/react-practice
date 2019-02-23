@@ -2,7 +2,9 @@ import testBrowser from '../mockBrowser';
 import {Menu, setup, TableData} from './helpers';
 
 describe('the tables', () => {
-  const {setupPage, tearDown} = testBrowser();
+  const {setupPage, tearDown} = testBrowser({
+    headless: false
+  });
   const columns: string[] = ['bar', 'baz', 'bob', 'coo', 'cop', 'cor', 'far', 'faz', 'foo', 'fop', 'another', 'yet_another'];
 
   afterEach(async () => {

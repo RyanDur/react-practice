@@ -1,7 +1,5 @@
 import {Data} from '../../../../core/types';
 
-export interface Selected {
-  name: string;
+export interface Row {
   data: Data<number>;
-  selected: boolean;
 }
