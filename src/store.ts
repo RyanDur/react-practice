@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore, Dispatch, MiddlewareAPI} from 'redux';
 import {AppAction} from './actions';
 import {BaseState, reducers as components, SelectableState} from './components';
 import {core} from './core';
@@ -12,10 +12,10 @@ export interface AppState {
   core: CoreState;
 }
 
-// export type AppMiddleware =
-//   (store: MiddlewareAPI<Dispatch<AppAction>, AppState>) =>
-//     (next: Dispatch<AppAction>) =>
-//       (action: AppAction) => void;
+export type AppMiddleware =
+  (store: MiddlewareAPI<Dispatch<AppAction>, AppState>) =>
+    (next: Dispatch<AppAction>) =>
+      (action: AppAction) => void;
 
 export const store = createStore(combineReducers<AppState, AppAction>({
   ...components,
