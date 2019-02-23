@@ -1,8 +1,8 @@
 import {Page} from 'puppeteer';
 import {Data} from '../../src/core/types';
 
-interface CheckBoxes {
-  checked: () => Promise<boolean[]>;
+interface Elem extends HTMLInputElement {
+  [key: string]: any;
 }
 
 export interface Menu {
@@ -18,60 +18,66 @@ interface Column {
   menu: () => Promise<Menu>;
 }
 
-interface TableData {
+export interface TableData {
   lengthOf: (f: string) => Promise<number>;
-  contentOf: (f: string) => Promise<Data>;
-  checkboxesOf: (f: string) => CheckBoxes;
+  contentOf: <T>(f: string) => Promise<Data<string>>;
+  inputOfType: (type: string, method: string) => Promise<boolean[]>;
   valuesOf: (f: string) => Promise<string[]>;
   column: (name: string) => Column;
 }
 
-export const table = (page: Page): TableData => {
-  const getAll = <T>(selector: string, fn: (f: HTMLElement[]) => T) =>
-    page.$$eval(selector, fn);
+export const setup = (page: Page) => (table: string): TableData => {
+  const getAll = <T>(selector: string, fn: (f: HTMLElement[]) => T) => {
+    return page.$$eval(selector, fn).then((f) => f);
+  };
+
+  const checks = (method: string) =>
+    (elems: Elem[]) => {
+      const anies = elems.map(elem => elem.checked);
+      return anies;
+    };
 
   const length = (elems: HTMLElement[]): number => elems.length;
 
-  const getText = (elems: HTMLElement[]): string[] =>
+  const text = (elems: HTMLElement[]): string[] =>
     elems.map((elem: HTMLElement) => elem.textContent);
 
-  const content = (elems: HTMLElement[]): Data =>
+  const content = (elems: HTMLElement[]): Data<string> =>
     elems.map(elem => ({
       [elem.dataset.column]: elem.textContent
     })).reduce((acc, elem) => ({...acc, ...elem}), {});
 
-  const checkedInputs = (elems: HTMLElement[]): boolean[] =>
-    elems.map(elem => elem.querySelector('input').selected);
-
   return {
-    lengthOf: async (selector) => getAll<number>(selector, length),
-    contentOf: async (selector) => getAll<Data>(selector, content),
-    valuesOf: async (selector) => getAll<string[]>(selector, getText),
-    checkboxesOf: (selector) => ({
-      selected: async () => getAll<boolean[]>(selector, checkedInputs)
-    }),
+    lengthOf: (selector) => getAll<number>(`${table} ${selector}`, length),
+    contentOf: async (selector: string) => getAll<Data<string>>(`${table} ${selector}`, content),
+    valuesOf: async (selector) => getAll<string[]>(`${table} ${selector}`, text),
+    inputOfType: async (type, method) => getAll<boolean[]>(
+      `${table} input[type=${type}]`,
+      checks(method)).then(boxes => boxes.filter(checked => checked)),
     column: (name: string): Column => ({
       menu: async (): Promise<Menu> => {
         const exists = async (selector: string): Promise<boolean> => await page.$(selector) !== null;
         return ({
           open: async (): Promise<void> => {
-            await page.click(`.column-header[data-group="${name}"] .drop-down .hamburger`);
+            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
           },
           close: async (): Promise<void> => {
-            await page.click(`.column-header[data-group="${name}"] .drop-down .hamburger`);
+            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
           },
           select: async (column: string): Promise<void> => {
-            const selector = `.column-header[data-group="${name}"] .drop-down [data-group="${column}"]`;
-            if (await exists(selector)) { await page.click(selector); }
+            const selector = `${table} .column-header[data-group="${name}"] .drop-down [data-group="${column}"]`;
+            if (await exists(selector)) {
+              await page.click(selector);
+            }
           },
           addRight: async (): Promise<void> => {
-            await page.click(`.column-header[data-group="${name}"] .drop-down .add-right`);
+            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .add-right`);
           },
           addLeft: async (): Promise<void> => {
-            await page.click(`.column-header[data-group="${name}"] .drop-down .add-left`);
+            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .add-left`);
           },
           remove: async (): Promise<void> => {
-            await page.click(`.column-header[data-group="${name}"] .drop-down .remove`);
+            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .remove`);
           }
         });
       }

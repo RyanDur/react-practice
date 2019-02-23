@@ -1,17 +1,12 @@
-import {combineReducers} from 'redux';
-import {Dropdown} from './Dropdown/Dropdown';
-import {Emoji} from './Emoji';
-import {Draggable, Fancy, FancyAction, Base} from './Table';
-import {BaseState} from './Table/Base/reducer';
-import {fancy} from './Table/Fancy';
-import {FancyState} from './Table/Fancy/types';
-import {base} from './Table/Base';
+import {base, BaseState} from './Table/Base';
+import {selectable, SelectableAction, SelectableState} from './Table/Selectable';
 
-export interface ComponentState {
-  fancy: FancyState;
-  base: BaseState;
-}
+export type ComponentAction = SelectableAction;
+export const reducers = {
+  base,
+  selectable
+};
 
-const components = combineReducers<ComponentState>({fancy, base});
-
-export {components, Fancy, FancyAction, Draggable, Dropdown, Emoji, Base};
+export {
+  SelectableState, BaseState
+};

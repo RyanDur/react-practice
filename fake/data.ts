@@ -1,6 +1,6 @@
 import {Data} from '../src/core/types';
 
-interface FakeData extends Data {
+interface FakeData extends Data<any> {
   name: string;
   foo: number;
   bar: number;

@@ -10,7 +10,7 @@ interface Puppet {
   slowMo?: number;
 }
 
-const testBrowser = ({headless = true, slowMo = 0}: Puppet) => {
+const testBrowser = ({headless = true, slowMo = 0}: Puppet = {}) => {
   let browser: Browser;
   let fakeBackendHandle: { close: () => void; };
   let appServerHandle: { close: () => void; };
@@ -19,7 +19,7 @@ const testBrowser = ({headless = true, slowMo = 0}: Puppet) => {
   app.use(express.static(Path.join(__dirname, '..', 'dist')));
 
   return {
-    setup: async (data?: []): Promise<Page> => {
+    setupPage: async (data?: []): Promise<Page> => {
       await new Promise((resolve) => {
         fakeBackendHandle = server(JSON.stringify(data)).listen(7771, () => {
           appServerHandle = app.listen(7770, () => {

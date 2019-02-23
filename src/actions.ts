@@ -1,4 +1,4 @@
-import {FancyAction} from './components';
-import {DataAction, SocketAction} from './core/action';
+import {ComponentAction} from './components';
+import {CoreAction} from './core';
 
-export type AppAction = FancyAction | SocketAction | DataAction;
+export type AppAction = ComponentAction | CoreAction;

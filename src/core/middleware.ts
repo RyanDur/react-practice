@@ -1,19 +1,12 @@
-import {AppMiddleware} from '../store';
-import {socketAction} from './action';
-import {dataAction} from './types';
-import {Response} from './types/Response';
+import {Dispatch, Store} from 'redux';
+import {AppAction} from '../actions';
+import {connectToData, socketAction} from './action';
+import {DataResponse} from './types/DataResponse';
 
-export const socketMiddleware = (clientConnector: (fn: (data: Response) => void) => void): AppMiddleware =>
-  (store) => next => action => {
+export const socketMiddleware = (clientConnector: (fn: (data: DataResponse) => void) => void) =>
+  (store: Store) => (next: Dispatch) => (action: AppAction) => {
     if (action.type === socketAction.CONNECT) {
-      clientConnector(({data, columnNames, rowNames}: Response) => store.dispatch(
-        {
-          type: dataAction.DATA, response: {
-            data,
-            columns: columnNames,
-            rows: rowNames
-          }
-        }));
+      clientConnector(connectToData(store.dispatch));
     }
     next(action);
   };

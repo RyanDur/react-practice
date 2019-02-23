@@ -1,4 +1,4 @@
-import {reducer as base} from './reducer';
+import {reducer as base, BaseState} from './reducer';
 import Base from './connector';
 
-export {base, Base};
+export {base, Base, BaseState};

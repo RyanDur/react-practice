@@ -1,6 +1,6 @@
 import {normalize} from '../helpers';
 import {Rows} from '../types';
-import {ResponseData} from '../types/Response';
+import {ResponseData} from '../types/DataResponse';
 
 describe('normalizing the data', () => {
 

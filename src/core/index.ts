@@ -1,3 +1,4 @@
-import {reducer as data} from './reducer';
-const core = data;
-export {core};
+import {reducer as core} from './reducer';
+import {CoreAction} from './action';
+
+export {core, CoreAction};

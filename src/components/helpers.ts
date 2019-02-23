@@ -10,8 +10,8 @@ export const sumColumns = (data: Array<Data<number>> = [], columns: string[] = [
     ({[column]: data.map(rowData(column)).reduce(sum, 0)})
   ).reduce((acc, col) => ({...acc, ...col}), {});
 
-export const updateChecked = (row: string, rows: string[] = []): string[] =>
-  rows.includes(row) ? remove([row], rows) : rows.concat(row);
+export const updateSelected = (selection: string, selected: string[] = []): string[] =>
+  selected.includes(selection) ? remove([selection], selected) : [...selected, selection];
 
 export const addColumns = (
   side: Direction,

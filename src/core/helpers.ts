@@ -1,6 +1,6 @@
 import {merge, remove} from '../util/ObjectHelpers';
 import {Rows} from './types';
-import {ResponseData} from './types/Response';
+import {ResponseData} from './types/DataResponse';
 
 const createStateFrom = ({newState}: { newState: ResponseData[]}): Rows =>
   newState.map(newRow => ({
