@@ -1,5 +1,5 @@
 import {Page} from 'puppeteer';
-import {Data} from '../../src/core/types';
+import {Data} from '../src/core/types';
 
 interface Elem extends HTMLInputElement {
   [key: string]: any;

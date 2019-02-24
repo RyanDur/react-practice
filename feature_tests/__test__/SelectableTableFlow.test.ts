@@ -1,5 +1,5 @@
 import testBrowser from '../mockBrowser';
-import {setup, TableData} from './helpers';
+import {setup, TableData} from '../helpers';
 
 describe('the selectable table', () => {
   const {setupPage, tearDown} = testBrowser();
