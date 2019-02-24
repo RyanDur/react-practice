@@ -1,22 +1,20 @@
 import * as React from 'react';
-import {Row} from '../elements/Row/Row';
-import {SelectableHeader} from '../elements/SelectableHeader/SelectableHeader';
-import {TotalsTable} from '../elements/TotalsTable/TotalsTable';
+import {CatRow, SelectableHeader, TotalsTable} from '../elements';
 import {SelectableProps} from './store/connector';
 
 export interface ManuallyDefinedProps {
   defaultSelected: boolean;
 }
 
-export const Selectable = (props: SelectableProps & ManuallyDefinedProps) =>
-  <TotalsTable id='selectable' {...props}>
+export const Selectable = ({totals, rows, toggleSelect, defaultSelected, columns}: SelectableProps & ManuallyDefinedProps) =>
+  <TotalsTable id='selectable' totals={totals} columns={columns}>
     <tbody>
-    {props.rows.map(row =>
-      <Row key={row.name} columns={props.columns} data={row.data}>
+    {rows.map(row =>
+      <CatRow key={`${row.name}-selectable`} columns={columns} row={row}>
         <SelectableHeader
           value={row}
-          handleSelect={props.toggleSelect}
-          defaultSelected={props.defaultSelected}/>
-      </Row>)}
+          handleSelect={toggleSelect}
+          defaultSelected={defaultSelected}/>
+      </CatRow>)}
     </tbody>
   </TotalsTable>;

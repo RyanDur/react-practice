@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import * as React from 'react';
-import {Selected} from '../../Selectable/types/Selected';
+import {Selected} from '../types';
 
 interface SelectableHeaderProps {
   value: Selected;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ChangeEvent, Component} from 'react';
-import {Direction} from '../Table/types';
+import {direction as Direction} from '../Table/elements/types';
 import {ColumnName, MenuProps, MenuState} from './types';
 import './Menu.css';
 
@@ -83,7 +83,7 @@ export class Menu extends Component<MenuProps & ColumnName> {
         Add Right
       </button>
       <ul className='remove-columns'>
-        {active.filter(column => this.props.column !== column).map(
+        {active.filter((column: string) => this.props.column !== column).map(
           (name: string, index: number) =>
             <li key={index}>
               <input

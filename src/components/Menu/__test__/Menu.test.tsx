@@ -1,6 +1,6 @@
 import {mount, ReactWrapper} from 'enzyme';
 import * as React from 'react';
-import {Direction} from '../../Table/types';
+import {direction} from '../../Table/elements/types';
 import {Menu} from '../Menu';
 import {ColumnName, MenuProps} from '../types';
 
@@ -30,7 +30,7 @@ describe('The Menu', () => {
         menu.find('.add-right').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
-          Direction.Right,
+          direction.Right,
           props.column,
           ['another']
         );
@@ -46,7 +46,7 @@ describe('The Menu', () => {
         menu.find('.add-right').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
-          Direction.Right,
+          direction.Right,
           props.column,
           ['yet_another']
         );
@@ -60,7 +60,7 @@ describe('The Menu', () => {
         menu.find('.add-right').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
-          Direction.Right,
+          direction.Right,
           props.column,
           ['another', 'yet_another']
         );
@@ -88,7 +88,7 @@ describe('The Menu', () => {
         menu.find('.add-left').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
-          Direction.Left,
+          direction.Left,
           props.column,
           ['another']
         );
@@ -104,7 +104,7 @@ describe('The Menu', () => {
         menu.find('.add-left').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
-          Direction.Left,
+          direction.Left,
           props.column,
           ['yet_another']
         );
@@ -118,7 +118,7 @@ describe('The Menu', () => {
         menu.find('.add-left').simulate('click');
 
         expect(props.add).toHaveBeenCalledWith(
-          Direction.Left,
+          direction.Left,
           props.column,
           ['another', 'yet_another']
         );

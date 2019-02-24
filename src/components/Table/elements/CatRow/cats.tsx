@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Emoji} from '../Emoji';
+import {Emoji} from '../../../Emoji';
 
 export const cats = [
   <Emoji key={'😾'} label={'pouting cat'} symbol={'😾'}/>,

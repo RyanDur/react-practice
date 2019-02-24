@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Data} from '../../../core/types';
-import {Row} from '../elements/Row/Row';
-import {TotalsTable} from '../elements/TotalsTable/TotalsTable';
+import {CatRow, TotalsTable} from '../elements';
 
 interface BaseProps {
   columns: string[];
@@ -13,11 +12,8 @@ export const Base = ({columns, rows, totals}: BaseProps) =>
   <TotalsTable id='base' columns={columns} totals={totals}>
     <tbody>
     {rows.map(row =>
-      <Row
-        key={row.name}
-        columns={columns}
-        data={row.data}>
+      <CatRow key={`${row.name}-base`} columns={columns} row={row}>
         <td>{row.name}</td>
-      </Row>)}
+      </CatRow>)}
     </tbody>
   </TotalsTable>;
