@@ -1,6 +1,5 @@
 import {Page} from 'puppeteer';
 import {Data} from '../../src/core/types';
-import {merge} from '../../src/util/ObjectHelpers';
 
 interface Elem extends HTMLInputElement {
   [key: string]: any;
@@ -20,69 +19,70 @@ interface Column {
 }
 
 export interface TableData {
-  lengthOf: (f: string) => Promise<number>;
-  contentOf: <T>(f: string) => Promise<Data<number>>;
+  numberOf: (f: string) => Promise<number>;
+  contentsOf: <T>(f: string) => Promise<Data<any>>;
   inputOfType: (type: string, method: string) => Promise<boolean[]>;
+  select: (selector: string) => Promise<void>;
   valuesOf: (f: string) => Promise<string[]>;
   column: (name: string) => Column;
 }
 
 export const setup = (page: Page) => (table: string): TableData => {
-  const getAll = <T>(selector: string, fn: (f: HTMLElement[]) => T) => {
-    return page.$$eval(selector, fn);
-  };
+  const merge = <T>(vals: Array<Data<T>>): Data<T> =>
+    vals.reduce((acc, val) => ({...acc, ...val}), {});
+  const getAll = <T>(selector: string, fn: (f: HTMLElement[]) => T) =>
+    page.$$eval(selector, fn);
 
-  const inputMethods = (method: string) =>
-    (elems: Elem[]) => {
-      return elems.map(elem => {
-        switch (method) {
-        case 'checked':
-          return elem.checked;
-        }
-      });
-    };
+  const inputMethods = (method: string) => {
+    switch (method) {
+    case 'checked':
+      return (elems: Elem[]) => elems.map(elem => elem.checked)
+        .filter(checked => checked);
+    }
+  };
 
   const length = (elems: HTMLElement[]): number => elems.length;
 
   const text = (elems: HTMLElement[]): string[] =>
     elems.map((elem: HTMLElement) => elem.textContent);
 
-  const content = (elems: HTMLElement[]): Data<any> =>
+  const contents = (elems: HTMLElement[]): Array<Data<any>> =>
     elems.map(elem => ({
       [elem.dataset.group]: elem.textContent
-    })).reduce(merge, {});
+    }));
 
   return {
-    lengthOf: (selector) => getAll<number>(`${table} ${selector}`, length),
-    contentOf: async (selector: string) => getAll<Data<any>>(`${table} ${selector}`, content),
-    valuesOf: async (selector) => getAll<string[]>(`${table} ${selector}`, text),
-    inputOfType: async (type, method) => getAll<boolean[]>(
-      `${table} input[type=${type}]`,
-      inputMethods(method)).then(boxes => boxes.filter(checked => checked)),
+    numberOf: (selector) => getAll<number>(`#${table} ${selector}`, length),
+    contentsOf: async (selector: string) =>
+      getAll<Array<Data<any>>>(`#${table} ${selector}`, contents).then(merge),
+    valuesOf: async (selector) => getAll<string[]>(`#${table} ${selector}`, text),
+    inputOfType: async (type, method) =>
+      getAll<any[]>(`${table} input[type=${type}]`, inputMethods(method)),
+    select: (selector: string) => page.click(`#${table} #${selector}-checkbox`),
     column: (name: string): Column => ({
       menu: async (): Promise<Menu> => {
         const exists = async (selector: string): Promise<boolean> => await page.$(selector) !== null;
         return ({
           open: async (): Promise<void> => {
-            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
+            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
           },
           close: async (): Promise<void> => {
-            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
+            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
           },
           select: async (column: string): Promise<void> => {
-            const selector = `${table} .column-header[data-group="${name}"] .drop-down [data-group="${column}"]`;
+            const selector = `#${table} .column-header[data-group="${name}"] .drop-down [data-group="${column}"]`;
             if (await exists(selector)) {
               await page.click(selector);
             }
           },
           addRight: async (): Promise<void> => {
-            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .add-right`);
+            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .add-right`);
           },
           addLeft: async (): Promise<void> => {
-            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .add-left`);
+            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .add-left`);
           },
           remove: async (): Promise<void> => {
-            await page.click(`${table} .column-header[data-group="${name}"] .drop-down .remove`);
+            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .remove`);
           }
         });
       }

@@ -32,4 +32,3 @@ export const connectToData = (dispatch: Dispatch<AppAction>) => ({data, columnNa
       rows: rowNames
     }
   });
-

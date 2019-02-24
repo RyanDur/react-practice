@@ -4,7 +4,7 @@ import {ResponseData} from './types/DataResponse';
 
 const createStateFrom = ({newState}: { newState: ResponseData[]}): Rows =>
   newState.map(newRow => ({
-    [newRow.name]: remove<string, number>(newRow, 'name')
+    [newRow.name]: remove(newRow, 'name')
   })).reduce(merge, {});
 
 export const normalize = (

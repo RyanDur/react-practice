@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore, Dispatch, MiddlewareAPI} from 'redux';
 import {AppAction} from './actions';
-import {BaseState, reducers as components, SelectableState} from './components';
+import {BaseState, reducers as components, SelectableState} from './view';
 import {core} from './core';
 import {clientConnector} from './core/clientConnector';
 import {socketMiddleware} from './core/middleware';
@@ -20,4 +20,4 @@ export type AppMiddleware =
 export const store = createStore(combineReducers<AppState, AppAction>({
   ...components,
   core
-}), applyMiddleware(socketMiddleware(clientConnector(new WebSocket('ws://localhost:8999')))));
+}), applyMiddleware(socketMiddleware(clientConnector(new WebSocket('ws://localhost:7771')))));

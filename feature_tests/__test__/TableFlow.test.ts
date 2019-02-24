@@ -42,11 +42,11 @@ describe('the tables', () => {
 
       describe('the totals', () => {
         it('should be the same length as their are columns', async () => {
-          expect((await table.lengthOf('.total'))).toBe(columns.length);
+          expect((await table.numberOf('.total'))).toBe(columns.length);
         });
 
         it('should sum the columns', async () => {
-          expect(await table.contentOf('.total')).toEqual({
+          expect(await table.contentsOf('.total')).toEqual({
             bar: '10',
             baz: '20',
             bob: '30',
@@ -130,11 +130,11 @@ describe('the tables', () => {
 
       describe('the totals', () => {
         it('should be the same length as their are columns', async () => {
-          expect(await table.lengthOf('.total')).toBe(columns.length);
+          expect(await table.numberOf('.total')).toBe(columns.length);
         });
 
         it('should default to dashes', async () => {
-          expect(await table.contentOf('.total')).toEqual({
+          expect(await table.contentsOf('.total')).toEqual({
             foo: '—',
             bar: '—',
             baz: '—',

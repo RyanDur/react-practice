@@ -5,8 +5,8 @@ export const merge = <T>(
   right: Data<T> = {}
 ): Data<T> => ({...left, ...right});
 
-export const remove = <T, S>(obj: Data<T | S>, prop: string): Data<S> =>
-  Object.keys(obj).reduce((object: Data<T | S>, key: string) => {
+export const remove = (obj: Data<any>, prop: string): Data<any> =>
+  Object.keys(obj).reduce((object: Data<any>, key: string) => {
     if (key !== prop) {
       object[key] = obj[key];
     }
