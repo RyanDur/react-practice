@@ -14,17 +14,12 @@ export interface Menu {
   close: () => Promise<void>;
 }
 
-interface Column {
-  menu: () => Promise<Menu>;
-}
-
 export interface TableData {
   numberOf: (f: string) => Promise<number>;
   contentsOfEach: <T>(f: string) => Promise<Data<any>>;
   inputOfType: (type: string, method: string) => Promise<boolean[]>;
   select: (selector: string) => Promise<void>;
   valuesOf: (f: string) => Promise<string[]>;
-  column: (name: string) => Column;
 }
 
 export const setup = (page: Page) => (table: string): TableData => {
@@ -58,34 +53,6 @@ export const setup = (page: Page) => (table: string): TableData => {
     valuesOf: async (selector) => getAll<string[]>(`#${table} ${selector}`, text),
     inputOfType: async (type, method) =>
       getAll<any[]>(`${table} input[type=${type}]`, inputMethods(method)),
-    select: (selector: string) => page.click(`#${table} #${selector}-checkbox`),
-    column: (name: string): Column => ({
-      menu: async (): Promise<Menu> => {
-        const exists = async (selector: string): Promise<boolean> => await page.$(selector) !== null;
-        return ({
-          open: async (): Promise<void> => {
-            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
-          },
-          close: async (): Promise<void> => {
-            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .hamburger`);
-          },
-          select: async (column: string): Promise<void> => {
-            const selector = `#${table} .column-header[data-group="${name}"] .drop-down [data-group="${column}"]`;
-            if (await exists(selector)) {
-              await page.click(selector);
-            }
-          },
-          addRight: async (): Promise<void> => {
-            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .add-right`);
-          },
-          addLeft: async (): Promise<void> => {
-            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .add-left`);
-          },
-          remove: async (): Promise<void> => {
-            await page.click(`#${table} .column-header[data-group="${name}"] .drop-down .remove`);
-          }
-        });
-      }
-    })
+    select: (selector: string) => page.click(`#${table} #${selector}-checkbox`)
   };
 };
