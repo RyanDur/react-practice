@@ -20,7 +20,7 @@ interface Column {
 
 export interface TableData {
   numberOf: (f: string) => Promise<number>;
-  contentsOf: <T>(f: string) => Promise<Data<any>>;
+  contentsOfEach: <T>(f: string) => Promise<Data<any>>;
   inputOfType: (type: string, method: string) => Promise<boolean[]>;
   select: (selector: string) => Promise<void>;
   valuesOf: (f: string) => Promise<string[]>;
@@ -53,7 +53,7 @@ export const setup = (page: Page) => (table: string): TableData => {
 
   return {
     numberOf: (selector) => getAll<number>(`#${table} ${selector}`, length),
-    contentsOf: async (selector: string) =>
+    contentsOfEach: async (selector: string) =>
       getAll<Array<Data<any>>>(`#${table} ${selector}`, contents).then(merge),
     valuesOf: async (selector) => getAll<string[]>(`#${table} ${selector}`, text),
     inputOfType: async (type, method) =>

@@ -46,7 +46,7 @@ describe('the tables', () => {
         });
 
         it('should sum the columns', async () => {
-          expect(await table.contentsOf('.total')).toEqual({
+          expect(await table.contentsOfEach('.total')).toEqual({
             bar: '10',
             baz: '20',
             bob: '30',
@@ -134,7 +134,7 @@ describe('the tables', () => {
         });
 
         it('should default to dashes', async () => {
-          expect(await table.contentsOf('.total')).toEqual({
+          expect(await table.contentsOfEach('.total')).toEqual({
             foo: '—',
             bar: '—',
             baz: '—',
