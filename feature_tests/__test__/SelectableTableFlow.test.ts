@@ -41,7 +41,7 @@ describe('the selectable table', () => {
   });
 
   describe('totals', () => {
-    it('should update if a name is unchecked', async () => {
+    it('should update if a name is unselected', async () => {
       await table.select('Travis');
       expect(await table.contentsOfEach('.total')).toEqual({
         bar: '9',
