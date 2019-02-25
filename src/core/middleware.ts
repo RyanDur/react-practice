@@ -1,4 +1,4 @@
-import {AppMiddleware} from '../store';
+import {AppMiddleware} from '../types';
 import {connectToData, socketAction} from './action';
 import {DataResponse} from './types/DataResponse';
 

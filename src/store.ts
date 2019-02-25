@@ -1,23 +1,12 @@
-import {applyMiddleware, combineReducers, createStore, Dispatch, MiddlewareAPI} from 'redux';
-import {AppAction} from './actions';
-import {BaseState, reducers as components, SelectableState} from './view';
-import {core} from './core';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {clientConnector} from './core/clientConnector';
 import {socketMiddleware} from './core/middleware';
-import {CoreState} from './core/types';
-
-export interface AppState {
-  base: BaseState;
-  selectable: SelectableState;
-  core: CoreState;
-}
-
-export type AppMiddleware =
-  (store: MiddlewareAPI<Dispatch<AppAction>, AppState>) =>
-    (next: Dispatch<AppAction>) =>
-      (action: AppAction) => void;
+import {reducers as core} from './core';
+import {reducers as view} from './view';
+import {AppAction} from './actions';
+import {AppState} from './types';
 
 export const store = createStore(combineReducers<AppState, AppAction>({
-  ...components,
-  core
+  ...view,
+  ...core
 }), applyMiddleware(socketMiddleware(clientConnector(new WebSocket('ws://localhost:7771')))));

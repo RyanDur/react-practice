@@ -1,7 +1,5 @@
-import {Rows} from './Rows';
+import {DataState} from './DataState';
 
 export interface CoreState {
-  data: Rows;
-  columns: string[];
-  rows: string[];
+  core: DataState;
 }

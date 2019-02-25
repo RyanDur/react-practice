@@ -1,17 +1,17 @@
 import {DataAction} from './action';
 import {normalize} from './helpers';
-import {dataAction, CoreState} from './types';
+import {dataAction, DataState} from './types';
 
-const defaultState: CoreState = {
+const defaultState: DataState = {
   data: {},
   rows: [],
   columns: []
 };
 
 export const reducer = (
-  state: CoreState = defaultState,
+  state: DataState = defaultState,
   action: DataAction
-): CoreState => {
+): DataState => {
   switch (action.type) {
   case dataAction.DATA:
     return {
