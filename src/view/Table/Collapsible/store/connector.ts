@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {AppState} from '../../../../store';
+import {AppState} from '../../../../types';
 import {columns, totals} from '../../Base/store/selectors';
 import {Collapsible} from '../Collapsible';
 import {collapsibleRows} from './selectors';

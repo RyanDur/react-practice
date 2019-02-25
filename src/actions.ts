@@ -1,4 +1,4 @@
-import {ComponentAction} from './view';
+import {ViewAction} from './view';
 import {CoreAction} from './core';
 
-export type AppAction = ComponentAction | CoreAction;
+export type AppAction = ViewAction | CoreAction;

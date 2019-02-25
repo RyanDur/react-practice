@@ -1,4 +1,4 @@
-import {AppState} from '../../../../store';
+import {AppState} from '../../../../types';
 import {sumColumns} from '../../../helpers';
 
 export const columns = ({base}: AppState) => base.columns;

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {AppState} from '../../../../store';
+import {AppState} from '../../../../types';
 import {Base} from '../Base';
 import {columns, rows, totals} from './selectors';
 
