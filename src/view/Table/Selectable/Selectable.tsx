@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Row, SelectableHeader, TotalsTable} from '../elements';
-import {catFormatter} from '../elements/cats';
+import {Row, SelectableHeader, TotalsTable} from '../element';
+import {catFormatter} from '../element/cats';
 import {SelectableProps} from './store/connector';
 
 export interface ManuallyDefinedProps {

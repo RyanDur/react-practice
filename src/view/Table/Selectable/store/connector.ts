@@ -3,7 +3,7 @@ import {Dispatch} from 'redux';
 import {Data} from '../../../../core/types';
 import {AppState} from '../../../../types';
 import {columns} from '../../Base/store/selectors';
-import {SelectedHeaderRow} from '../../elements/types';
+import {SelectedHeaderRow} from '../../element/types';
 import {Selectable} from '../Selectable';
 import {SelectableAction, toggleSelect} from './actions';
 import {selectableRows, selectedTotals} from './selectors';

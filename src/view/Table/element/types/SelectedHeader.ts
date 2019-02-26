@@ -1,3 +1,3 @@
 import {Header, Selected} from './base';
 
-export type SelectedHeader = Header & Selected;
+export type SelectedHeader = Selected & Header;

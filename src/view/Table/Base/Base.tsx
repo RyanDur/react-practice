@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Data} from '../../../core/types';
-import {Row, TotalsTable} from '../elements';
-import {catFormatter} from '../elements/cats';
-import {HeaderRow} from '../elements/types';
+import {Row, TotalsTable} from '../element';
+import {catFormatter} from '../element/cats';
+import {HeaderRow} from '../element/types';
 
 interface BaseProps {
   columns: string[];
