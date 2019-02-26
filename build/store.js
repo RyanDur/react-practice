@@ -12,9 +12,8 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var redux_1 = require("redux");
-var view_1 = require("./view");
 var core_1 = require("./core");
-var clientConnector_1 = require("./core/clientConnector");
-var middleware_1 = require("./core/middleware");
-exports.store = redux_1.createStore(redux_1.combineReducers(__assign({}, view_1.reducers, { core: core_1.core })), redux_1.applyMiddleware(middleware_1.socketMiddleware(clientConnector_1.clientConnector(new WebSocket('ws://localhost:7771')))));
+var view_1 = require("./view");
+var view_2 = require("./view");
+exports.store = redux_1.createStore(redux_1.combineReducers(__assign({}, view_2.reducers, core_1.reducers)), redux_1.applyMiddleware.apply(void 0, view_1.middleware.concat(core_1.middleware)));
 //# sourceMappingURL=store.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"selectors.js","sourceRoot":"","sources":["../../../../../src/view/Table/Collapsible/store/selectors.ts"],"names":[],"mappings":";;AAEa,QAAA,eAAe,GAAG,UAAC,EAAsB;QAArB,cAAI,EAAE,cAAI;IACzC,OAAA,IAAI,CAAC,IAAI,CAAC,GAAG,CAAC,UAAC,IAAY,IAAK,OAAA,CAAC,EAAC,IAAI,MAAA,EAAE,IAAI,EAAE,IAAI,CAAC,IAAI,CAAC,IAAI,CAAC,EAAC,CAAC,EAA/B,CAA+B,CAAC;AAAhE,CAAgE,CAAC"}

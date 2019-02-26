@@ -12,12 +12,12 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var Columns_1 = require("../Columns/Columns");
-var Totals_1 = require("../Totals/Totals");
+var __1 = require("..");
+var __2 = require("..");
 exports.TotalsTable = function (props) {
     return React.createElement("table", { id: props.id },
-        React.createElement(Columns_1.Columns, __assign({}, props)),
+        React.createElement(__1.Columns, __assign({}, props)),
         props.children,
-        React.createElement(Totals_1.Totals, __assign({}, props)));
+        React.createElement(__2.Totals, __assign({}, props)));
 };
 //# sourceMappingURL=TotalsTable.js.map

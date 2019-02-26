@@ -1,10 +1,12 @@
 import * as React from 'react';
 import {Data} from '../../../core/types';
-import {CatRow, TotalsTable} from '../elements';
+import {Row, TotalsTable} from '../elements';
+import {catFormatter} from '../elements/cats';
+import {HeaderRow} from '../elements/types';
 
 interface BaseProps {
   columns: string[];
-  rows: Array<{ name: string, data: Data<number> }>;
+  rows: HeaderRow[];
   totals: Data<number>;
 }
 
@@ -12,8 +14,11 @@ export const Base = ({columns, rows, totals}: BaseProps) =>
   <TotalsTable id='base' columns={columns} totals={totals}>
     <tbody>
     {rows.map(row =>
-      <CatRow key={`${row.name}-base`} columns={columns} row={row}>
-        <td>{row.name}</td>
-      </CatRow>)}
+      <Row key={`${row.name}-base`}
+           dataFormatter={catFormatter}
+           columns={columns}
+           data={row.data}>
+        <td className='row-header'>{row.name}</td>
+      </Row>)}
     </tbody>
   </TotalsTable>;

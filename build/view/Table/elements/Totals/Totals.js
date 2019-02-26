@@ -6,6 +6,6 @@ exports.Totals = function (_a) {
     return React.createElement("tfoot", null,
         React.createElement("tr", null,
             React.createElement("td", null, "Totals:"),
-            columns.map(function (column) { return React.createElement("td", { key: column + "-footer" }, totals[column]); })));
+            columns.map(function (column) { return React.createElement("td", { key: column + "-footer", "data-group": column, className: 'total' }, totals[column]); })));
 };
 //# sourceMappingURL=Totals.js.map

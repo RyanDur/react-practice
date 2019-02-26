@@ -13,8 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
 var React = require("react");
+var react_1 = require("react");
 var SelectableHeader = (function (_super) {
     __extends(SelectableHeader, _super);
     function SelectableHeader() {
@@ -30,10 +30,9 @@ var SelectableHeader = (function (_super) {
         }
     };
     SelectableHeader.prototype.render = function () {
-        var value = this.props.value;
-        return (React.createElement("td", null,
-            React.createElement("input", { type: 'checkbox', id: value.name + "-checkbox", checked: value.selected, value: value.name, onChange: this.getOnChange }),
-            React.createElement("label", { htmlFor: value.name + "-checkbox", className: 'row-header' }, value.name)));
+        var _a = this.props, value = _a.value, classes = _a.classes;
+        return (React.createElement("input", { type: 'checkbox', checked: value.selected, value: value.name, onChange: this.getOnChange },
+            React.createElement("label", { className: classes.join(' ') }, value.name)));
     };
     return SelectableHeader;
 }(react_1.Component));

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {AppProps} from './connector';
-import {Base} from './Table/Base';
 import {Selectable} from './Table/Selectable';
 
 export class App extends Component<AppProps> {
@@ -12,8 +11,7 @@ export class App extends Component<AppProps> {
   render() {
     return (
       <>
-        <Base/>
-        <Selectable defaultSelected={true}/>
+        <Selectable defaultSelected={true} />
       </>
     );
   }

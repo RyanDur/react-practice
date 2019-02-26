@@ -3,14 +3,14 @@ import {Dispatch} from 'redux';
 import {Data} from '../../../../core/types';
 import {AppState} from '../../../../types';
 import {columns} from '../../Base/store/selectors';
-import {SelectedRow} from '../../elements/types';
+import {SelectedHeaderRow} from '../../elements/types';
 import {Selectable} from '../Selectable';
 import {SelectableAction, toggleSelect} from './actions';
 import {selectableRows, selectedTotals} from './selectors';
 
 export interface SelectableStateProps {
   columns: string[];
-  rows: SelectedRow[];
+  rows: SelectedHeaderRow[];
   totals: Data<number>;
 }
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {CatRow, SelectableHeader, TotalsTable} from '../elements';
+import {Row, SelectableHeader, TotalsTable} from '../elements';
+import {catFormatter} from '../elements/cats';
 import {SelectableProps} from './store/connector';
 
 export interface ManuallyDefinedProps {
@@ -10,11 +11,19 @@ export const Selectable = ({totals, rows, toggleSelect, defaultSelected, columns
   <TotalsTable id='selectable' totals={totals} columns={columns}>
     <tbody>
     {rows.map(row =>
-      <CatRow key={`${row.name}-selectable`} columns={columns} row={row}>
-        <SelectableHeader
-          value={row}
-          handleSelect={toggleSelect}
-          defaultSelected={defaultSelected}/>
-      </CatRow>)}
+      <Row
+        key={`${row.name}-selectable`}
+        data={row.data}
+        columns={columns}
+        dataFormatter={catFormatter}>
+        <td>
+          <SelectableHeader
+            classes={['row-header']}
+            table={'selectable'}
+            value={row}
+            handleSelect={toggleSelect}
+            defaultSelected={defaultSelected}/>
+        </td>
+      </Row>)}
     </tbody>
   </TotalsTable>;

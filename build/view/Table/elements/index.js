@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var CatRow_1 = require("./CatRow/CatRow");
-exports.CatRow = CatRow_1.CatRow;
+var Row_1 = require("./Row/Row");
+exports.Row = Row_1.Row;
 var Columns_1 = require("./Columns/Columns");
 exports.Columns = Columns_1.Columns;
 var SelectableHeader_1 = require("./SelectableHeader/SelectableHeader");

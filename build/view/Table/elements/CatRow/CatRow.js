@@ -10,4 +10,4 @@ exports.CatRow = function (_a) {
             return React.createElement("td", { key: column, "data-group": column }, cats_1.cats[row.data[column]] || '—');
         }));
 };
-//# sourceMappingURL=CatRow.js.map
+//# sourceMappingURL=Row.js.map

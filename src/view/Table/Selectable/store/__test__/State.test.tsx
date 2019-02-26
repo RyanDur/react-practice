@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
-import {reducers} from '../../../../../core';
+import {reducers as core} from '../../../../../core';
 import {connectToData, socketAction} from '../../../../../core/action';
 import {socketMiddleware} from '../../../../../core/middleware';
 import {AppState} from '../../../../../types';
@@ -24,7 +24,7 @@ describe('selectable state', () => {
     store = createStore(combineReducers({
       selectable,
       base,
-      ...reducers
+      ...core
     }), applyMiddleware(socketMiddleware(clientConnector)));
     select = toggleSelect(store.dispatch);
     connectToData(store.dispatch);
