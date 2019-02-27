@@ -5,7 +5,7 @@ import {SelectedHeader} from '../types';
 interface SelectableHeaderProps {
   value: SelectedHeader;
   handleSelect: (selection: string) => void;
-  table: string;
+  id: string;
   defaultSelected?: boolean;
   classes?: string[];
 }
@@ -22,10 +22,10 @@ export class SelectableHeader extends Component<SelectableHeaderProps> {
   };
 
   render() {
-    const {value, classes, table} = this.props;
+    const {value, classes, id} = this.props;
     return (<>
       <input type='checkbox'
-             id={`${value.name}-checkbox-${table}`}
+             id={`${value.name}-checkbox-${id}`}
              checked={value.selected}
              value={value.name}
              onChange={this.getOnChange}/>

@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("./Table/elements/types");
+var types_1 = require("./Table/element/types");
 var sum = function (acc, num) {
     if (num === void 0) { num = 0; }
     return acc + num;

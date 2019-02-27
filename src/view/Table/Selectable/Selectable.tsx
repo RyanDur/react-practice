@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Row, SelectableHeader, TotalsTable} from '../element';
 import {catFormatter} from '../element/cats';
-import {SelectableProps} from './store/connector';
+import {SelectableProps} from './state/connector';
 
 export interface ManuallyDefinedProps {
   defaultSelected: boolean;
@@ -19,7 +19,7 @@ export const Selectable = ({totals, rows, toggleSelect, defaultSelected, columns
         <td>
           <SelectableHeader
             classes={['row-header']}
-            table={'selectable'}
+            id={'selectable'}
             value={row}
             handleSelect={toggleSelect}
             defaultSelected={defaultSelected}/>

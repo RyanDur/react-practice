@@ -1,7 +1,7 @@
 import {setup, TableData} from '../helpers';
 import testBrowser from '../mockBrowser';
 
-describe('the collapsible table', () => {
+describe('the collapsible id', () => {
   const {setupPage, tearDown} = testBrowser();
   let table: TableData;
 

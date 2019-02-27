@@ -1,4 +1,4 @@
-import {direction as Direction} from '../../Table/elements/types';
+import {direction as Direction} from '../../Table/element/types';
 
 export interface MenuDispatchProps {
   add: (side: Direction, column: string, columns: string[]) => void;

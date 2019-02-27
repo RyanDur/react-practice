@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
-var types_1 = require("../Table/elements/types");
+var types_1 = require("../Table/element/types");
 require("./Menu.css");
 var Menu = (function (_super) {
     __extends(Menu, _super);

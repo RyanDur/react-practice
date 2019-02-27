@@ -1,0 +1,1 @@
+{"version":3,"file":"reducer.js","sourceRoot":"","sources":["../../../../../src/view/Table/Collapsible/state/reducer.ts"],"names":[],"mappings":";;AAMA,IAAM,YAAY,GAAqB;IACrC,IAAI,EAAE,EAAE;CACT,CAAC;AAEW,QAAA,OAAO,GAAG,UACrB,KAAsC,EACtC,MAAiB;IADjB,sBAAA,EAAA,oBAAsC;IAGtC,QAAQ,MAAM,CAAC,IAAI,EAAE;QACrB;YACE,OAAO,KAAK,CAAC;KACd;AACH,CAAC,CAAC"}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {AppProps} from './connector';
-import {Selectable} from './Table/Selectable';
+import {Collapsible} from './Table/Collapsible';
 
 export class App extends Component<AppProps> {
   componentDidMount() {
@@ -11,7 +11,7 @@ export class App extends Component<AppProps> {
   render() {
     return (
       <>
-        <Selectable defaultSelected={true} />
+        <Collapsible />
       </>
     );
   }

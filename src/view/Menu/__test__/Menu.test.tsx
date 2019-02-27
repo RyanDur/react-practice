@@ -1,6 +1,6 @@
 import {mount, ReactWrapper} from 'enzyme';
 import * as React from 'react';
-import {direction} from '../../Table/elements/types';
+import {direction} from '../../Table/element/types';
 import {Menu} from '../Menu';
 import {ColumnName, MenuProps} from '../types';
 

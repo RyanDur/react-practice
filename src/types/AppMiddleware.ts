@@ -1,8 +1,5 @@
-import {Dispatch, MiddlewareAPI} from 'redux';
+import {Dispatch, Middleware} from 'redux';
 import {AppAction} from '../actions';
 import {AppState} from './AppState';
 
-export type AppMiddleware =
-  (store: MiddlewareAPI<Dispatch<AppAction>, AppState>) =>
-    (next: Dispatch<AppAction>) =>
-      (action: AppAction) => void;
+export type AppMiddleware = Middleware<any, AppState, Dispatch<AppAction>>

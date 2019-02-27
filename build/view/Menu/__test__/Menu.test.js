@@ -13,7 +13,7 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var enzyme_1 = require("enzyme");
 var React = require("react");
-var types_1 = require("../../Table/elements/types");
+var types_1 = require("../../Table/element/types");
 var Menu_1 = require("../Menu");
 describe('The Menu', function () {
     var props;

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {Data} from '../../../core/types';
-import {Row, TotalsTable} from '../element';
+import {CollapsibleRow, Row, TotalsTable, SelectableHeader} from '../element';
 import {catFormatter} from '../element/cats';
-import {CollapsibleRow} from '../element/types';
+import {CollapsedRow} from '../element/types';
 
-interface CollapsibleProps {
+export interface CollapsibleProps {
   columns: string[];
-  rows: CollapsibleRow[];
+  rows: CollapsedRow[];
   totals: Data<number>;
   toggleOpen: (selection: string) => void;
 }
@@ -14,12 +14,27 @@ interface CollapsibleProps {
 export const Collapsible = ({totals, rows, toggleOpen, columns}: CollapsibleProps) =>
   <TotalsTable id='collapsible' totals={totals} columns={columns}>
     <tbody>
-    {rows.map((row) =>
-      <Row key={`${row.name}-collapsible`}
-           dataFormatter={catFormatter}
-           columns={columns}
-           data={row.data}>
-        <td className='row-header'>{row.name}</td>
-      </Row>)}
+    {rows.map((row) => {
+      if (row.subRows) {
+        return <CollapsibleRow key={`${row.name}-collapsible`}
+                               dataFormatter={catFormatter}
+                               columns={columns}
+                               data={row.data}
+                               open={row.selected}
+                               subData={row.subRows}>
+          <td><SelectableHeader classes={['row-header']}
+                                handleSelect={toggleOpen}
+                                id={'collapsible'}
+                                value={row}/></td>
+        </CollapsibleRow>;
+      } else {
+        return <Row key={`${row.name}-collapsible`}
+                    dataFormatter={catFormatter}
+                    columns={columns}
+                    data={row.data}>
+          <td className='row-header'>{row.name}</td>
+        </Row>;
+      }
+    })}
     </tbody>
   </TotalsTable>;

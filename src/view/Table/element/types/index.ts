@@ -6,7 +6,7 @@ export {
 export {
   HeaderRow,
   SelectedHeaderRow,
-  CollapsibleRow
+  CollapsedRow
 } from './row';
 export {Columns} from './Columns';
 export {direction} from './direction';

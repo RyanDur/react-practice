@@ -1,7 +1,7 @@
 import testBrowser from '../mockBrowser';
 import {setup, TableData} from '../helpers';
 
-describe('the base table', () => {
+describe('the base id', () => {
   const {setupPage, tearDown} = testBrowser();
   let table: TableData;
 

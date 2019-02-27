@@ -15,7 +15,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
-var Base_1 = require("./Table/Base");
 var Selectable_1 = require("./Table/Selectable");
 var App = (function (_super) {
     __extends(App, _super);
@@ -27,7 +26,6 @@ var App = (function (_super) {
     };
     App.prototype.render = function () {
         return (React.createElement(React.Fragment, null,
-            React.createElement(Base_1.Base, null),
             React.createElement(Selectable_1.Selectable, { defaultSelected: true })));
     };
     return App;

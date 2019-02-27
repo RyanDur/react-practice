@@ -6,7 +6,7 @@ describe('normalizing the data', () => {
 
   it('should take the data and turn it into a row', () => {
     const row: Rows = {
-      foo: {fip: 4}
+      foo: {data: {fip: 4}}
     };
 
     const data: ResponseData[] = [{
@@ -24,8 +24,8 @@ describe('normalizing the data', () => {
 
   it('should take multiple data points and turn it into current state', () => {
     const row: Rows = {
-      foo: {fip: 4, fop: 5},
-      far: {fip: 3, fop: 1}
+      foo: {data: {fip: 4, fop: 5}},
+      far: {data: {fip: 3, fop: 1}}
     };
 
     const data = [
@@ -47,8 +47,8 @@ describe('normalizing the data', () => {
 
   it('should remove the row from the current ste if it is not in the new rows', () => {
     const currentState: Rows = {
-      foo: {fip: 4, fop: 5},
-      far: {fip: 3, fop: 1}
+      foo: {data: {fip: 4, fop: 5}},
+      far: {data: {fip: 3, fop: 1}}
     };
 
     const newData = [
@@ -65,8 +65,8 @@ describe('normalizing the data', () => {
 
   it('should remove the column that are no longer reflected in the new data', () => {
     const current: Rows = {
-      foo: {fip: 4, fop: 5},
-      far: {fip: 3, fop: 1}
+      foo: {data: {fip: 4, fop: 5}},
+      far: {data: {fip: 3, fop: 1}}
     };
 
     const data = [
@@ -88,7 +88,7 @@ describe('normalizing the data', () => {
 
   it('should handle undefined current state', () => {
     const current: Rows = {
-      foo: {fip: 4}
+      foo: {data: {fip: 4}}
     };
 
     expect(normalize(current, undefined)).toEqual({

@@ -1,5 +1,5 @@
-import {Data} from './Data';
+import {Row} from './Row';
 
 export interface Rows {
-  [s: string]: Data<number>;
+  [s: string]: Row;
 }

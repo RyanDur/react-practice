@@ -1,0 +1,452 @@
+export const jordan_closed = [
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Anna',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Travis',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Mendel',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Harrison',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Alex',
+    selected: false
+  },
+  {
+    data: {
+      another: 33,
+      bar: 6,
+      baz: 9,
+      bob: 12,
+      coo: 24,
+      cop: 30,
+      cor: 27,
+      far: 15,
+      faz: 18,
+      foo: 3,
+      fop: 21,
+      yet_another: 36
+    },
+    subRows: [
+      {
+        another: 11,
+        bar: 2,
+        baz: 3,
+        bob: 4,
+        coo: 8,
+        cop: 10,
+        cor: 9,
+        far: 5,
+        faz: 6,
+        foo: 1,
+        fop: 7,
+        yet_another: 12
+      },
+      {
+        another: 11,
+        bar: 2,
+        baz: 3,
+        bob: 4,
+        coo: 8,
+        cop: 10,
+        cor: 9,
+        far: 5,
+        faz: 6,
+        foo: 1,
+        fop: 7,
+        yet_another: 12
+      },
+      {
+        another: 11,
+        bar: 2,
+        baz: 3,
+        bob: 4,
+        coo: 8,
+        cop: 10,
+        cor: 9,
+        far: 5,
+        faz: 6,
+        foo: 1,
+        fop: 7,
+        yet_another: 12
+      }
+    ],
+    name: 'Jordan',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Mike',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Krishna',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Mohammad',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Paulina',
+    selected: false
+  }
+];
+export const jordan_open = [
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Anna',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Travis',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Mendel',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Harrison',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Alex',
+    selected: false
+  },
+  {
+    data: {
+      another: 33,
+      bar: 6,
+      baz: 9,
+      bob: 12,
+      coo: 24,
+      cop: 30,
+      cor: 27,
+      far: 15,
+      faz: 18,
+      foo: 3,
+      fop: 21,
+      yet_another: 36
+    },
+    subRows: [
+      {
+        another: 11,
+        bar: 2,
+        baz: 3,
+        bob: 4,
+        coo: 8,
+        cop: 10,
+        cor: 9,
+        far: 5,
+        faz: 6,
+        foo: 1,
+        fop: 7,
+        yet_another: 12
+      },
+      {
+        another: 11,
+        bar: 2,
+        baz: 3,
+        bob: 4,
+        coo: 8,
+        cop: 10,
+        cor: 9,
+        far: 5,
+        faz: 6,
+        foo: 1,
+        fop: 7,
+        yet_another: 12
+      },
+      {
+        another: 11,
+        bar: 2,
+        baz: 3,
+        bob: 4,
+        coo: 8,
+        cop: 10,
+        cor: 9,
+        far: 5,
+        faz: 6,
+        foo: 1,
+        fop: 7,
+        yet_another: 12
+      }
+    ],
+    name: 'Jordan',
+    selected: true
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Mike',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Krishna',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Mohammad',
+    selected: false
+  },
+  {
+    data: {
+      another: 11,
+      bar: 2,
+      baz: 3,
+      bob: 4,
+      coo: 8,
+      cop: 10,
+      cor: 9,
+      far: 5,
+      faz: 6,
+      foo: 1,
+      fop: 7,
+      yet_another: 12
+    },
+    name: 'Paulina',
+    selected: false
+  }
+];

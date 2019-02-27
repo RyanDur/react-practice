@@ -1,5 +1,5 @@
 import {Data} from '../core/types';
-import {Columns, direction as Direction} from './Table/elements/types';
+import {Columns, direction as Direction} from './Table/element/types';
 
 const sum = (acc: number, num: number = 0) => acc + num;
 

@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var enzyme_1 = require("enzyme");
 var React = require("react");
 var Selectable_1 = require("../Selectable");
-describe('selectable table', function () {
+describe('selectable id', function () {
     var mockProps = function () { return ({
         defaultSelected: false,
         columns: ['foo', 'bar'],
