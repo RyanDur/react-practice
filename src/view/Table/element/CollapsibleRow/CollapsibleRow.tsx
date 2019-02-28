@@ -9,17 +9,21 @@ interface CollapsibleRowProps {
   data: Data<number>;
   subData: Array<Data<number>>;
   dataFormatter: (data: number) => ReactNode;
+  handleOpen: () => void;
   open: boolean;
   children?: ReactNode | ReactNode[];
 }
 
-export const CollapsibleRow = ({open, columns, data, subData, children}: CollapsibleRowProps) => {
+export const CollapsibleRow = ({open, columns, data, subData, handleOpen, children}: CollapsibleRowProps) => {
   return <>
-    <Row columns={columns} data={data} dataFormatter={catFormatter}>
+    <Row handleClick={handleOpen}
+         columns={columns}
+         data={data}>
       {children}
     </Row>
     {open && subData.map((dataRow, index) => <Row
       key={`collapsible-${index}`}
+      handleClick={handleOpen}
       columns={columns}
       data={dataRow}
       dataFormatter={catFormatter}>

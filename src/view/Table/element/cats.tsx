@@ -13,7 +13,4 @@ export const cats = [
   <Emoji key={'😻'} label={'smiling cat with heart-eyes'} symbol={'😻'}/>
 ];
 
-export const catFormatter = (cat: number) => {
-  if (cat > 9) return cat;
-  return cats[cat] || '—';
-};
+export const catFormatter = (cat: number) => cats[cat] || '—';

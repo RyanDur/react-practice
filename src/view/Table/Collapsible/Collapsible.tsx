@@ -21,6 +21,7 @@ export const Collapsible = ({totals, rows, toggleOpen, columns}: CollapsibleProp
                                columns={columns}
                                data={row.data}
                                open={row.selected}
+                               handleOpen={() => toggleOpen(row.name)}
                                subData={row.subRows}>
           <td><SelectableHeader classes={['row-header']}
                                 handleSelect={toggleOpen}
