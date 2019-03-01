@@ -2,14 +2,14 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {AppState} from '../../../../types';
 import {columns, totals} from '../../Base/store/selectors';
-import {Collapsible} from '../Collapsible';
+import {Expandable} from '../Expandable';
 import {CollapsibleAction, toggleOpen} from './actions';
-import {collapsibleRows} from './selectors';
+import {expandableRows} from './selectors';
 
 export default connect((state: AppState) => ({
   columns: columns(state),
-  rows: collapsibleRows(state),
+  rows: expandableRows(state),
   totals: totals(state)
 }), (dispatch: Dispatch<CollapsibleAction>) => ({
   toggleOpen: toggleOpen(dispatch)
-}))(Collapsible);
+}))(Expandable);

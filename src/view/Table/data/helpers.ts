@@ -1,8 +1,7 @@
-import {merge, remove} from '../util/ObjectHelpers';
-import {sumColumns} from '../view/helpers';
+import {remove} from '../../../util/ObjectHelpers';
+import {sumColumns} from '../../helpers';
 import {Rows} from './types';
 import {ResponseData} from './types/DataResponse';
-import {Row} from './types/Row';
 
 const createStateFrom = ({newState}: { newState: ResponseData[] }): Rows =>
   newState.map(newRow => ({

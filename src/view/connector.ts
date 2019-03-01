@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Action, Dispatch} from 'redux';
-import {socketAction} from '../core/action';
 import App from './App';
+import {socketAction} from './Table/data/action';
 
 interface AppDispatchProps {
   connect: () => void;

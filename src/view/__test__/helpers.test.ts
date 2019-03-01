@@ -1,5 +1,5 @@
-import {Data, Rows} from '../../core/types';
 import {sumColumns, union} from '../helpers';
+import {Data} from '../Table/data/types';
 
 describe('helpers', () => {
 

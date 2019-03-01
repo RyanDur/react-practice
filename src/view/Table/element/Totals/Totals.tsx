@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Data} from '../../../../core/types';
+import {Data} from '../../data/types';
 
 interface TotalProps {
   columns: string[];

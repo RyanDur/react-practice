@@ -2,18 +2,18 @@ import {AppAction} from '../../../../actions';
 import {toggle} from '../../../../util/helpers';
 import {collapsibleAction} from './actions';
 
-export interface CollapsibleState {
+export interface ExpandableState {
   open: string[];
 }
 
-const defaultState: CollapsibleState = {
+const defaultState: ExpandableState = {
   open: []
 };
 
 export const reducer = (
-  state: CollapsibleState = defaultState,
+  state: ExpandableState = defaultState,
   action: AppAction
-): CollapsibleState => {
+): ExpandableState => {
   switch (action.type) {
   case collapsibleAction.TOGGLE_OPEN:
     return {open: toggle(action.name, state.open)};

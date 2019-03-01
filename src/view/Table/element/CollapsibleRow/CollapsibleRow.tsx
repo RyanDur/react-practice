@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
 import * as React from 'react';
 import {Row} from '..';
-import {Data} from '../../../../core/types';
+import {Data} from '../../data/types';
 import {catFormatter} from '../cats';
 
 interface CollapsibleRowProps {

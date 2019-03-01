@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ReactNode} from 'react';
-import {Data} from '../../../../core/types';
+import {Data} from '../../data/types';
 
 interface CatRowProps {
   children: ReactNode | ReactNode[];

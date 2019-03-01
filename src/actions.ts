@@ -1,4 +1,3 @@
 import {ViewAction} from './view';
-import {CoreAction} from './core';
 
-export type AppAction = ViewAction | CoreAction;
+export type AppAction = ViewAction;

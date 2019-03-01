@@ -15,12 +15,12 @@ var enzyme_1 = require("enzyme");
 var React = require("react");
 var element_1 = require("../../element");
 var Collapsible_1 = require("../Collapsible");
-describe('collapsible', function () {
+describe('expandable', function () {
     var collapsible = function (props) { return enzyme_1.mount(React.createElement(Collapsible_1.Collapsible, __assign({}, props))); };
     it('should default to closed', function () {
         expect(collapsible(mockProps()).find(element_1.Row).length).toBe(4);
     });
-    it('should only have as many collapsible rows as are needed', function () {
+    it('should only have as many expandable rows as are needed', function () {
         var rows = [
             { name: 'Travis', selected: false, data: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
             { name: 'Chelsea', selected: false, data: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
@@ -51,7 +51,7 @@ describe('collapsible', function () {
     });
     it('should allow a user to select a row', function () {
         var props = mockProps();
-        collapsible(props).find('#Travis-checkbox-collapsible')
+        collapsible(props).find('#Travis-checkbox-expandable')
             .simulate('change');
         expect(props.toggleOpen).toHaveBeenCalledWith('Travis');
     });
@@ -70,4 +70,4 @@ var mockProps = function (_a) {
     ] : _d, _e = _b.totals, totals = _e === void 0 ? { foo: 2, bar: 3 } : _e, _f = _b.toggleOpen, toggleOpen = _f === void 0 ? jest.fn() : _f;
     return ({ columns: columns, rows: rows, totals: totals, toggleOpen: toggleOpen });
 };
-//# sourceMappingURL=Collapsible.test.js.map
+//# sourceMappingURL=Expandable.test.js.map

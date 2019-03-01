@@ -20,7 +20,7 @@ var Base_1 = require("../../../Base");
 var actions_1 = require("../actions");
 var reducer_1 = require("../reducer");
 var selectors_1 = require("../selectors");
-describe('collapsible table state', function () {
+describe('expandable table state', function () {
     var store;
     var open;
     var clientConnector = jest.fn(function (fn) { return fn(initialState_1.initialState); });

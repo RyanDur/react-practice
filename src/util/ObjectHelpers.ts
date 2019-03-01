@@ -1,4 +1,4 @@
-import {Data} from '../core/types';
+import {Data} from '../view/Table/data/types';
 
 export const merge = <T>(
   left: Data<T> = {},

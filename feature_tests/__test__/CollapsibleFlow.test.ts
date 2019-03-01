@@ -1,12 +1,12 @@
 import {setup, TableData} from '../helpers';
 import testBrowser from '../mockBrowser';
 
-describe('the collapsible id', () => {
+describe('the expandable id', () => {
   const {setupPage, tearDown} = testBrowser();
   let table: TableData;
 
   beforeEach(async () => {
-    table = setup(await setupPage())('collapsible');
+    table = setup(await setupPage())('expandable');
   });
 
   afterEach(async () => {

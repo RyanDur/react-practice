@@ -1,4 +1,4 @@
-import {DataResponse} from '../../../core/types/DataResponse';
+import {DataResponse} from '../data/types';
 
 export const initialState: DataResponse = {
   data: [{

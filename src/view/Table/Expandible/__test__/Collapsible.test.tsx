@@ -1,17 +1,17 @@
 import {mount} from 'enzyme';
 import * as React from 'react';
 import {CollapsibleRow, Row} from '../../element';
-import {Collapsible, CollapsibleProps} from '../Collapsible';
+import {Expandable, CollapsibleProps} from '../Expandable';
 
-describe('collapsible', () => {
+describe('expandable', () => {
 
-  const collapsible = (props: CollapsibleProps) => mount(<Collapsible {...props}/>);
+  const collapsible = (props: CollapsibleProps) => mount(<Expandable {...props}/>);
 
   it('should default to closed', () => {
     expect(collapsible(mockProps()).find(Row).length).toBe(4);
   });
 
-  it('should only have as many collapsible rows as are needed', () => {
+  it('should only have as many expandable rows as are needed', () => {
     const rows = [
       {name: 'Travis', selected: false, data: {foo: 1, bar: 2}, subRows: [{foo: 0, bar: 2}, {foo: 1, bar: 0}]},
       {name: 'Chelsea', selected: false, data: {foo: 1, bar: 2}, subRows: [{foo: 0, bar: 2}, {foo: 1, bar: 0}]},
@@ -45,7 +45,7 @@ describe('collapsible', () => {
 
   it('should allow a user to select a row', () => {
     const props = mockProps();
-    collapsible(props).find('#Travis-checkbox-collapsible')
+    collapsible(props).find('#Travis-checkbox-expandable')
       .simulate('change');
 
     expect(props.toggleOpen).toHaveBeenCalledWith('Travis');

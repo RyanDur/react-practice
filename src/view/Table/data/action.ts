@@ -1,5 +1,5 @@
 import {Action, Dispatch} from 'redux';
-import {AppAction} from '../actions';
+import {AppAction} from '../../../actions';
 import {dataAction} from './types';
 import {DataResponse, ResponseData} from './types/DataResponse';
 

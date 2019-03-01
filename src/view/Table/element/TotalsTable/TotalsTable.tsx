@@ -1,8 +1,8 @@
 import {ReactNode} from 'react';
 import * as React from 'react';
-import {Data} from '../../../../core/types';
 import {Columns} from '..';
 import {Totals} from '..';
+import {Data} from '../../data/types';
 
 interface TotalsTableProps {
   columns: string[];

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Data} from '../../../core/types';
+import {Data} from '../data/types';
 import {CollapsibleRow, Row, TotalsTable, SelectableHeader} from '../element';
 import {catFormatter} from '../element/cats';
 import {CollapsedRow} from '../element/types';
@@ -11,7 +11,7 @@ export interface CollapsibleProps {
   toggleOpen: (selection: string) => void;
 }
 
-export const Collapsible = ({totals, rows, toggleOpen, columns}: CollapsibleProps) =>
+export const Expandable = ({totals, rows, toggleOpen, columns}: CollapsibleProps) =>
   <TotalsTable id='collapsible' totals={totals} columns={columns}>
     <tbody>
     {rows.map((row) => {
@@ -25,7 +25,7 @@ export const Collapsible = ({totals, rows, toggleOpen, columns}: CollapsibleProp
                                subData={row.subRows}>
           <td><SelectableHeader classes={['row-header']}
                                 handleSelect={toggleOpen}
-                                id={'collapsible'}
+                                id={'expandable'}
                                 value={row}/></td>
         </CollapsibleRow>;
       } else {

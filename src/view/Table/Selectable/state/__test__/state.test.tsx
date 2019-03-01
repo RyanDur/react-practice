@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
-import {reducers as core} from '../../../../../core';
-import {connectToData, socketAction} from '../../../../../core/action';
-import {socketMiddleware} from '../../../../../core/middleware';
 import {AppState} from '../../../../../types';
 import {initialState} from '../../../__test__/initialState';
 import {base} from '../../../Base';
+import {core} from '../../../data';
+import {connectToData, socketAction} from '../../../data/action';
+import {socketMiddleware} from '../../../data/middleware';
+import {DataResponse} from '../../../data/types';
 import {SelectableAction, toggleSelect} from '../actions';
 import {selectable} from '../index';
 import {selectableRows} from '../selectors';
-import {DataResponse} from '../../../../../core/types/DataResponse';
 
 describe('selectable state', () => {
   let store: Store;
@@ -24,7 +24,7 @@ describe('selectable state', () => {
     store = createStore(combineReducers({
       selectable,
       base,
-      ...core
+      core
     }), applyMiddleware(socketMiddleware(clientConnector)));
     select = toggleSelect(store.dispatch);
     connectToData(store.dispatch);
