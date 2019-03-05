@@ -11,18 +11,18 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var action_1 = require("./action");
 var helpers_1 = require("./helpers");
-var types_1 = require("./types");
 var defaultState = {
-    rows: {},
-    rowNames: [],
+    table: {},
+    rows: [],
     columns: []
 };
 exports.reducer = function (state, action) {
     if (state === void 0) { state = defaultState; }
     switch (action.type) {
-        case types_1.dataAction.DATA:
-            return __assign({}, state, { rows: helpers_1.normalize(state.rows, action.response.rows), rowNames: action.response.rowNames, columns: action.response.columns });
+        case action_1.dataAction.DATA:
+            return __assign({}, state, { table: helpers_1.reconcile(state.table, action), rows: action.rowNames, columns: action.columnNames });
         default:
             return state;
     }

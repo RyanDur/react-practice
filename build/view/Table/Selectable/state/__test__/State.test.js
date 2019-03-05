@@ -41,4 +41,4 @@ describe('selectable state', function () {
         expect(selected(store.getState())).toEqual([]);
     });
 });
-//# sourceMappingURL=State.test.js.map
+//# sourceMappingURL=state.test.js.map

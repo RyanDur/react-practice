@@ -43,7 +43,7 @@ export class DropDown extends Component<{ children?: ReactNode }> {
       </div>
       <div
         className='container'
-        style={{height: this.state.height}}
+        style={{height: this.state.height,}}
         onMouseLeave={this.handleBlur}>
         {this.props.children}
       </div>

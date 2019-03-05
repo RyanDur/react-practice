@@ -8,12 +8,12 @@ exports.Expandable = function (_a) {
     return React.createElement(element_1.TotalsTable, { id: 'collapsible', totals: totals, columns: columns },
         React.createElement("tbody", null, rows.map(function (row) {
             if (row.subRows) {
-                return React.createElement(element_1.CollapsibleRow, { key: row.name + "-collapsible", dataFormatter: cats_1.catFormatter, columns: columns, data: row.data, open: row.selected, handleOpen: function () { return toggleOpen(row.name); }, subData: row.subRows },
+                return React.createElement(element_1.CollapsibleRow, { key: row.name, dataFormatter: cats_1.catFormatter, columns: columns, data: row.data, open: row.selected, handleOpen: function () { return toggleOpen(row.name); }, subData: row.subRows },
                     React.createElement("td", null,
-                        React.createElement(element_1.SelectableHeader, { classes: ['row-header'], handleSelect: toggleOpen, id: 'expandable', value: row })));
+                        React.createElement(element_1.Select, { classes: ['row-header'], handleSelect: toggleOpen, id: 'expandable', value: row })));
             }
             else {
-                return React.createElement(element_1.Row, { key: row.name + "-collapsible", dataFormatter: cats_1.catFormatter, columns: columns, data: row.data },
+                return React.createElement(element_1.Row, { key: row.name, dataFormatter: cats_1.catFormatter, columns: columns, data: row.data },
                     React.createElement("td", { className: 'row-header' }, row.name));
             }
         })));

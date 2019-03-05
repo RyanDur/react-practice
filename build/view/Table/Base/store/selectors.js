@@ -7,10 +7,10 @@ exports.columns = function (_a) {
 };
 exports.rows = function (_a) {
     var base = _a.base, data = _a.data;
-    return base.rowNames.map(function (name) { return ({ name: name, rows: data.rows[name].row }); });
+    return base.rowNames.map(function (row) { return ({ name: row, data: data.table[row].data }); });
 };
 exports.totals = function (_a) {
     var base = _a.base, data = _a.data;
-    return helpers_1.sumColumns(base.rowNames.map(function (name) { return data.rows[name].row; }), base.columns);
+    return helpers_1.sumColumns(base.rowNames.map(function (row) { return data.table[row].data; }), base.columns);
 };
 //# sourceMappingURL=selectors.js.map

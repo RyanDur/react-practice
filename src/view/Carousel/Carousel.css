@@ -1,0 +1,22 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  & .window {
+    position: absolute;
+
+    &.top {
+      z-index: 3;
+    }
+
+    &.middle {
+      z-index: 2;
+    }
+
+    &.bottom {
+      z-index: 1;
+    }
+  }
+}

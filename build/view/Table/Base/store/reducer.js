@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("../../data/types");
+var action_1 = require("../../data/action");
 var defaultState = {
     columns: [],
     rowNames: []
@@ -19,8 +19,8 @@ var defaultState = {
 exports.reducer = function (state, action) {
     if (state === void 0) { state = defaultState; }
     switch (action.type) {
-        case types_1.dataAction.DATA:
-            return __assign({}, state, { columns: action.response.columns, rowNames: action.response.rowNames });
+        case action_1.dataAction.DATA:
+            return __assign({}, state, { columns: action.columnNames, rowNames: action.rowNames });
         default:
             return state;
     }

@@ -2,6 +2,7 @@ import {ReactNode} from 'react';
 import * as React from 'react';
 import {Columns} from '..';
 import {Totals} from '..';
+import {Classes} from '../../../types/Classes';
 import {Data} from '../../data/types';
 
 interface TotalsTableProps {
@@ -11,8 +12,8 @@ interface TotalsTableProps {
   id: string;
 }
 
-export const TotalsTable = (props: TotalsTableProps) =>
-  <table id={props.id}>
+export const TotalsTable = (props: TotalsTableProps & Classes) =>
+  <table id={props.id} className={props.classes.join(' ')}>
     <Columns {...props}/>
     {props.children}
     <Totals {...props}/>

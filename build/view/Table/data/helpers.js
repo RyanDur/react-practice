@@ -14,33 +14,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ObjectHelpers_1 = require("../../../util/ObjectHelpers");
 var helpers_1 = require("../../helpers");
 var createStateFrom = function (_a) {
-    var newState = _a.newState;
-    return newState.map(function (newRow) {
+    var data = _a.data, rowNames = _a.rowNames, columnNames = _a.columnNames;
+    return data.map(function (newRow) {
         var _a;
         return (_a = {},
-            _a[newRow.name] = { row: ObjectHelpers_1.remove(newRow, 'name') },
+            _a[newRow.name] = { data: ObjectHelpers_1.remove(newRow, 'name') },
             _a);
-    }).reduce(function (rows, row) {
+    }).reduce(function (table, subTable) {
         var _a;
-        var name = Object.keys(row)[0];
-        var names = Object.keys(rows);
-        var columns = Object.keys(row[name].row);
-        if (names.includes(name)) {
-            return __assign({}, rows, (_a = {},
-                _a[name] = {
-                    rows: helpers_1.sumColumns([rows[name].row, row[name].row], columns),
-                    subRows: rows[name].subRows
-                },
-                _a));
+        var rowName = Object.keys(subTable)[0];
+        if (Object.keys(table).includes(rowName)) {
+            var subRows = (table[rowName].subRows || [table[rowName].data]).concat([subTable[rowName].data]);
+            return __assign({}, table, (_a = {}, _a[rowName] = { data: helpers_1.sumColumns(subRows, columnNames), subRows: subRows }, _a));
         }
-        return __assign({}, rows, row);
+        return __assign({}, table, subTable);
     }, {});
 };
-exports.normalize = function (currentState, newState) {
+exports.reconcile = function (currentState, newState) {
     if (currentState === void 0) { currentState = {}; }
-    if (newState === void 0) { newState = []; }
-    return (newState.length === 0) ?
-        currentState :
-        createStateFrom({ newState: newState });
+    if (newState === void 0) { newState = { data: [], rowNames: [], columnNames: [] }; }
+    return (newState.data.length === 0) ?
+        currentState : createStateFrom(newState);
 };
 //# sourceMappingURL=helpers.js.map

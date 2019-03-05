@@ -13,9 +13,5 @@ exports.cats = [
     React.createElement(Emoji_1.Emoji, { key: '😹', label: 'cat with tears of joy', symbol: '😹' }),
     React.createElement(Emoji_1.Emoji, { key: '😻', label: 'smiling cat with heart-eyes', symbol: '😻' })
 ];
-exports.catFormatter = function (cat) {
-    if (cat > 9)
-        return cat;
-    return exports.cats[cat] || '—';
-};
+exports.catFormatter = function (cat) { return exports.cats[+("" + cat)[0]] || '—'; };
 //# sourceMappingURL=cats.js.map

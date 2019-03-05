@@ -1,12 +1,13 @@
 import * as React from 'react';
+import {Classes} from '../../types/Classes';
 import {CollapsibleRow, Row, Select, TotalsTable} from '../element';
 import {catFormatter} from '../element/cats';
 import {ExpandableDispatchProps, ExpandableStateProps} from './state/connector';
 
 export type ExpandableProps = ExpandableStateProps & ExpandableDispatchProps;
 
-export const Expandable = ({totals, rows, toggleOpen, columns}: ExpandableProps) =>
-  <TotalsTable id='collapsible' totals={totals} columns={columns}>
+export const Expandable = ({totals, rows, toggleOpen, columns, classes}: ExpandableProps & Classes) =>
+  <TotalsTable id='collapsible' totals={totals} columns={columns} classes={classes}>
     <tbody>
     {rows.map((row) => {
       if (row.subRows) {

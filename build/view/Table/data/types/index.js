@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var dataAction_1 = require("./dataAction");
-exports.dataAction = dataAction_1.dataAction;
+var DataResponse_1 = require("./DataResponse");
+exports.ValidateDataResponse = DataResponse_1.ValidateDataResponse;
 //# sourceMappingURL=index.js.map
