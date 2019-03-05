@@ -7,7 +7,7 @@ export const Base = ({columns, rows, totals}: BaseProps) =>
   <TotalsTable id='base' columns={columns} totals={totals}>
     <tbody>
     {rows.map(row =>
-      <Row key={`${row.name}-base`}
+      <Row key={row.name}
            dataFormatter={catFormatter}
            columns={columns}
            data={row.data}>

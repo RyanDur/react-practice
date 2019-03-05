@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {CollapsibleRow, Row, SelectableHeader, TotalsTable} from '../element';
+import {CollapsibleRow, Row, Select, TotalsTable} from '../element';
 import {catFormatter} from '../element/cats';
 import {ExpandableDispatchProps, ExpandableStateProps} from './state/connector';
 
@@ -10,20 +10,20 @@ export const Expandable = ({totals, rows, toggleOpen, columns}: ExpandableProps)
     <tbody>
     {rows.map((row) => {
       if (row.subRows) {
-        return <CollapsibleRow key={`${row.name}-collapsible`}
+        return <CollapsibleRow key={row.name}
                                dataFormatter={catFormatter}
                                columns={columns}
                                data={row.data}
                                open={row.selected}
                                handleOpen={() => toggleOpen(row.name)}
                                subData={row.subRows}>
-          <td><SelectableHeader classes={['row-header']}
-                                handleSelect={toggleOpen}
-                                id={'expandable'}
-                                value={row}/></td>
+          <td><Select classes={['row-header']}
+                      handleSelect={toggleOpen}
+                      id={'expandable'}
+                      value={row}/></td>
         </CollapsibleRow>;
       } else {
-        return <Row key={`${row.name}-collapsible`}
+        return <Row key={row.name}
                     dataFormatter={catFormatter}
                     columns={columns}
                     data={row.data}>

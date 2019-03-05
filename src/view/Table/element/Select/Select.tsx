@@ -10,7 +10,7 @@ interface SelectableHeaderProps {
   classes?: string[];
 }
 
-export class SelectableHeader extends Component<SelectableHeaderProps> {
+export class Select extends Component<SelectableHeaderProps> {
   componentDidMount(): void {
     if (this.props.defaultSelected) {
       this.props.handleSelect(this.props.value.name);

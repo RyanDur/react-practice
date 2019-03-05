@@ -1,6 +1,6 @@
 import {Row} from './Row/Row';
 import {Columns} from './Columns/Columns';
-import {SelectableHeader} from './SelectableHeader/SelectableHeader';
+import {Select} from './Select/Select';
 import {Totals} from './Totals/Totals';
 import {TotalsTable} from './TotalsTable/TotalsTable';
 import {CollapsibleRow} from './CollapsibleRow/CollapsibleRow';
@@ -8,7 +8,7 @@ import {CollapsibleRow} from './CollapsibleRow/CollapsibleRow';
 export {
   Row,
   Columns,
-  SelectableHeader,
+  Select,
   TotalsTable,
   Totals,
   CollapsibleRow
