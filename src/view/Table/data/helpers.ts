@@ -1,29 +1,24 @@
 import {remove} from '../../../util/ObjectHelpers';
 import {sumColumns} from '../../helpers';
-import {Rows} from './types';
-import {ResponseData} from './types/DataResponse';
+import {DataResponse, Table} from './types';
+import {RowData} from './types/DataResponse';
 
-const createStateFrom = ({newState}: { newState: ResponseData[] }): Rows =>
-  newState.map(newRow => ({
+const createStateFrom = ({data, rowNames, columnNames}: DataResponse): Table =>
+  data.map((newRow: RowData) => ({
     [newRow.name]: {data: remove(newRow, 'name')}
-  })).reduce((rows: Rows, row: Rows) => {
-    const name = Object.keys(row)[0];
-    const names = Object.keys(rows);
-    const columns = Object.keys(row[name].data);
-    if (names.includes(name)) {
-      const subData = [...(rows[name].subData || [rows[name].data]), row[name].data];
+  })).reduce((table: Table, subTable: Table) => {
+    const rowName = Object.keys(subTable)[0];
+    if (Object.keys(table).includes(rowName)) {
+      const subRows = [...(table[rowName].subRows || [table[rowName].data]), subTable[rowName].data];
       return {
-        ...rows, ...{[name]: {data: sumColumns(subData, columns), subData}
-        }
+        ...table, [rowName]: {data: sumColumns(subRows, columnNames), subRows}
       };
     }
-    return {...rows, ...row};
+    return {...table, ...subTable};
   }, {});
 
-export const normalize = (
-  currentState: Rows = {},
-  newState: ResponseData[] = []
-): Rows =>
-  (newState.length === 0) ?
-    currentState :
-    createStateFrom({newState});
+export const reconcile = (
+  currentState: Table = {},
+  newState: DataResponse = {data: [], rowNames: [], columnNames: []}
+) => (newState.data.length === 0) ?
+  currentState : createStateFrom(newState);

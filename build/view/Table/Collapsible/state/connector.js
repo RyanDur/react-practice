@@ -7,7 +7,7 @@ var actions_1 = require("./actions");
 var selectors_2 = require("./selectors");
 exports.default = react_redux_1.connect(function (state) { return ({
     columns: selectors_1.columns(state),
-    rows: selectors_2.collapsibleRows(state),
+    rowNames: selectors_2.collapsibleRows(state),
     totals: selectors_1.totals(state)
 }); }, function (dispatch) { return ({
     toggleOpen: actions_1.toggleOpen(dispatch)

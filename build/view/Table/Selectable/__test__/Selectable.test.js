@@ -24,7 +24,7 @@ describe('selectable id', function () {
     }); };
     it('should update the selection if default is true', function () {
         var props = mockProps();
-        enzyme_1.mount(React.createElement(Selectable_1.Selectable, __assign({}, __assign({}, props, { rows: [{ name: 'Ryan', data: { foo: 1, bar: 2 }, selected: false }], defaultSelected: true }))));
+        enzyme_1.mount(React.createElement(Selectable_1.Selectable, __assign({}, __assign({}, props, { rowNames: [{ name: 'Ryan', rows: { foo: 1, bar: 2 }, selected: false }], defaultSelected: true }))));
         expect(props.toggleSelect).toBeCalledTimes(1);
         expect(props.toggleSelect).toBeCalledWith('Ryan');
     });

@@ -1,4 +1,4 @@
-import {Data} from '../src/core/types';
+import {Data} from '../src/data/types';
 
 interface FakeData extends Data<any> {
   name: string;

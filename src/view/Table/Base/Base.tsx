@@ -1,14 +1,7 @@
 import * as React from 'react';
-import {Data} from '../data/types';
 import {Row, TotalsTable} from '../element';
 import {catFormatter} from '../element/cats';
-import {HeaderRow} from '../element/types';
-
-interface BaseProps {
-  columns: string[];
-  rows: HeaderRow[];
-  totals: Data<number>;
-}
+import {BaseProps} from './store/connector';
 
 export const Base = ({columns, rows, totals}: BaseProps) =>
   <TotalsTable id='base' columns={columns} totals={totals}>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component} from 'react';
+import {Component, ErrorInfo} from 'react';
 import {SelectedHeader} from '../types';
 
 interface SelectableHeaderProps {
@@ -20,6 +20,10 @@ export class SelectableHeader extends Component<SelectableHeaderProps> {
   getOnChange = () => {
     this.props.handleSelect(this.props.value.name);
   };
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.log(error.message);
+  }
 
   render() {
     const {value, classes, id} = this.props;

@@ -1,12 +1,12 @@
 export {
   Row,
   Selected,
-  Collapsible
+  Expandable
 } from './base';
 export {
   HeaderRow,
   SelectedHeaderRow,
-  CollapsedRow
+  ExpandableRow
 } from './row';
 export {Columns} from './Columns';
 export {direction} from './direction';

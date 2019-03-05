@@ -6,11 +6,11 @@ exports.columns = function (_a) {
     return base.columns;
 };
 exports.rows = function (_a) {
-    var base = _a.base, core = _a.core;
-    return base.rows.map(function (name) { return ({ name: name, data: core.data[name] }); });
+    var base = _a.base, data = _a.data;
+    return base.rowNames.map(function (name) { return ({ name: name, rows: data.rows[name].row }); });
 };
 exports.totals = function (_a) {
-    var base = _a.base, core = _a.core;
-    return helpers_1.sumColumns(base.rows.map(function (name) { return core.data[name]; }), base.columns);
+    var base = _a.base, data = _a.data;
+    return helpers_1.sumColumns(base.rowNames.map(function (name) { return data.rows[name].row; }), base.columns);
 };
 //# sourceMappingURL=selectors.js.map

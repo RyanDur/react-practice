@@ -15,7 +15,7 @@ describe('selectable id', () => {
   it('should update the selection if default is true', () => {
     const props = mockProps();
     mount(<Selectable{...{...props,
-      rows: [{name: 'Ryan', data: {foo: 1, bar: 2}, selected: false}],
+      rowNames: [{name: 'Ryan', rows: {foo: 1, bar: 2}, selected: false}],
       defaultSelected: true
     }} />);
 

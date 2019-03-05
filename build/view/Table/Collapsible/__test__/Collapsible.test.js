@@ -22,31 +22,31 @@ describe('expandable', function () {
     });
     it('should only have as many expandable rows as are needed', function () {
         var rows = [
-            { name: 'Travis', selected: false, data: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
-            { name: 'Chelsea', selected: false, data: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
-            { name: 'Caren', selected: false, data: { foo: 2, bar: 3 } }
+            { name: 'Travis', selected: false, rows: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
+            { name: 'Chelsea', selected: false, rows: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
+            { name: 'Caren', selected: false, rows: { foo: 2, bar: 3 } }
         ];
-        expect(collapsible(mockProps({ rows: rows }))
+        expect(collapsible(mockProps({ rowNames: rows }))
             .find(element_1.CollapsibleRow).length).toBe(2);
     });
     it('should be able to expand a row', function () {
         var rows = [
-            { name: 'Travis', selected: false, data: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
-            { name: 'Caren', selected: false, data: { foo: 2, bar: 3 } }
+            { name: 'Travis', selected: false, rows: { foo: 1, bar: 2 }, subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }] },
+            { name: 'Caren', selected: false, rows: { foo: 2, bar: 3 } }
         ];
-        expect(collapsible(mockProps({ rows: rows }))
+        expect(collapsible(mockProps({ rowNames: rows }))
             .find(element_1.Row).length).toBe(2);
         var nextRows = [
             {
-                name: 'Travis', selected: true, data: { foo: 1, bar: 2 }, subRows: [
+                name: 'Travis', selected: true, rows: { foo: 1, bar: 2 }, subRows: [
                     { foo: 0, bar: 2 },
                     { foo: 1, bar: 2 },
                     { foo: 1, bar: 0 }
                 ]
             },
-            { name: 'Caren', selected: false, data: { foo: 2, bar: 3 } }
+            { name: 'Caren', selected: false, rows: { foo: 2, bar: 3 } }
         ];
-        expect(collapsible(mockProps({ rows: nextRows }))
+        expect(collapsible(mockProps({ rowNames: nextRows }))
             .find(element_1.Row).length).toBe(5);
     });
     it('should allow a user to select a row', function () {
@@ -57,17 +57,17 @@ describe('expandable', function () {
     });
 });
 var mockProps = function (_a) {
-    var _b = _a === void 0 ? {} : _a, _c = _b.columns, columns = _c === void 0 ? ['foo', 'bar'] : _c, _d = _b.rows, rows = _d === void 0 ? [
+    var _b = _a === void 0 ? {} : _a, _c = _b.columns, columns = _c === void 0 ? ['foo', 'bar'] : _c, _d = _b.rowNames, rows = _d === void 0 ? [
         {
             name: 'Travis',
             selected: false,
-            data: { foo: 1, bar: 2 },
+            rows: { foo: 1, bar: 2 },
             subRows: [{ foo: 0, bar: 2 }, { foo: 1, bar: 0 }]
         },
-        { name: 'Caren', selected: false, data: { foo: 2, bar: 3 } },
-        { name: 'Mike', selected: false, data: { foo: 2, bar: 3 } },
-        { name: 'Joey', selected: false, data: { foo: 2, bar: 3 } }
+        { name: 'Caren', selected: false, rows: { foo: 2, bar: 3 } },
+        { name: 'Mike', selected: false, rows: { foo: 2, bar: 3 } },
+        { name: 'Joey', selected: false, rows: { foo: 2, bar: 3 } }
     ] : _d, _e = _b.totals, totals = _e === void 0 ? { foo: 2, bar: 3 } : _e, _f = _b.toggleOpen, toggleOpen = _f === void 0 ? jest.fn() : _f;
-    return ({ columns: columns, rows: rows, totals: totals, toggleOpen: toggleOpen });
+    return ({ columns: columns, rowNames: rows, totals: totals, toggleOpen: toggleOpen });
 };
 //# sourceMappingURL=Expandable.test.js.map

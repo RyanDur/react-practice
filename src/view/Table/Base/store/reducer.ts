@@ -1,14 +1,14 @@
 import {AppAction} from '../../../../actions';
-import {dataAction} from '../../data/types';
+import {dataAction} from '../../data/action';
 
 export interface BaseState {
   columns: string[];
-  rows: string[];
+  rowNames: string[];
 }
 
 const defaultState: BaseState = {
   columns: [],
-  rows: []
+  rowNames: []
 };
 
 export const reducer = (
@@ -17,7 +17,7 @@ export const reducer = (
 ): BaseState => {
   switch (action.type) {
   case dataAction.DATA:
-    return {...state, columns: action.response.columns, rows: action.response.rows};
+    return {...state, columns: action.columnNames, rowNames: action.rowNames};
   default:
     return state;
   }

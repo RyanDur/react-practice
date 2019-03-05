@@ -1,7 +1,7 @@
-import {Rows} from './Rows';
+import {Table} from './Table';
 
 export interface DataState {
-  data: Rows;
+  table: Table;
   columns: string[];
   rows: string[];
 }

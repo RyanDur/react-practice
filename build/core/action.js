@@ -7,12 +7,12 @@ var socketAction;
     socketAction["STOP"] = "STOP";
 })(socketAction = exports.socketAction || (exports.socketAction = {}));
 exports.connectToData = function (dispatch) { return function (_a) {
-    var data = _a.data, columnNames = _a.columnNames, rowNames = _a.rowNames;
+    var data = _a.rows, columnNames = _a.columnNames, rowNames = _a.rowNames;
     return dispatch({
         type: types_1.dataAction.DATA, response: {
-            data: data,
+            rows: data,
             columns: columnNames,
-            rows: rowNames
+            rowNames: rowNames
         }
     });
 }; };

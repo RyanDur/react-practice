@@ -1,5 +1,5 @@
 import {Row} from './Row';
 
-export interface Rows {
+export interface Table {
   [s: string]: Row;
 }

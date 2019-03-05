@@ -1,11 +1,11 @@
 import {mount} from 'enzyme';
 import * as React from 'react';
 import {CollapsibleRow, Row} from '../../element';
-import {Expandable, CollapsibleProps} from '../Expandable';
+import {Expandable, ExpandableProps} from '../Expandable';
 
 describe('expandable', () => {
 
-  const collapsible = (props: CollapsibleProps) => mount(<Expandable {...props}/>);
+  const collapsible = (props: ExpandableProps) => mount(<Expandable {...props}/>);
 
   it('should default to closed', () => {
     expect(collapsible(mockProps()).find(Row).length).toBe(4);
@@ -68,4 +68,4 @@ const mockProps = (
     ],
     totals = {foo: 2, bar: 3},
     toggleOpen = jest.fn()
-  } = {}): CollapsibleProps => ({columns, rows, totals, toggleOpen});
+  } = {}): ExpandableProps => ({columns, rows, totals, toggleOpen});

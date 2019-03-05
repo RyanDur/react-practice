@@ -1,6 +1,6 @@
 export const jordan_closed = [
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -18,7 +18,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -36,7 +36,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -54,7 +54,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -72,7 +72,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -90,7 +90,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 33,
       bar: 6,
       baz: 9,
@@ -152,7 +152,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -170,7 +170,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -188,7 +188,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -206,7 +206,7 @@ export const jordan_closed = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -226,7 +226,7 @@ export const jordan_closed = [
 ];
 export const jordan_open = [
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -244,7 +244,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -262,7 +262,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -280,7 +280,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -298,7 +298,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -316,7 +316,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 33,
       bar: 6,
       baz: 9,
@@ -378,7 +378,7 @@ export const jordan_open = [
     selected: true
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -396,7 +396,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -414,7 +414,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,
@@ -432,7 +432,7 @@ export const jordan_open = [
     selected: false
   },
   {
-    data: {
+    rows: {
       another: 11,
       bar: 2,
       baz: 3,

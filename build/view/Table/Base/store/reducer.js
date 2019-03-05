@@ -11,16 +11,16 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("../../../../core/types");
+var types_1 = require("../../data/types");
 var defaultState = {
     columns: [],
-    rows: []
+    rowNames: []
 };
 exports.reducer = function (state, action) {
     if (state === void 0) { state = defaultState; }
     switch (action.type) {
         case types_1.dataAction.DATA:
-            return __assign({}, state, { columns: action.response.columns, rows: action.response.rows });
+            return __assign({}, state, { columns: action.response.columns, rowNames: action.response.rowNames });
         default:
             return state;
     }

@@ -1,5 +1,4 @@
 export {Data} from './Data';
-export {Rows} from './Rows';
-export {dataAction} from './dataAction';
+export {Table} from './Table';
 export {DataState} from './DataState';
-export {DataResponse} from './DataResponse';
+export {DataResponse, ValidateDataResponse} from './DataResponse';

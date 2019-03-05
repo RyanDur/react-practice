@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {initialState} from '../../../__test__/initialState';
 import {base} from '../../../Base';
-import {core} from '../../../data';
+import {data} from '../../../data';
 import {connectToData, socketAction} from '../../../data/action';
 import {socketMiddleware} from '../../../data/middleware';
 import {DataResponse} from '../../../data/types';
@@ -19,7 +19,7 @@ describe('expandable table state', () => {
     store = createStore(combineReducers({
       expandable,
       base,
-      core
+      core: data
     }), applyMiddleware(socketMiddleware(clientConnector)));
     open = toggleOpen(store.dispatch);
     connectToData(store.dispatch);

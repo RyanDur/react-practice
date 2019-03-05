@@ -1,17 +1,11 @@
 import * as React from 'react';
-import {Data} from '../data/types';
-import {CollapsibleRow, Row, TotalsTable, SelectableHeader} from '../element';
+import {CollapsibleRow, Row, SelectableHeader, TotalsTable} from '../element';
 import {catFormatter} from '../element/cats';
-import {CollapsedRow} from '../element/types';
+import {ExpandableDispatchProps, ExpandableStateProps} from './state/connector';
 
-export interface CollapsibleProps {
-  columns: string[];
-  rows: CollapsedRow[];
-  totals: Data<number>;
-  toggleOpen: (selection: string) => void;
-}
+export type ExpandableProps = ExpandableStateProps & ExpandableDispatchProps;
 
-export const Expandable = ({totals, rows, toggleOpen, columns}: CollapsibleProps) =>
+export const Expandable = ({totals, rows, toggleOpen, columns}: ExpandableProps) =>
   <TotalsTable id='collapsible' totals={totals} columns={columns}>
     <tbody>
     {rows.map((row) => {

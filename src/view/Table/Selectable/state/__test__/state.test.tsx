@@ -3,7 +3,7 @@ import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import {AppState} from '../../../../../types';
 import {initialState} from '../../../__test__/initialState';
 import {base} from '../../../Base';
-import {core} from '../../../data';
+import {data} from '../../../data';
 import {connectToData, socketAction} from '../../../data/action';
 import {socketMiddleware} from '../../../data/middleware';
 import {DataResponse} from '../../../data/types';
@@ -24,7 +24,7 @@ describe('selectable state', () => {
     store = createStore(combineReducers({
       selectable,
       base,
-      core
+      data
     }), applyMiddleware(socketMiddleware(clientConnector)));
     select = toggleSelect(store.dispatch);
     connectToData(store.dispatch);

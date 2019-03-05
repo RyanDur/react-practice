@@ -1,14 +1,12 @@
 import {AppState} from '../../../../types';
 import {sumColumns} from '../../../helpers';
 
-export const selectedTotals = ({base, selectable, core}: AppState) =>
-  sumColumns(
-    selectable.selected.map((selection: string) => core.data[selection].data),
-    core.columns);
+export const selectedTotals = ({base, selectable, data}: AppState) =>
+  sumColumns(selectable.selected.map((row) => data.table[row].data), data.columns);
 
-export const selectableRows = ({base, selectable, core}: AppState) =>
-  base.rows.map((rowName: string) => ({
-    name: rowName,
-    selected: selectable.selected.includes(rowName),
-    data: core.data[rowName].data
+export const selectableRows = ({base, selectable, data}: AppState) =>
+  base.rowNames.map((row: string) => ({
+    name: row,
+    selected: selectable.selected.includes(row),
+    data: data.table[row].data
   }));

@@ -1,9 +1,9 @@
-import {DataAction} from './action';
-import {normalize} from './helpers';
-import {dataAction, DataState} from './types';
+import {dataAction, DataAction} from './action';
+import {reconcile} from './helpers';
+import {DataState} from './types';
 
 const defaultState: DataState = {
-  data: {},
+  table: {},
   rows: [],
   columns: []
 };
@@ -16,9 +16,9 @@ export const reducer = (
   case dataAction.DATA:
     return {
       ...state,
-      data: normalize(state.data, action.response.data),
-      rows: action.response.rows,
-      columns: action.response.columns
+      table: reconcile(state.table, action),
+      rows: action.rowNames,
+      columns: action.columnNames
     };
   default:
     return state;

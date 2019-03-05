@@ -10,7 +10,7 @@ interface CatRowProps {
   handleClick?: () => void;
 }
 
-export const Row = ({children, columns, data, dataFormatter = (a: any) => a, handleClick}: CatRowProps) => {
+export const Row = ({children, columns = [], data = {}, dataFormatter = (a: any) => a, handleClick}: CatRowProps) => {
   return <tr>
     {children}
     {columns.map((column: string) =>

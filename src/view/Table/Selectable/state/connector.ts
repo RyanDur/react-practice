@@ -20,7 +20,7 @@ export interface SelectableDispatchProps {
 
 export type SelectableProps = SelectableStateProps & SelectableDispatchProps;
 
-export default connect<SelectableStateProps, SelectableDispatchProps>(
+export default connect(
   (state: AppState) => ({
     columns: columns(state),
     rows: selectableRows(state),

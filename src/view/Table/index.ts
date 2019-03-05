@@ -1,6 +1,6 @@
 import {AppMiddleware} from '../../types';
 import {base, BaseState} from './Base';
-import {core, middleware as dataMiddleware} from './data';
+import {data, middleware as dataMiddleware} from './data';
 import {DataAction} from './data/action';
 import {DataState} from './data/types';
 import {expandable, ExpandableState} from './Expandible';
@@ -10,7 +10,7 @@ import {selectable, SelectableAction, SelectableState} from './Selectable/state'
 export type TableAction = SelectableAction | CollapsibleAction | DataAction;
 export interface TableState {
   base: BaseState;
-  core: DataState;
+  data: DataState;
   selectable: SelectableState;
   expandable: ExpandableState;
 }
@@ -21,7 +21,7 @@ export const tableMiddleware: AppMiddleware[] = [
 
 export const tableReducers = {
   base,
-  core,
+  data,
   selectable,
   expandable
 };

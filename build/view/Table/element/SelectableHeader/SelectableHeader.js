@@ -29,11 +29,14 @@ var SelectableHeader = (function (_super) {
             this.props.handleSelect(this.props.value.name);
         }
     };
+    SelectableHeader.prototype.componentDidCatch = function (error, errorInfo) {
+        console.log(error.message);
+    };
     SelectableHeader.prototype.render = function () {
         var _a = this.props, value = _a.value, classes = _a.classes, id = _a.id;
         return (React.createElement(React.Fragment, null,
             React.createElement("input", { type: 'checkbox', id: value.name + "-checkbox-" + id, checked: value.selected, value: value.name, onChange: this.getOnChange }),
-            React.createElement("label", { className: classes.join(' ') }, value.name)));
+            React.createElement("label", { htmlFor: value.name + "-checkbox-" + id, className: classes.join(' ') }, value.name)));
     };
     return SelectableHeader;
 }(react_1.Component));

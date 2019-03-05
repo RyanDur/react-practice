@@ -28,7 +28,7 @@ var Draggable = (function (_super) {
     }
     Draggable.prototype.render = function () {
         var _this = this;
-        var _a = this.props, columns = _a.columns, rows = _a.rows, totals = _a.totals;
+        var _a = this.props, columns = _a.columns, rows = _a.rowNames, totals = _a.totals;
         return React.createElement("table", null,
             React.createElement("thead", null,
                 React.createElement("tr", null,
@@ -40,7 +40,7 @@ var Draggable = (function (_super) {
                 return React.createElement("tr", { key: row.name + "-draggable-" + index },
                     React.createElement("td", { draggable: true }, row.name),
                     columns.map(function (column) {
-                        return React.createElement("td", { "data-group": column, key: column }, cats_1.cats[row.data[column]]);
+                        return React.createElement("td", { "data-group": column, key: column }, cats_1.cats[row.rows[column]]);
                     }));
             })),
             React.createElement("tfoot", null,

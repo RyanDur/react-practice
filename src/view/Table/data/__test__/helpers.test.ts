@@ -1,119 +1,127 @@
-import {normalize} from '../helpers';
-import {Rows} from '../types';
-import {ResponseData} from '../types/DataResponse';
+import {reconcile} from '../helpers';
+import {DataResponse, Table} from '../types';
 
 describe('normalizing the data', () => {
 
-  it('should take the data and turn it into a row', () => {
-    const row: Rows = {
+  it('should take the data and turn it into a table', () => {
+    const currentState: Table = {
       foo: {data: {fip: 4}}
     };
 
-    const data: ResponseData[] = [{
-      name: 'foo',
-      fip: 3
-    }];
+    const newState: DataResponse = {
+      data: [{name: 'foo', fip: 3}],
+      columnNames: ['fip'],
+      rowNames: ['foo']
+    };
 
-    expect(normalize(row, data)).toEqual({
-      foo: {
-        name: 'foo',
-        data: {fip: 3}
-      }
+    expect(reconcile(currentState, newState)).toEqual({
+      foo: {data: {fip: 3}}
     });
   });
 
   it('should take multiple data points and turn it into current state', () => {
-    const row: Rows = {
+    const currentState: Table = {
       foo: {data: {fip: 4, fop: 5}},
       far: {data: {fip: 3, fop: 1}}
     };
 
-    const data = [
-      {name: 'foo', fip: 3, fop: 6},
-      {name: 'far', fip: 6, fop: 7}
-    ];
+    const newState: DataResponse = {
+      data: [
+        {name: 'foo', fip: 3, fop: 6},
+        {name: 'far', fip: 6, fop: 7}
+      ],
+      columnNames: ['fip', 'fop'],
+      rowNames: ['foo', 'far']
+    };
 
-    expect(normalize(row, data)).toEqual({
-      foo: {
-        name: 'foo',
-        data: {fip: 3, fop: 6}
-      },
-      far: {
-        name: 'far',
-        data: {fip: 6, fop: 7}
-      }
+    expect(reconcile(currentState, newState)).toEqual({
+      foo: {data: {fip: 3, fop: 6}},
+      far: {data: {fip: 6, fop: 7}}
     });
   });
 
   it('should remove the row from the current ste if it is not in the new rows', () => {
-    const currentState: Rows = {
+    const currentState: Table = {
       foo: {data: {fip: 4, fop: 5}},
       far: {data: {fip: 3, fop: 1}}
     };
 
-    const newData = [
-      {name: 'foo', fip: 3, fop: 6}
-    ];
+    const newState: DataResponse = {
+      data: [{name: 'foo', fip: 3, fop: 6}],
+      rowNames: ['foo'],
+      columnNames: ['fip', 'fop']
+    };
 
-    expect(normalize(currentState, newData)).toEqual({
-      foo: {
-        name: 'foo',
-        data: {fip: 3, fop: 6}
-      }
+    expect(reconcile(currentState, newState)).toEqual({
+      foo: {data: {fip: 3, fop: 6}}
     });
   });
 
   it('should remove the column that are no longer reflected in the new data', () => {
-    const current: Rows = {
+    const current: Table = {
       foo: {data: {fip: 4, fop: 5}},
       far: {data: {fip: 3, fop: 1}}
     };
 
-    const data = [
-      {name: 'foo', fip: 3, fop: 6},
-      {name: 'far', fip: 6}
-    ];
+    const data: DataResponse = {
+      data: [
+        {name: 'foo', fip: 3, fop: 6},
+        {name: 'far', fip: 6}
+      ],
+      rowNames: ['fip', 'fop'],
+      columnNames: ['foo', 'far']
+    };
 
-    expect(normalize(current, data)).toEqual({
-      foo: {
-        name: 'foo',
-        data: {fip: 3, fop: 6}
-      },
-      far: {
-        name: 'far',
-        data: {fip: 6}
-      }
+    expect(reconcile(current, data)).toEqual({
+      foo: {data: {fip: 3, fop: 6}},
+      far: {data: {fip: 6}}
     });
   });
 
   it('should handle undefined current state', () => {
-    const current: Rows = {
+    const current: Table = {
       foo: {data: {fip: 4}}
     };
 
-    expect(normalize(current, undefined)).toEqual({
-      foo: {
-        name: 'foo',
-        data: {fip: 4}
-      }
+    expect(reconcile(current, undefined)).toEqual({
+      foo: {data: {fip: 4}}
     });
   });
 
   it('should handle undefined new state', () => {
-    const data = [
-      {name: 'foo', fip: 3, fop: 6},
-      {name: 'far', fip: 16}
-    ];
+    const newState: DataResponse = {
+      data: [
+        {name: 'foo', fip: 3, fop: 6},
+        {name: 'far', fip: 16}
+      ],
+      rowNames: ['foo', 'far'],
+      columnNames: ['fip', 'fop']
+    };
 
-    expect(normalize(undefined, data)).toEqual({
+    expect(reconcile(undefined, newState)).toEqual({
+      foo: {data: {fip: 3, fop: 6}},
+      far: {data: {fip: 16}}
+    });
+  });
+
+  it('should store the sub-rows and sum them to create the current row', () => {
+    const newState: DataResponse = {
+      data: [
+        {name: 'foo', fip: 3, fop: 6},
+        {name: 'foo', fip: 3, fop: 6},
+        {name: 'far', fip: 16}
+      ],
+      rowNames: ['foo', 'far'],
+      columnNames: ['fip', 'fop']
+    };
+
+    expect(reconcile(undefined, newState)).toEqual({
       foo: {
-        name: 'foo',
-        data: {fip: 3, fop: 6}
+        data: {fip: 6, fop: 12}, subRows: [
+          {fip: 3, fop: 6},
+          {fip: 3, fop: 6}]
       },
-      far: {
-        name: 'far',
-        data: {fip: 16}
-      }
+      far: {data: {fip: 16}}
     });
   });
 });

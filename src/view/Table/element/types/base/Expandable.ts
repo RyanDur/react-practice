@@ -1,5 +1,5 @@
 import {Data} from '../../../data/types';
 
-export interface Collapsible {
+export interface Expandable {
   subRows?: Array<Data<number>>;
 }

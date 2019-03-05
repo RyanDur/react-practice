@@ -1,9 +1,10 @@
 import {AppState} from '../../../../types';
+import {ExpandableRow} from '../../element/types/row';
 
-export const expandableRows = ({base, expandable, core}: AppState) =>
-  base.rows.map((name: string) => ({
-    name,
-    selected: expandable.open.includes(name),
-    data: core.data[name].data,
-    subRows: core.data[name].subData
+export const expandableRows = ({base, expandable, data}: AppState): ExpandableRow[] =>
+  base.rowNames.map((row) => ({
+    name: row,
+    selected: expandable.open.includes(row),
+    data: data.table[row].data,
+    subRows: data.table[row].subRows
   }));

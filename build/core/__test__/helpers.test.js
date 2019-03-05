@@ -13,7 +13,7 @@ describe('normalizing the data', function () {
         expect(helpers_1.normalize(row, data)).toEqual({
             foo: {
                 name: 'foo',
-                data: { fip: 3 }
+                rows: { fip: 3 }
             }
         });
     });
@@ -29,11 +29,11 @@ describe('normalizing the data', function () {
         expect(helpers_1.normalize(row, data)).toEqual({
             foo: {
                 name: 'foo',
-                data: { fip: 3, fop: 6 }
+                rows: { fip: 3, fop: 6 }
             },
             far: {
                 name: 'far',
-                data: { fip: 6, fop: 7 }
+                rows: { fip: 6, fop: 7 }
             }
         });
     });
@@ -48,7 +48,7 @@ describe('normalizing the data', function () {
         expect(helpers_1.normalize(currentState, newData)).toEqual({
             foo: {
                 name: 'foo',
-                data: { fip: 3, fop: 6 }
+                rows: { fip: 3, fop: 6 }
             }
         });
     });
@@ -64,11 +64,11 @@ describe('normalizing the data', function () {
         expect(helpers_1.normalize(current, data)).toEqual({
             foo: {
                 name: 'foo',
-                data: { fip: 3, fop: 6 }
+                rows: { fip: 3, fop: 6 }
             },
             far: {
                 name: 'far',
-                data: { fip: 6 }
+                rows: { fip: 6 }
             }
         });
     });
@@ -79,7 +79,7 @@ describe('normalizing the data', function () {
         expect(helpers_1.normalize(current, undefined)).toEqual({
             foo: {
                 name: 'foo',
-                data: { fip: 4 }
+                rows: { fip: 4 }
             }
         });
     });
@@ -91,11 +91,11 @@ describe('normalizing the data', function () {
         expect(helpers_1.normalize(undefined, data)).toEqual({
             foo: {
                 name: 'foo',
-                data: { fip: 3, fop: 6 }
+                rows: { fip: 3, fop: 6 }
             },
             far: {
                 name: 'far',
-                data: { fip: 16 }
+                rows: { fip: 16 }
             }
         });
     });
