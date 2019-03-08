@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Component, ErrorInfo} from 'react';
+import {ChangeEvent, Component, ErrorInfo} from 'react';
 import {SelectedHeader} from '../types';
 
 interface SelectableHeaderProps {
   value: SelectedHeader;
-  handleSelect: (selection: string) => void;
+  handleSelect: (selection: string, selected: boolean) => void;
   id: string;
   defaultSelected?: boolean;
   classes?: string[];
@@ -12,13 +12,13 @@ interface SelectableHeaderProps {
 
 export class Select extends Component<SelectableHeaderProps> {
   componentDidMount(): void {
-    if (this.props.defaultSelected) {
-      this.props.handleSelect(this.props.value.name);
+    if (this.props.value.selected === undefined) {
+      this.props.handleSelect(this.props.value.name, !!this.props.defaultSelected);
     }
   }
 
-  getOnChange = () => {
-    this.props.handleSelect(this.props.value.name);
+  getOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    this.props.handleSelect(this.props.value.name, event.currentTarget.checked);
   };
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {

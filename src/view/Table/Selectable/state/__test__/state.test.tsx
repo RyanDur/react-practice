@@ -13,7 +13,7 @@ import {selectableRows} from '../selectors';
 
 describe('selectable state', () => {
   let store: Store;
-  let select: (selection: string) => SelectableAction;
+  let select: (selection: string, selected: boolean) => SelectableAction;
   const clientConnector = jest.fn((fn: (data: DataResponse) => void) => fn(initialState));
   const selected = (state: AppState) =>
     selectableRows(state)
@@ -36,13 +36,13 @@ describe('selectable state', () => {
   });
 
   it('should add the selection', () => {
-    select('Alex');
+    select('Alex', true);
     expect(selected(store.getState())).toEqual(['Alex']);
   });
 
   it('should remove the selection that is already selected', () => {
-    select('Alex');
-    select('Alex');
+    select('Alex', true);
+    select('Alex', false);
     expect(selected(store.getState())).toEqual([]);
   });
 });

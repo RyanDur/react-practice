@@ -15,7 +15,7 @@ export interface SelectableStateProps {
 }
 
 export interface SelectableDispatchProps {
-  toggleSelect: (row: string) => void;
+  toggleSelect: (row: string, selected: boolean) => void;
 }
 
 export type SelectableProps = SelectableStateProps & SelectableDispatchProps;

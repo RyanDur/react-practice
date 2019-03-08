@@ -2,12 +2,16 @@ import {AppAction} from '../../../../actions';
 import {updateSelected} from '../../../helpers';
 import {selectedAction} from './actions';
 
+export interface Selected {
+  [selection: string]: boolean;
+}
+
 export interface SelectableState {
-  selected: string[];
+  selected: Selected;
 }
 
 const defaultState: SelectableState = {
-  selected: []
+  selected: {}
 };
 
 export const reducer = (
@@ -16,7 +20,7 @@ export const reducer = (
 ): SelectableState => {
   switch (action.type) {
   case selectedAction.TOGGLE_SELECTION:
-    return {selected: updateSelected(action.selection, state.selected)};
+    return {selected: updateSelected(action, state.selected)};
   default:
     return state;
   }
