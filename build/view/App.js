@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_1 = require("react");
 var Carousel_1 = require("./Carousel");
-var connector_1 = require("./ErrorBoundary/connector");
+var ErrorBoundary_1 = require("./ErrorBoundary");
 var Base_1 = require("./Table/Base");
 var Expandible_1 = require("./Table/Expandible");
 var Selectable_1 = require("./Table/Selectable");
@@ -29,7 +29,7 @@ var App = (function (_super) {
         this.props.connect();
     };
     App.prototype.render = function () {
-        return (React.createElement(connector_1.default, null,
+        return (React.createElement(ErrorBoundary_1.ErrorBoundary, null,
             React.createElement(Carousel_1.Carousel, null,
                 React.createElement(Base_1.Base, null),
                 React.createElement(Selectable_1.Selectable, { defaultSelected: true }),

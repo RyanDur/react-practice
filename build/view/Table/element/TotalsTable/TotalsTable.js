@@ -15,7 +15,7 @@ var React = require("react");
 var __1 = require("..");
 var __2 = require("..");
 exports.TotalsTable = function (props) {
-    return React.createElement("table", { id: props.id },
+    return React.createElement("table", { id: props.id, className: (props.classes || []).join(' ') },
         React.createElement(__1.Columns, __assign({}, props)),
         props.children,
         React.createElement(__2.Totals, __assign({}, props)));
