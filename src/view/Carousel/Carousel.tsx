@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
 import * as React from 'react';
 import './Carousel.css';
-import {WindowDispatchProps, WindowStateProps} from './connector';
+import {WindowDispatchProps, WindowStateProps} from './state/connector';
 
 interface ManuelProps {
   children: ReactNode[];

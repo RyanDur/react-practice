@@ -4,7 +4,7 @@ export interface CarState {
   carousel: CarouselState;
 }
 
-export interface CarouselState {
+interface CarouselState {
   currentWindow: number;
 }
 

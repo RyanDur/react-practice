@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Action, Dispatch} from 'redux';
-import {AppState} from '../../types';
-import {Carousel} from './Carousel';
+import {AppState} from '../../../types';
+import {Carousel} from '../Carousel';
 
 export interface WindowStateProps {
   currentWindow: number;
