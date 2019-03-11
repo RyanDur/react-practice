@@ -12,15 +12,14 @@ export class App extends Component<AppProps> {
     this.props.connect();
   }
 
-  render() {
-    return <ErrorBoundary>
+  render = () =>
+    <ErrorBoundary>
       <Carousel>
         <Base/>
         <Selectable defaultSelected={true}/>
         <Expandable/>
       </Carousel>
     </ErrorBoundary>;
-  }
 }
 
 export default App;

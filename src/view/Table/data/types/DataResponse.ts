@@ -1,16 +1,17 @@
 import * as t from 'io-ts';
 
-const ValidateData = t.union([
-  t.interface({name: t.string}) ,
-  t.record(t.string, t.number)
-]);
+const DataName = t.type({
+  name: t.string
+});
+
+const DataNumber = t.UnknownRecord;
+
+export type ResponseData = t.TypeOf<typeof DataName & typeof DataNumber> ;
 
 export const ValidateDataResponse = t.type({
-  data: t.array(ValidateData),
+  data: t.array(t.intersection([DataName, DataNumber])),
   rowNames: t.array(t.string),
   columnNames: t.array(t.string)
 });
-
-export type RowData = t.TypeOf<typeof ValidateData>;
 
 export type DataResponse = t.TypeOf<typeof ValidateDataResponse>;

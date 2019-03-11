@@ -1,6 +1,6 @@
 import {Action, Dispatch} from 'redux';
 import {AppAction} from '../../../actions';
-import {DataResponse, RowData} from './types/DataResponse';
+import {DataResponse, ResponseData} from './types/DataResponse';
 
 export enum socketAction {
   CONNECT = 'CONNECT',
@@ -16,7 +16,7 @@ export enum dataAction {
 }
 
 export interface DataAction extends Action<dataAction.DATA> {
-  data: RowData[];
+  data: ResponseData[];
   columnNames: string[];
   rowNames: string[];
 }

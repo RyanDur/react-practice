@@ -3,11 +3,11 @@ import * as React from 'react';
 import './Carousel.css';
 import {WindowDispatchProps, WindowStateProps} from './state/connector';
 
-interface ManuelProps {
+interface ManualProps {
   children: ReactNode[];
 }
 
-type WindowProps = WindowStateProps & WindowDispatchProps & ManuelProps;
+type WindowProps = WindowStateProps & WindowDispatchProps & ManualProps;
 
 export const Carousel = ({children, handleChange, currentWindow}: WindowProps) =>
   <section className='carousel'>

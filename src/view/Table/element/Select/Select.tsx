@@ -21,16 +21,12 @@ export class Select extends Component<SelectableHeaderProps> {
     this.props.handleSelect(this.props.value.name, event.currentTarget.checked);
   };
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.log(error.message);
-  }
-
   render() {
     const {value, classes, id} = this.props;
     return (<>
         <input type='checkbox'
                id={`${value.name}-checkbox-${id}`}
-               checked={value.selected}
+               checked={!!value.selected}
                value={value.name}
                onChange={this.getOnChange}/>
         <label htmlFor={`${value.name}-checkbox-${id}`}
