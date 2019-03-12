@@ -18,7 +18,7 @@ export const reducer = (
   case dataAction.DATA:
     return {
       ...state,
-      table: buildTable(action, state.table),
+      table: buildTable(action),
       rows: action.rowNames,
       columns: action.columnNames
     };
@@ -27,17 +27,14 @@ export const reducer = (
   }
 };
 
-const buildTable = ({data, columnNames}: DataResponse, currentState: Table): Table => {
-  if (!data.length) {
-    return currentState;
-  }
-  return data.reduce((table: Table, newRow: ResponseData) => {
-    if (Object.keys(table).includes(newRow.name)) {
-      const subRows = [...(table[newRow.name].subRows || [table[newRow.name].data]), remove(newRow, 'name')];
-      return {
-        ...table, [newRow.name]: {data: sumColumns(subRows, columnNames), subRows}
-      };
-    }
-    return {...table, [newRow.name]: {data: remove(newRow, 'name')}};
-  }, {});
-};
+const buildTable = ({data, columnNames}: DataResponse): Table =>
+  data.length ?
+    data.reduce((table: Table, newRow: ResponseData) => {
+      if (Object.keys(table).includes(newRow.name)) {
+        const subRows = [...(table[newRow.name].subRows || [table[newRow.name].data]), remove(newRow, 'name')];
+        return {
+          ...table, [newRow.name]: {data: sumColumns(subRows, columnNames), subRows}
+        };
+      }
+      return {...table, [newRow.name]: {data: remove(newRow, 'name')}};
+    }, {}) : {};
