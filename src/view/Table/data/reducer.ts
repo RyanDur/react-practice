@@ -4,7 +4,7 @@ import {dataAction, DataAction} from './action';
 import {DataResponse, DataState, Table} from './types';
 import {ResponseData} from './types/DataResponse';
 
-const defaultState: DataState = {
+export const defaultState: DataState = {
   table: {},
   rows: [],
   columns: []
