@@ -1,7 +1,7 @@
 import {remove} from '../../../util/ObjectHelpers';
 import {sumColumns} from '../../helpers';
 import {dataAction, DataAction} from './action';
-import {Data, DataResponse, DataState, Table} from './types';
+import {DataResponse, DataState, Table} from './types';
 import {ResponseData} from './types/DataResponse';
 
 const defaultState: DataState = {
