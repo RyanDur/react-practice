@@ -8,6 +8,7 @@ import {Data} from '../../data/types';
 interface TotalsTableProps {
   columns: string[];
   totals: Data<any>;
+  draggable?: boolean;
   children?: ReactNode[] | ReactNode;
   id: string;
 }
