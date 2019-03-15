@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Row, TotalsTable} from '../element';
+import {catFormatter} from '../element/cats';
 import {DraggableProps} from './state/connector';
 
 export const Draggable = ({columns, totals, rows}: DraggableProps) => {
@@ -8,6 +9,7 @@ export const Draggable = ({columns, totals, rows}: DraggableProps) => {
     {rows.map(row => <Row key={row.name}
                           draggable={true}
                           columns={columns}
+                          dataFormatter={catFormatter}
                           data={row.data}>
       <td draggable={true}>{row.name}</td>
     </Row>)}
