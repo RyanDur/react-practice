@@ -1,0 +1,6 @@
+.paginator {
+  & .menu {
+    display: flex;
+    justify-content: center;
+  }
+}
