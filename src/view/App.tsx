@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Component} from 'react';
-import {Carousel} from './Carousel';
 import {AppProps} from './connector';
 import {ErrorBoundary} from './ErrorBoundary';
+import {Paginator} from './Paginator';
 import {Base} from './Table/Base';
 import {Draggable} from './Table/Draggable';
 import {Expandable} from './Table/Expandible';
@@ -15,12 +15,12 @@ export class App extends Component<AppProps> {
 
   render = () =>
     <ErrorBoundary>
-      <Carousel>
+      <Paginator>
         <Base/>
         <Selectable defaultSelected={true}/>
         <Expandable/>
         <Draggable/>
-      </Carousel>
+      </Paginator>
     </ErrorBoundary>;
 }
 

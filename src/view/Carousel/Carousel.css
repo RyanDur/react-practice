@@ -1,9 +1,0 @@
-.carousel {
-  & .window {
-    border: 1px solid black;
-    background: wheat;
-    min-width: 50rem;
-    min-height: 50rem;
-    overflow: auto;
-  }
-}
