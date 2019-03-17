@@ -20,19 +20,21 @@ export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
   return <section className='paginator'>
     {children.map((child, page) => active(page) && child)}
     <nav className='menu center'>
-      <button className='navigation center selector'
+      <button className='navigation selector center left'
               onClick={() => changePage(pageLeft(currentPage))}>
         <i className='arrow left'/>
       </button>
-      {children.map((_, page) =>
-        <input key={page}
-               className='selector'
-               type='radio'
-               name='paginator'
-               value={page}
-               checked={active(page)}
-               onChange={() => changePage(page)}/>)}
-      <button className='navigation center selector'
+      <div className='navigation center'>
+        {children.map((_, page) =>
+          <input key={page}
+                 className='selector'
+                 type='radio'
+                 name='paginator'
+                 value={page}
+                 checked={active(page)}
+                 onChange={() => changePage(page)}/>)}
+      </div>
+      <button className='navigation selector center right'
               onClick={() => changePage(pageRight(currentPage, children.length))}>
         <i className='arrow right'/>
       </button>
