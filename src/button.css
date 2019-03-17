@@ -4,6 +4,7 @@ button {
   &.arrow {
     width: 0;
     height: 0;
+    cursor: pointer;
     border: 0.5rem solid transparent;
     border-top: 0.5rem solid;
     border-right: 0.5rem solid;

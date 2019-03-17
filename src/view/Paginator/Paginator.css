@@ -1,6 +1,10 @@
 .paginator {
   & .menu {
     display: flex;
-    justify-content: center;
+    padding: 0;
+  }
+
+  & .selector {
+    cursor: pointer;
   }
 }
