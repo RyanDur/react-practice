@@ -1,4 +1,4 @@
-exports.loadCSS = ({ include, exclude }) => ({
+exports.loadCSS = ({include, exclude}) => ({
   module: {
     rules: [
       {
@@ -11,13 +11,11 @@ exports.loadCSS = ({ include, exclude }) => ({
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => ([
-                require('postcss-preset-env')({
-                  features: {
-                    'nesting-rules': true
-                  }
-                })
-              ])
+              plugins: () => [
+                require("precss"),
+                require('postcss-nested'),
+                require("postcss-cssnext")()
+              ]
             }
           }
         ]

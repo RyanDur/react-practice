@@ -1,0 +1,27 @@
+button {
+  all: unset;
+
+  &.arrow {
+    width: 0;
+    height: 0;
+    border: 0.5rem solid transparent;
+    border-top: 0.5rem solid;
+    border-right: 0.5rem solid;
+
+    &.up {
+      transform: none;
+    }
+
+    &.right {
+      transform: rotate(45deg);
+    }
+
+    &.down {
+      transform: rotate(90deg);
+    }
+
+    &.left {
+      transform: rotate(-135deg);
+    }
+  }
+}
