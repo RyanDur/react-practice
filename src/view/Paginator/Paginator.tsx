@@ -20,8 +20,10 @@ export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
   return <section className='paginator'>
     {children.map((child, page) => active(page) && child)}
     <nav className='menu center'>
-      <button className='arrow left'
-              onClick={() => changePage(pageLeft(currentPage))}/>
+      <button className='button center selector'
+              onClick={() => changePage(pageLeft(currentPage))}>
+        <i className='arrow left'/>
+      </button>
       {children.map((_, page) =>
         <input key={page}
                className='selector'
@@ -30,8 +32,10 @@ export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
                value={page}
                checked={active(page)}
                onChange={() => changePage(page)}/>)}
-      <button className='arrow right'
-              onClick={() => changePage(pageRight(currentPage, children.length))}/>
+      <button className='button center selector'
+              onClick={() => changePage(pageRight(currentPage, children.length))}>
+        <i className='arrow right'/>
+      </button>
     </nav>
   </section>;
 };

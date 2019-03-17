@@ -1,7 +1,7 @@
 button {
   all: unset;
 
-  &.arrow {
+  & .arrow {
     width: 0;
     height: 0;
     cursor: pointer;
