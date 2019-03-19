@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import {ReactNode, Fragment} from 'react';
 import * as React from 'react';
 import {PageDispatchProps, PageStateProps} from './state/connector';
 import './Paginator.css';
@@ -22,21 +22,24 @@ export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
     <nav className='menu center'>
       <button className='navigation selector center left'
               onClick={() => changePage(pageLeft(currentPage))}>
-        <i className='arrow left'/>
+        <b className='arrow left'>➡</b>
       </button>
-      <div className='navigation center'>
+      <ul className='navigation selectors center'>
         {children.map((_, page) =>
-          <input key={page}
-                 className='selector'
-                 type='radio'
-                 name='paginator'
-                 value={page}
-                 checked={active(page)}
-                 onChange={() => changePage(page)}/>)}
-      </div>
+          <Fragment key={page}>
+            <input id={`page-${page}`}
+                   className='off-page selector'
+                   type='radio'
+                   name='paginator'
+                   value={page}
+                   checked={active(page)}
+                   onChange={() => changePage(page)}/>
+            <label htmlFor={`page-${page}`} className='option'/>
+          </Fragment>)}
+      </ul>
       <button className='navigation selector center right'
               onClick={() => changePage(pageRight(currentPage, children.length))}>
-        <i className='arrow right'/>
+        <b className='arrow right'>➡</b>
       </button>
     </nav>
   </section>;

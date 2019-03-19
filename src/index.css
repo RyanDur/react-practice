@@ -7,6 +7,7 @@ html {
 body {
   font-family: -apple-system, sans-serif;
   color: rgb(51, 51, 51);
+  overflow: hidden;
 }
 
 html,
@@ -27,6 +28,11 @@ td {
   font: inherit;
   vertical-align: baseline;
   text-align: unset;
+}
+
+b,
+i {
+  all: unset;
 }
 
 table {
@@ -53,6 +59,13 @@ table {
   justify-content: center;
 }
 
-li {
-  list-style-type: none;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.off-page {
+  position: absolute;
+  left: -1000%;
 }

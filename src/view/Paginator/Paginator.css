@@ -9,31 +9,51 @@
     display: flex;
     padding: 0;
     height: 3rem;
-  }
 
-  .navigation {
-    width: 33%;
-    height: 100%;
-    border-left: 0.1rem solid black;
-    border-top: 0.1rem solid black;
-    border-bottom: 0.1rem solid black;
+    & .navigation {
+      width: 33%;
+      height: 100%;
+      border-left: 0.1rem solid black;
+      border-top: 0.1rem solid black;
+      border-bottom: 0.1rem solid black;
 
-    &:last-child {
-      border-right: 0.1rem solid black;
+      &:last-child {
+        border-right: 0.1rem solid black;
+      }
+
+      &.left {
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+      }
+
+      &.right {
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+      }
+
+      &.selectors {
+        width: 33%;
+        display: inline-flex;
+        justify-content: space-evenly;
+
+        & .option {
+          cursor: pointer;
+          position: relative;
+          height: 1rem;
+          width: 1rem;
+          border-radius: 50%;
+          background: rgb(203, 209, 216);
+          color: transparent;
+
+          &:hover {
+            background: rgb(159, 170, 183);
+          }
+        }
+
+        & .selector:checked + .option {
+          background: rgb(64, 224, 208);
+        }
+      }
     }
-
-    &.left {
-      border-top-left-radius: 1rem;
-      border-bottom-left-radius: 1rem;
-    }
-
-    &.right {
-      border-top-right-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-    }
-  }
-
-  & .selector {
-    cursor: pointer;
   }
 }

@@ -1,29 +1,16 @@
 button {
   all: unset;
-  height: 100%;
 
   & .arrow {
-    width: 0;
-    height: 0;
-    cursor: pointer;
-    border: 0.5rem solid transparent;
-    border-top: 0.5rem solid;
-    border-right: 0.5rem solid;
+    font-size: xx-large;
+    line-height: 100%;
 
-    &.up {
+    &.right {
       transform: none;
     }
 
-    &.right {
-      transform: rotate(45deg);
-    }
-
-    &.down {
-      transform: rotate(90deg);
-    }
-
     &.left {
-      transform: rotate(-135deg);
+      transform: rotate(180deg);
     }
   }
 }
