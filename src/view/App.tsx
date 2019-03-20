@@ -3,11 +3,8 @@ import {Component} from 'react';
 import {AppProps} from './connector';
 import {ErrorBoundary} from './ErrorBoundary';
 import {Paginator} from './Paginator';
-import {Base} from './Table/Base';
-import {Draggable} from './Table/Draggable';
-import {Expandable} from './Table/Expandible';
-import {Selectable} from './Table/Selectable';
-import {Window} from './Window';
+import {Base, Draggable, Expandable, Selectable} from './Table';
+import {DisplayWindow} from './DisplayWindow';
 
 export class App extends Component<AppProps> {
   componentDidMount() {
@@ -17,18 +14,18 @@ export class App extends Component<AppProps> {
   render = () =>
     <ErrorBoundary>
       <Paginator>
-        <Window title={'Base'}>
+        <DisplayWindow title={'Base'}>
           <Base/>
-        </Window>
-        <Window title={'Selectable'}>
+        </DisplayWindow>
+        <DisplayWindow title={'Selectable'}>
           <Selectable defaultSelected={true}/>
-        </Window>
-        <Window title={'Expandable'}>
+        </DisplayWindow>
+        <DisplayWindow title={'Expandable'}>
           <Expandable/>
-        </Window>
-        <Window title={'Draggable'}>
+        </DisplayWindow>
+        <DisplayWindow title={'Draggable'}>
           <Draggable/>
-        </Window>
+        </DisplayWindow>
       </Paginator>
     </ErrorBoundary>;
 }

@@ -19,8 +19,6 @@
 }
 
 .paginator {
-  min-width: 40rem;
-  min-height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
