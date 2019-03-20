@@ -4,7 +4,8 @@
     width: 1rem;
     opacity: 0.25;
     position: relative;
-    border: 0.1rem solid midnightblue;
+    border: 0.5rem double rgb(227, 252, 255);
+    box-shadow: 0 0 0.3rem rgb(221, 221, 221);
   }
 
   100% {
@@ -35,6 +36,10 @@
       border-left: 0.1rem solid black;
       border-top: 0.1rem solid black;
       border-bottom: 0.1rem solid black;
+
+      & .arrow {
+        font-size: xx-large;
+      }
 
       &:last-child {
         border-right: 0.1rem solid black;

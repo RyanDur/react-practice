@@ -7,6 +7,7 @@ import {Base} from './Table/Base';
 import {Draggable} from './Table/Draggable';
 import {Expandable} from './Table/Expandible';
 import {Selectable} from './Table/Selectable';
+import {Window} from './Window';
 
 export class App extends Component<AppProps> {
   componentDidMount() {
@@ -16,10 +17,18 @@ export class App extends Component<AppProps> {
   render = () =>
     <ErrorBoundary>
       <Paginator>
-        <Base/>
-        <Selectable defaultSelected={true}/>
-        <Expandable/>
-        <Draggable/>
+        <Window title={'Base'}>
+          <Base/>
+        </Window>
+        <Window title={'Selectable'}>
+          <Selectable defaultSelected={true}/>
+        </Window>
+        <Window title={'Expandable'}>
+          <Expandable/>
+        </Window>
+        <Window title={'Draggable'}>
+          <Draggable/>
+        </Window>
       </Paginator>
     </ErrorBoundary>;
 }

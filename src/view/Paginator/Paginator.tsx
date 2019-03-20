@@ -9,11 +9,11 @@ interface ManualProps {
 
 type WindowProps = PageStateProps & PageDispatchProps & ManualProps;
 
-const pageLeft = (currentPage: number) =>
-  currentPage - 1 < 0 ? currentPage : currentPage - 1;
+const pageLeft = (currentPage: number, numberOfPages: number) =>
+  currentPage - 1 < 0 ? numberOfPages - 1 : currentPage - 1;
 
 const pageRight = (currentPage: number, numberOfPages: number) =>
-  currentPage + 1 >= numberOfPages ? currentPage : currentPage + 1;
+  currentPage + 1 >= numberOfPages ? 0 : currentPage + 1;
 
 export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
   const active = (page: number) => page === currentPage;
@@ -21,8 +21,8 @@ export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
     {children.map((child, page) => active(page) && child)}
     <nav className='menu center'>
       <button className='navigation selector center left'
-              onClick={() => changePage(pageLeft(currentPage))}>
-        <b className='arrow left'>➡</b>
+              onClick={() => changePage(pageRight(currentPage, children.length))}>
+        <b className='arrow'>↪</b>
       </button>
       <ul className='navigation selectors center'>
         {children.map((_, page) =>
@@ -38,8 +38,8 @@ export const Paginator = ({children, changePage, currentPage}: WindowProps) => {
           </Fragment>)}
       </ul>
       <button className='navigation selector center right'
-              onClick={() => changePage(pageRight(currentPage, children.length))}>
-        <b className='arrow right'>➡</b>
+              onClick={() => changePage(pageLeft(currentPage, children.length))}>
+        <b className='arrow'>↩</b>
       </button>
     </nav>
   </section>;
