@@ -35,12 +35,12 @@
       border-top: 0.1rem solid black;
       border-bottom: 0.1rem solid black;
 
-      & .arrow {
-        font-size: xx-large;
-      }
-
       &:last-child {
         border-right: 0.1rem solid black;
+      }
+
+      & .arrow {
+        font-size: xx-large;
       }
 
       &.left {

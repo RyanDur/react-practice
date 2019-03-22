@@ -12,9 +12,7 @@ exports.loadCSS = ({include, exclude}) => ({
             loader: 'postcss-loader',
             options: {
               plugins: () => [
-                require("precss"),
-                require('postcss-nested'),
-                require("postcss-cssnext")()
+                require('postcss-nested')()
               ]
             }
           }
