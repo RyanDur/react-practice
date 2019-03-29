@@ -17,7 +17,8 @@ module.exports = prod = (paths) => merge([
       loader: 'postcss-loader',
       options: {
         plugins: () => ([
-          require('postcss-nested')()
+          require('postcss-nested')(),
+          require('autoprefixer')
         ])
       }
     }]
