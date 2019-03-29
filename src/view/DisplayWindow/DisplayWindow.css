@@ -3,7 +3,7 @@
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
 
-  & .display-title {
+  & > .title {
     margin: 0;
     font-size: 2rem;
     border-bottom: 0.1rem solid;
