@@ -1,5 +1,6 @@
 import {ReactNode} from 'react';
 import * as React from 'react';
+import './DisplayWindow.css';
 
 interface WindowProps {
   title: string;
@@ -7,7 +8,9 @@ interface WindowProps {
 }
 
 export const DisplayWindow = ({title, children}: WindowProps) =>
-  <section>
-    <h1>{title}</h1>
-    {children}
+  <section className='display'>
+    <h1 className='display-title center'>{title}</h1>
+    <article className='window center'>
+      {children}
+    </article>
   </section>;

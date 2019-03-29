@@ -1,0 +1,16 @@
+.display {
+  border: 0.1rem solid;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+
+  & .display-title {
+    margin: 0;
+    font-size: 2rem;
+    border-bottom: 0.1rem solid;
+  }
+
+  & .window {
+    height: 25rem;
+    width: 40rem;
+  }
+}
