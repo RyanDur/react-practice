@@ -10,7 +10,7 @@ interface WindowProps {
 export const DisplayWindow = ({title, children}: WindowProps) =>
   <section className='display'>
     <h1 className='title center'>{title}</h1>
-    <article className='window center'>
+    <article className='window'>
       {children}
     </article>
   </section>;

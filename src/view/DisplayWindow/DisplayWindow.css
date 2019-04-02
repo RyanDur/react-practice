@@ -10,8 +10,8 @@
   }
 
   & .window {
+    overflow: auto;
     height: 25rem;
     width: 40rem;
-    overflow: auto;
   }
 }
